@@ -7,7 +7,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Threading;
 using Microsoft.VisualBasic;
-using AsanaNet;
 
 namespace WindowsFormsApplication1
 {
@@ -16,13 +15,7 @@ namespace WindowsFormsApplication1
         [STAThread]
         static void Main()
         {
-            Authentication auth = new Authentication();
-            var asana = new Asana(api_key, AuthenticationType.Basic, (s1, s2, s3) => { });
-            asana.GetMe(o =>
-            {
-                var user = o as AsanaUser;
-                MessageBox.Show("Hello, " + user.Name);
-            }).Wait(); ;
+            Application.Run(new CresentLogin());
             
         }
         
