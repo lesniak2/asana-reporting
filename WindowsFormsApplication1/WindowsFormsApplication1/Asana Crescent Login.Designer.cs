@@ -39,31 +39,22 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.AsanaCrescentLogin = new System.Windows.Forms.Panel();
             this.ChooseWorkspace = new System.Windows.Forms.Panel();
-            this.ChooseProject = new System.Windows.Forms.Panel();
-            this.ChooseProjectNextButton = new System.Windows.Forms.Button();
-            this.ChooseProjectBackButton = new System.Windows.Forms.Button();
-            this.ChooseProjectvScrollBar = new System.Windows.Forms.VScrollBar();
-            this.chooseaproject_label = new System.Windows.Forms.Label();
-            this.MasterCheckB = new System.Windows.Forms.CheckBox();
-            this.DeployedCheckB = new System.Windows.Forms.CheckBox();
-            this.ClosedCheckB = new System.Windows.Forms.CheckBox();
-            this.BudgetCheckB = new System.Windows.Forms.CheckBox();
-            this.IncidentCheckB = new System.Windows.Forms.CheckBox();
-            this.SprintCheckB = new System.Windows.Forms.CheckBox();
-            this.BacklogCheckB = new System.Windows.Forms.CheckBox();
-            this.InvestigationCheckB = new System.Windows.Forms.CheckBox();
-            this.InitiativesCheckB = new System.Windows.Forms.CheckBox();
-            this.AllCheckB = new System.Windows.Forms.CheckBox();
             this.wmpbox = new System.Windows.Forms.PictureBox();
             this.workspace_label = new System.Windows.Forms.Label();
             this.lfobox = new System.Windows.Forms.PictureBox();
             this.WorkspaceBackButton = new System.Windows.Forms.Button();
+            this.chooseaproject_label = new System.Windows.Forms.Label();
+            this.ChooseProjectvScrollBar = new System.Windows.Forms.VScrollBar();
+            this.ChooseProjectBackButton = new System.Windows.Forms.Button();
+            this.ChooseProjectNextButton = new System.Windows.Forms.Button();
+            this.ChooseProject = new System.Windows.Forms.Panel();
+            this.All = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.AsanaCrescentLogin.SuspendLayout();
             this.ChooseWorkspace.SuspendLayout();
-            this.ChooseProject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wmpbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lfobox)).BeginInit();
+            this.ChooseProject.SuspendLayout();
             this.SuspendLayout();
             // 
             // AsanaLogin_label
@@ -141,7 +132,7 @@
             this.AsanaCrescentLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AsanaCrescentLogin.Location = new System.Drawing.Point(0, 0);
             this.AsanaCrescentLogin.Name = "AsanaCrescentLogin";
-            this.AsanaCrescentLogin.Size = new System.Drawing.Size(318, 282);
+            this.AsanaCrescentLogin.Size = new System.Drawing.Size(375, 355);
             this.AsanaCrescentLogin.TabIndex = 2;
             this.AsanaCrescentLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -155,183 +146,10 @@
             this.ChooseWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChooseWorkspace.Location = new System.Drawing.Point(0, 0);
             this.ChooseWorkspace.Name = "ChooseWorkspace";
-            this.ChooseWorkspace.Size = new System.Drawing.Size(318, 282);
+            this.ChooseWorkspace.Size = new System.Drawing.Size(375, 355);
             this.ChooseWorkspace.TabIndex = 5;
             this.ChooseWorkspace.Visible = false;
             this.ChooseWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // ChooseProject
-            // 
-            this.ChooseProject.Controls.Add(this.ChooseProjectNextButton);
-            this.ChooseProject.Controls.Add(this.ChooseProjectBackButton);
-            this.ChooseProject.Controls.Add(this.ChooseProjectvScrollBar);
-            this.ChooseProject.Controls.Add(this.chooseaproject_label);
-            this.ChooseProject.Controls.Add(this.MasterCheckB);
-            this.ChooseProject.Controls.Add(this.DeployedCheckB);
-            this.ChooseProject.Controls.Add(this.ClosedCheckB);
-            this.ChooseProject.Controls.Add(this.BudgetCheckB);
-            this.ChooseProject.Controls.Add(this.IncidentCheckB);
-            this.ChooseProject.Controls.Add(this.SprintCheckB);
-            this.ChooseProject.Controls.Add(this.BacklogCheckB);
-            this.ChooseProject.Controls.Add(this.InvestigationCheckB);
-            this.ChooseProject.Controls.Add(this.InitiativesCheckB);
-            this.ChooseProject.Controls.Add(this.AllCheckB);
-            this.ChooseProject.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChooseProject.Location = new System.Drawing.Point(0, 0);
-            this.ChooseProject.Name = "ChooseProject";
-            this.ChooseProject.Size = new System.Drawing.Size(318, 282);
-            this.ChooseProject.TabIndex = 5;
-            this.ChooseProject.Visible = false;
-            this.ChooseProject.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseProject_Paint);
-            // 
-            // ChooseProjectNextButton
-            // 
-            this.ChooseProjectNextButton.Location = new System.Drawing.Point(217, 242);
-            this.ChooseProjectNextButton.Name = "ChooseProjectNextButton";
-            this.ChooseProjectNextButton.Size = new System.Drawing.Size(75, 23);
-            this.ChooseProjectNextButton.TabIndex = 27;
-            this.ChooseProjectNextButton.Text = "Next";
-            this.ChooseProjectNextButton.UseVisualStyleBackColor = true;
-            this.ChooseProjectNextButton.Click += new System.EventHandler(this.ChooseProjectNext_Click);
-            // 
-            // ChooseProjectBackButton
-            // 
-            this.ChooseProjectBackButton.Location = new System.Drawing.Point(217, 33);
-            this.ChooseProjectBackButton.Name = "ChooseProjectBackButton";
-            this.ChooseProjectBackButton.Size = new System.Drawing.Size(75, 23);
-            this.ChooseProjectBackButton.TabIndex = 26;
-            this.ChooseProjectBackButton.Text = "Back";
-            this.ChooseProjectBackButton.UseVisualStyleBackColor = true;
-            this.ChooseProjectBackButton.Click += new System.EventHandler(this.ChooseProjectBack_Click);
-            // 
-            // ChooseProjectvScrollBar
-            // 
-            this.ChooseProjectvScrollBar.Location = new System.Drawing.Point(295, 0);
-            this.ChooseProjectvScrollBar.Name = "ChooseProjectvScrollBar";
-            this.ChooseProjectvScrollBar.Size = new System.Drawing.Size(23, 292);
-            this.ChooseProjectvScrollBar.TabIndex = 25;
-            // 
-            // chooseaproject_label
-            // 
-            this.chooseaproject_label.AutoSize = true;
-            this.chooseaproject_label.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseaproject_label.Location = new System.Drawing.Point(7, 3);
-            this.chooseaproject_label.Name = "chooseaproject_label";
-            this.chooseaproject_label.Size = new System.Drawing.Size(184, 24);
-            this.chooseaproject_label.TabIndex = 24;
-            this.chooseaproject_label.Text = "Choose A Project";
-            // 
-            // MasterCheckB
-            // 
-            this.MasterCheckB.AutoSize = true;
-            this.MasterCheckB.Location = new System.Drawing.Point(17, 248);
-            this.MasterCheckB.Name = "MasterCheckB";
-            this.MasterCheckB.Size = new System.Drawing.Size(100, 17);
-            this.MasterCheckB.TabIndex = 23;
-            this.MasterCheckB.Text = "BI: Master Data";
-            this.MasterCheckB.UseVisualStyleBackColor = true;
-            this.MasterCheckB.Click += new System.EventHandler(this.MasterCheckB_Click);
-            // 
-            // DeployedCheckB
-            // 
-            this.DeployedCheckB.AutoSize = true;
-            this.DeployedCheckB.Location = new System.Drawing.Point(17, 225);
-            this.DeployedCheckB.Name = "DeployedCheckB";
-            this.DeployedCheckB.Size = new System.Drawing.Size(174, 17);
-            this.DeployedCheckB.TabIndex = 22;
-            this.DeployedCheckB.Text = "BI Tasks: Deployed/Completed";
-            this.DeployedCheckB.UseVisualStyleBackColor = true;
-            this.DeployedCheckB.Click += new System.EventHandler(this.DeployedCheckB_Click);
-            // 
-            // ClosedCheckB
-            // 
-            this.ClosedCheckB.AutoSize = true;
-            this.ClosedCheckB.Location = new System.Drawing.Point(17, 201);
-            this.ClosedCheckB.Name = "ClosedCheckB";
-            this.ClosedCheckB.Size = new System.Drawing.Size(158, 17);
-            this.ClosedCheckB.TabIndex = 21;
-            this.ClosedCheckB.Text = "Closed/Cancelled Requests";
-            this.ClosedCheckB.UseVisualStyleBackColor = true;
-            this.ClosedCheckB.CheckedChanged += new System.EventHandler(this.checkBox8_CheckedChanged);
-            this.ClosedCheckB.Click += new System.EventHandler(this.ClosedCheckB_Click);
-            // 
-            // BudgetCheckB
-            // 
-            this.BudgetCheckB.AutoSize = true;
-            this.BudgetCheckB.Location = new System.Drawing.Point(17, 178);
-            this.BudgetCheckB.Name = "BudgetCheckB";
-            this.BudgetCheckB.Size = new System.Drawing.Size(135, 17);
-            this.BudgetCheckB.TabIndex = 20;
-            this.BudgetCheckB.Text = "BI: Budgetary Deferrals";
-            this.BudgetCheckB.UseVisualStyleBackColor = true;
-            this.BudgetCheckB.CheckedChanged += new System.EventHandler(this.BudgetCheckB_CheckedChanged);
-            this.BudgetCheckB.Click += new System.EventHandler(this.BudgetCheckB_Click);
-            // 
-            // IncidentCheckB
-            // 
-            this.IncidentCheckB.AutoSize = true;
-            this.IncidentCheckB.Location = new System.Drawing.Point(17, 155);
-            this.IncidentCheckB.Name = "IncidentCheckB";
-            this.IncidentCheckB.Size = new System.Drawing.Size(145, 17);
-            this.IncidentCheckB.TabIndex = 19;
-            this.IncidentCheckB.Text = "BI: Incident Management";
-            this.IncidentCheckB.UseVisualStyleBackColor = true;
-            this.IncidentCheckB.Click += new System.EventHandler(this.IncidentCheckB_Click);
-            // 
-            // SprintCheckB
-            // 
-            this.SprintCheckB.AutoSize = true;
-            this.SprintCheckB.Location = new System.Drawing.Point(17, 132);
-            this.SprintCheckB.Name = "SprintCheckB";
-            this.SprintCheckB.Size = new System.Drawing.Size(93, 17);
-            this.SprintCheckB.TabIndex = 18;
-            this.SprintCheckB.Text = "BI: Sprint Plan";
-            this.SprintCheckB.UseVisualStyleBackColor = true;
-            this.SprintCheckB.Click += new System.EventHandler(this.SprintCheckB_Click);
-            // 
-            // BacklogCheckB
-            // 
-            this.BacklogCheckB.AutoSize = true;
-            this.BacklogCheckB.Location = new System.Drawing.Point(17, 109);
-            this.BacklogCheckB.Name = "BacklogCheckB";
-            this.BacklogCheckB.Size = new System.Drawing.Size(81, 17);
-            this.BacklogCheckB.TabIndex = 17;
-            this.BacklogCheckB.Text = "BI: Backlog";
-            this.BacklogCheckB.UseVisualStyleBackColor = true;
-            this.BacklogCheckB.Click += new System.EventHandler(this.BacklogCheckB_Click);
-            // 
-            // InvestigationCheckB
-            // 
-            this.InvestigationCheckB.AutoSize = true;
-            this.InvestigationCheckB.Location = new System.Drawing.Point(17, 86);
-            this.InvestigationCheckB.Name = "InvestigationCheckB";
-            this.InvestigationCheckB.Size = new System.Drawing.Size(140, 17);
-            this.InvestigationCheckB.TabIndex = 16;
-            this.InvestigationCheckB.Text = "BI: Internal Investigation";
-            this.InvestigationCheckB.UseVisualStyleBackColor = true;
-            this.InvestigationCheckB.Click += new System.EventHandler(this.InvestigationCheckB_Click);
-            // 
-            // InitiativesCheckB
-            // 
-            this.InitiativesCheckB.AutoSize = true;
-            this.InitiativesCheckB.Location = new System.Drawing.Point(17, 63);
-            this.InitiativesCheckB.Name = "InitiativesCheckB";
-            this.InitiativesCheckB.Size = new System.Drawing.Size(86, 17);
-            this.InitiativesCheckB.TabIndex = 15;
-            this.InitiativesCheckB.Text = "BI: Initiatives";
-            this.InitiativesCheckB.UseVisualStyleBackColor = true;
-            this.InitiativesCheckB.Click += new System.EventHandler(this.InitiativesCheckB_Click);
-            // 
-            // AllCheckB
-            // 
-            this.AllCheckB.AutoSize = true;
-            this.AllCheckB.Location = new System.Drawing.Point(17, 40);
-            this.AllCheckB.Name = "AllCheckB";
-            this.AllCheckB.Size = new System.Drawing.Size(37, 17);
-            this.AllCheckB.TabIndex = 14;
-            this.AllCheckB.Text = "All";
-            this.AllCheckB.UseVisualStyleBackColor = true;
-            this.AllCheckB.Click += new System.EventHandler(this.AllCheckB_Click);
             // 
             // wmpbox
             // 
@@ -374,11 +192,73 @@
             this.WorkspaceBackButton.UseVisualStyleBackColor = true;
             this.WorkspaceBackButton.Click += new System.EventHandler(this.WorkspaceBackButton_Click);
             // 
+            // chooseaproject_label
+            // 
+            this.chooseaproject_label.AutoSize = true;
+            this.chooseaproject_label.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chooseaproject_label.Location = new System.Drawing.Point(7, 3);
+            this.chooseaproject_label.Name = "chooseaproject_label";
+            this.chooseaproject_label.Size = new System.Drawing.Size(184, 24);
+            this.chooseaproject_label.TabIndex = 24;
+            this.chooseaproject_label.Text = "Choose A Project";
+            // 
+            // ChooseProjectvScrollBar
+            // 
+            this.ChooseProjectvScrollBar.Location = new System.Drawing.Point(285, 37);
+            this.ChooseProjectvScrollBar.Name = "ChooseProjectvScrollBar";
+            this.ChooseProjectvScrollBar.Size = new System.Drawing.Size(26, 258);
+            this.ChooseProjectvScrollBar.TabIndex = 25;
+            // 
+            // ChooseProjectBackButton
+            // 
+            this.ChooseProjectBackButton.Location = new System.Drawing.Point(6, 301);
+            this.ChooseProjectBackButton.Name = "ChooseProjectBackButton";
+            this.ChooseProjectBackButton.Size = new System.Drawing.Size(75, 23);
+            this.ChooseProjectBackButton.TabIndex = 26;
+            this.ChooseProjectBackButton.Text = "Back";
+            this.ChooseProjectBackButton.UseVisualStyleBackColor = true;
+            this.ChooseProjectBackButton.Click += new System.EventHandler(this.ChooseProjectBack_Click);
+            // 
+            // ChooseProjectNextButton
+            // 
+            this.ChooseProjectNextButton.Location = new System.Drawing.Point(288, 301);
+            this.ChooseProjectNextButton.Name = "ChooseProjectNextButton";
+            this.ChooseProjectNextButton.Size = new System.Drawing.Size(75, 23);
+            this.ChooseProjectNextButton.TabIndex = 27;
+            this.ChooseProjectNextButton.Text = "Next";
+            this.ChooseProjectNextButton.UseVisualStyleBackColor = true;
+            this.ChooseProjectNextButton.Click += new System.EventHandler(this.ChooseProjectNext_Click);
+            // 
+            // ChooseProject
+            // 
+            this.ChooseProject.Controls.Add(this.ChooseProjectvScrollBar);
+            this.ChooseProject.Controls.Add(this.All);
+            this.ChooseProject.Controls.Add(this.ChooseProjectNextButton);
+            this.ChooseProject.Controls.Add(this.ChooseProjectBackButton);
+            this.ChooseProject.Controls.Add(this.chooseaproject_label);
+            this.ChooseProject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChooseProject.Location = new System.Drawing.Point(0, 0);
+            this.ChooseProject.Name = "ChooseProject";
+            this.ChooseProject.Size = new System.Drawing.Size(375, 355);
+            this.ChooseProject.TabIndex = 5;
+            this.ChooseProject.Visible = false;
+            this.ChooseProject.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseProject_Paint);
+            // 
+            // All
+            // 
+            this.All.BackColor = System.Drawing.SystemColors.Window;
+            this.All.FormattingEnabled = true;
+            this.All.Location = new System.Drawing.Point(80, 36);
+            this.All.Name = "All";
+            this.All.Size = new System.Drawing.Size(231, 259);
+            this.All.TabIndex = 28;
+            this.All.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
             // CrescentLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 282);
+            this.ClientSize = new System.Drawing.Size(375, 355);
             this.Controls.Add(this.AsanaCrescentLogin);
             this.Controls.Add(this.groupBox1);
             this.Name = "CrescentLogin";
@@ -389,10 +269,10 @@
             this.AsanaCrescentLogin.PerformLayout();
             this.ChooseWorkspace.ResumeLayout(false);
             this.ChooseWorkspace.PerformLayout();
-            this.ChooseProject.ResumeLayout(false);
-            this.ChooseProject.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wmpbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lfobox)).EndInit();
+            this.ChooseProject.ResumeLayout(false);
+            this.ChooseProject.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -412,21 +292,12 @@
         private System.Windows.Forms.PictureBox lfobox;
         private System.Windows.Forms.Label workspace_label;
         private System.Windows.Forms.Panel ChooseWorkspace;
+        private System.Windows.Forms.Button WorkspaceBackButton;
         private System.Windows.Forms.Panel ChooseProject;
-        private System.Windows.Forms.Label chooseaproject_label;
-        private System.Windows.Forms.CheckBox MasterCheckB;
-        private System.Windows.Forms.CheckBox DeployedCheckB;
-        private System.Windows.Forms.CheckBox ClosedCheckB;
-        private System.Windows.Forms.CheckBox BudgetCheckB;
-        private System.Windows.Forms.CheckBox IncidentCheckB;
-        private System.Windows.Forms.CheckBox SprintCheckB;
-        private System.Windows.Forms.CheckBox BacklogCheckB;
-        private System.Windows.Forms.CheckBox InvestigationCheckB;
-        private System.Windows.Forms.CheckBox InitiativesCheckB;
-        private System.Windows.Forms.CheckBox AllCheckB;
-        private System.Windows.Forms.VScrollBar ChooseProjectvScrollBar;
         private System.Windows.Forms.Button ChooseProjectNextButton;
         private System.Windows.Forms.Button ChooseProjectBackButton;
-        private System.Windows.Forms.Button WorkspaceBackButton;
+        private System.Windows.Forms.VScrollBar ChooseProjectvScrollBar;
+        private System.Windows.Forms.Label chooseaproject_label;
+        public System.Windows.Forms.CheckedListBox All;
     }
 }
