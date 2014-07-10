@@ -182,6 +182,7 @@
             this.ChooseProject.Name = "ChooseProject";
             this.ChooseProject.Size = new System.Drawing.Size(318, 287);
             this.ChooseProject.TabIndex = 5;
+            this.ChooseProject.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseProject_Paint);
             // 
             // ChooseProjectNextButton
             // 

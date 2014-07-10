@@ -19,7 +19,7 @@ namespace WindowsFormsApplication1
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-            
+            AsanaCresentLogin.Visible = true;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace WindowsFormsApplication1
 
         private void WorkspaceBackButton_Click(object sender, EventArgs e)
         {
-
+            AsanaCresentLogin.Visible = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -84,7 +84,7 @@ namespace WindowsFormsApplication1
 
         private void lfo_click(object sender, EventArgs e)
         {
-
+            ChooseWorkspace.Visible = true;
         }
 
         private void loginEnter_Click(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace WindowsFormsApplication1
 
         private void ChooseProjectBack_Click(object sender, EventArgs e)
         {
-
+            ChooseWorkspace.Visible = false;
         }
 
         private void ChooseProjectNext_Click(object sender, EventArgs e)
@@ -153,6 +153,11 @@ namespace WindowsFormsApplication1
         }
 
         private void MasterCheckB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChooseProject_Paint(object sender, PaintEventArgs e)
         {
 
         }
