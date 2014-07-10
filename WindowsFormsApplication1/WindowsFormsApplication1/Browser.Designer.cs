@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApplication1
+﻿using System.Windows.Forms;
+using System;
+namespace WindowsFormsApplication1
 {
     partial class Browser
     {
@@ -15,6 +17,7 @@
         {
             if (disposing && (components != null))
             {
+                Console.WriteLine("disposing");
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -26,6 +29,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
+        /// 
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
@@ -45,6 +49,10 @@
             this.webBrowser1.Size = new System.Drawing.Size(834, 429);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
+            this.webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser1_DocumentCompleted);
+            this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(webBrowser1_NewWindow);
+            this.webBrowser1.Navigating += new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
+            this.webBrowser1.Navigated += new WebBrowserNavigatedEventHandler(webBrowser1_Navigated);
             // 
             // statusStrip1
             // 
@@ -69,7 +77,7 @@
             this.ClientSize = new System.Drawing.Size(834, 429);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.webBrowser1);
-            this.Name = "Form5";
+            this.Name = "Browser";
             this.Text = "Asana Login";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

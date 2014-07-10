@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,12 +57,6 @@
     <Compile Include="All Projects.Designer.cs">
       <DependentUpon>All Projects.cs</DependentUpon>
     </Compile>
-    <Compile Include="Browser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Browser.Designer.cs">
-      <DependentUpon>Browser.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Asana Crescent Login.resx">
@@ -69,9 +64,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="All Projects.resx">
       <DependentUpon>All Projects.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Browser.resx">
-      <DependentUpon>Browser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -101,6 +93,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\leapfrog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="AsanaNet-master\AsanaNet\AsanaNet.csproj">
+      <Project>{3740ed7e-52b6-4d40-92cd-df0ff0e855e2}</Project>
+      <Name>AsanaNet</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

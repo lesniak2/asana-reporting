@@ -54,6 +54,15 @@ ipch/
 *.sdf
 *.cachefile
 
+# AsanaNet Library
+AsanaNet-master/
+
+# Unnecessary until OAuth support
+TokenManager.cs
+Browser.cs
+Browser.Designer.cs
+Browser.resx
+
 # Visual Studio profiler
 *.psess
 *.vsp
