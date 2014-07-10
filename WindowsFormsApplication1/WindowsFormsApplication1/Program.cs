@@ -11,7 +11,7 @@ using AsanaNet;
 
 namespace WindowsFormsApplication1
 {
-    class Program
+    class Program 
     {
         [STAThread]
         static void Main()
@@ -21,14 +21,16 @@ namespace WindowsFormsApplication1
             Authentication auth = new Authentication();
             if (auth.ShowDialog() == DialogResult.OK)
                 api_key = auth.GetAPIKey();
-            Console.WriteLine(api_key);
+
+            Application.Run(new CrescentLogin());
+            /**
             var asana = new Asana(api_key, AuthenticationType.Basic, (s1, s2, s3) => { });
             asana.GetMe(o =>
             {
                 var user = o as AsanaUser;
                 MessageBox.Show("Hello, " + user.Name);
             }).Wait(); ;
-
+            */
         }
 
         /*

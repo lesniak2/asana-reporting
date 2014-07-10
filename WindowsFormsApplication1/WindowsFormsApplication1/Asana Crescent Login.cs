@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class CresentLogin : Form
+    public partial class CrescentLogin : Form
     {
-        public CresentLogin()
+        public CrescentLogin()
         {
             InitializeComponent();
         }
@@ -37,7 +37,7 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void CresentLogin_Load(object sender, EventArgs e)
+        private void CrescentLogin_Load(object sender, EventArgs e)
         {
 
         }
@@ -90,11 +90,13 @@ namespace WindowsFormsApplication1
         private void loginEnter_Click(object sender, EventArgs e)
         {
             ChooseWorkspace.Visible = true;
+            
+            
         }
 
         private void ChooseProjectBack_Click(object sender, EventArgs e)
         {
-            ChooseWorkspace.Visible = false;
+            ChooseProject.Visible = false;
         }
 
         private void ChooseProjectNext_Click(object sender, EventArgs e)

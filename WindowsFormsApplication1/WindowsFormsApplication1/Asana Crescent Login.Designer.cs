@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class CresentLogin
+    partial class CrescentLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             this.LoginUsernameLabel = new System.Windows.Forms.Label();
             this.LoginUsernameBox = new System.Windows.Forms.TextBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.AsanaCresentLogin = new System.Windows.Forms.Panel();
+            this.AsanaCrescentLogin = new System.Windows.Forms.Panel();
             this.ChooseWorkspace = new System.Windows.Forms.Panel();
             this.ChooseProject = new System.Windows.Forms.Panel();
             this.ChooseProjectNextButton = new System.Windows.Forms.Button();
@@ -59,7 +59,7 @@
             this.lfobox = new System.Windows.Forms.PictureBox();
             this.WorkspaceBackButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            this.AsanaCresentLogin.SuspendLayout();
+            this.AsanaCrescentLogin.SuspendLayout();
             this.ChooseWorkspace.SuspendLayout();
             this.ChooseProject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wmpbox)).BeginInit();
@@ -129,21 +129,21 @@
             this.LoginUsernameBox.TabIndex = 0;
             this.LoginUsernameBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // AsanaCresentLogin
+            // AsanaCrescentLogin
             // 
-            this.AsanaCresentLogin.Controls.Add(this.ChooseWorkspace);
-            this.AsanaCresentLogin.Controls.Add(this.LoginUsernameBox);
-            this.AsanaCresentLogin.Controls.Add(this.AsanaLogin_label);
-            this.AsanaCresentLogin.Controls.Add(this.LoginPasswordLabel);
-            this.AsanaCresentLogin.Controls.Add(this.LoginPasswordBox);
-            this.AsanaCresentLogin.Controls.Add(this.LoginEnterButton);
-            this.AsanaCresentLogin.Controls.Add(this.LoginUsernameLabel);
-            this.AsanaCresentLogin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AsanaCresentLogin.Location = new System.Drawing.Point(0, 0);
-            this.AsanaCresentLogin.Name = "AsanaCresentLogin";
-            this.AsanaCresentLogin.Size = new System.Drawing.Size(318, 282);
-            this.AsanaCresentLogin.TabIndex = 2;
-            this.AsanaCresentLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.AsanaCrescentLogin.Controls.Add(this.ChooseWorkspace);
+            this.AsanaCrescentLogin.Controls.Add(this.LoginUsernameBox);
+            this.AsanaCrescentLogin.Controls.Add(this.AsanaLogin_label);
+            this.AsanaCrescentLogin.Controls.Add(this.LoginPasswordLabel);
+            this.AsanaCrescentLogin.Controls.Add(this.LoginPasswordBox);
+            this.AsanaCrescentLogin.Controls.Add(this.LoginEnterButton);
+            this.AsanaCrescentLogin.Controls.Add(this.LoginUsernameLabel);
+            this.AsanaCrescentLogin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AsanaCrescentLogin.Location = new System.Drawing.Point(0, 0);
+            this.AsanaCrescentLogin.Name = "AsanaCrescentLogin";
+            this.AsanaCrescentLogin.Size = new System.Drawing.Size(318, 282);
+            this.AsanaCrescentLogin.TabIndex = 2;
+            this.AsanaCrescentLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // ChooseWorkspace
             // 
@@ -374,19 +374,19 @@
             this.WorkspaceBackButton.UseVisualStyleBackColor = true;
             this.WorkspaceBackButton.Click += new System.EventHandler(this.WorkspaceBackButton_Click);
             // 
-            // CresentLogin
+            // CrescentLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(318, 282);
-            this.Controls.Add(this.AsanaCresentLogin);
+            this.Controls.Add(this.AsanaCrescentLogin);
             this.Controls.Add(this.groupBox1);
-            this.Name = "CresentLogin";
-            this.Text = "Asana Cresent";
-            this.Load += new System.EventHandler(this.CresentLogin_Load);
+            this.Name = "CrescentLogin";
+            this.Text = "Asana Crescent";
+            this.Load += new System.EventHandler(this.CrescentLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            this.AsanaCresentLogin.ResumeLayout(false);
-            this.AsanaCresentLogin.PerformLayout();
+            this.AsanaCrescentLogin.ResumeLayout(false);
+            this.AsanaCrescentLogin.PerformLayout();
             this.ChooseWorkspace.ResumeLayout(false);
             this.ChooseWorkspace.PerformLayout();
             this.ChooseProject.ResumeLayout(false);
@@ -407,7 +407,7 @@
         private System.Windows.Forms.MaskedTextBox LoginPasswordBox;
         private System.Windows.Forms.Button LoginEnterButton;
         private System.Windows.Forms.BindingSource bindingSource1;
-        private System.Windows.Forms.Panel AsanaCresentLogin;
+        private System.Windows.Forms.Panel AsanaCrescentLogin;
         private System.Windows.Forms.PictureBox wmpbox;
         private System.Windows.Forms.PictureBox lfobox;
         private System.Windows.Forms.Label workspace_label;
