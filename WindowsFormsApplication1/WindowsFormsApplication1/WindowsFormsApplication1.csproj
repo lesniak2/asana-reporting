@@ -44,23 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Choose Project.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Choose Project.Designer.cs">
-      <DependentUpon>Choose Project.cs</DependentUpon>
-    </Compile>
     <Compile Include="Asana Crescent Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Asana Crescent Login.Designer.cs">
       <DependentUpon>Asana Crescent Login.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Choose Workspace.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Choose Workspace.Designer.cs">
-      <DependentUpon>Choose Workspace.cs</DependentUpon>
     </Compile>
     <Compile Include="All Projects.cs">
       <SubType>Form</SubType>
@@ -74,31 +62,16 @@
     <Compile Include="Browser.Designer.cs">
       <DependentUpon>Browser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form5.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form5.Designer.cs">
-      <DependentUpon>Form5.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Choose Project.resx">
-      <DependentUpon>Choose Project.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Asana Crescent Login.resx">
       <DependentUpon>Asana Crescent Login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Choose Workspace.resx">
-      <DependentUpon>Choose Workspace.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="All Projects.resx">
       <DependentUpon>All Projects.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Browser.resx">
       <DependentUpon>Browser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form5.resx">
-      <DependentUpon>Form5.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -108,6 +81,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -121,6 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WMP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\leapfrog.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
