@@ -39,22 +39,23 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.AsanaCrescentLogin = new System.Windows.Forms.Panel();
             this.ChooseWorkspace = new System.Windows.Forms.Panel();
+            this.ChooseProject = new System.Windows.Forms.Panel();
+            this.ChooseProjectNextButton = new System.Windows.Forms.Button();
+            this.ChooseProjectBackButton = new System.Windows.Forms.Button();
+            this.chooseaproject_label = new System.Windows.Forms.Label();
             this.wmpbox = new System.Windows.Forms.PictureBox();
             this.workspace_label = new System.Windows.Forms.Label();
             this.lfobox = new System.Windows.Forms.PictureBox();
             this.WorkspaceBackButton = new System.Windows.Forms.Button();
-            this.chooseaproject_label = new System.Windows.Forms.Label();
-            this.ChooseProjectvScrollBar = new System.Windows.Forms.VScrollBar();
-            this.ChooseProjectBackButton = new System.Windows.Forms.Button();
-            this.ChooseProjectNextButton = new System.Windows.Forms.Button();
-            this.ChooseProject = new System.Windows.Forms.Panel();
-            this.All = new System.Windows.Forms.CheckedListBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.AsanaCrescentLogin.SuspendLayout();
             this.ChooseWorkspace.SuspendLayout();
+            this.ChooseProject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wmpbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lfobox)).BeginInit();
-            this.ChooseProject.SuspendLayout();
             this.SuspendLayout();
             // 
             // AsanaLogin_label
@@ -151,6 +152,52 @@
             this.ChooseWorkspace.Visible = false;
             this.ChooseWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // ChooseProject
+            // 
+            this.ChooseProject.Controls.Add(this.vScrollBar1);
+            this.ChooseProject.Controls.Add(this.checkBox1);
+            this.ChooseProject.Controls.Add(this.listBox1);
+            this.ChooseProject.Controls.Add(this.ChooseProjectNextButton);
+            this.ChooseProject.Controls.Add(this.ChooseProjectBackButton);
+            this.ChooseProject.Controls.Add(this.chooseaproject_label);
+            this.ChooseProject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChooseProject.Location = new System.Drawing.Point(0, 0);
+            this.ChooseProject.Name = "ChooseProject";
+            this.ChooseProject.Size = new System.Drawing.Size(375, 355);
+            this.ChooseProject.TabIndex = 5;
+            this.ChooseProject.Visible = false;
+            this.ChooseProject.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseProject_Paint);
+            // 
+            // ChooseProjectNextButton
+            // 
+            this.ChooseProjectNextButton.Location = new System.Drawing.Point(288, 301);
+            this.ChooseProjectNextButton.Name = "ChooseProjectNextButton";
+            this.ChooseProjectNextButton.Size = new System.Drawing.Size(75, 23);
+            this.ChooseProjectNextButton.TabIndex = 27;
+            this.ChooseProjectNextButton.Text = "Next";
+            this.ChooseProjectNextButton.UseVisualStyleBackColor = true;
+            this.ChooseProjectNextButton.Click += new System.EventHandler(this.ChooseProjectNext_Click);
+            // 
+            // ChooseProjectBackButton
+            // 
+            this.ChooseProjectBackButton.Location = new System.Drawing.Point(6, 301);
+            this.ChooseProjectBackButton.Name = "ChooseProjectBackButton";
+            this.ChooseProjectBackButton.Size = new System.Drawing.Size(75, 23);
+            this.ChooseProjectBackButton.TabIndex = 26;
+            this.ChooseProjectBackButton.Text = "Back";
+            this.ChooseProjectBackButton.UseVisualStyleBackColor = true;
+            this.ChooseProjectBackButton.Click += new System.EventHandler(this.ChooseProjectBack_Click);
+            // 
+            // chooseaproject_label
+            // 
+            this.chooseaproject_label.AutoSize = true;
+            this.chooseaproject_label.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chooseaproject_label.Location = new System.Drawing.Point(7, 3);
+            this.chooseaproject_label.Name = "chooseaproject_label";
+            this.chooseaproject_label.Size = new System.Drawing.Size(184, 24);
+            this.chooseaproject_label.TabIndex = 24;
+            this.chooseaproject_label.Text = "Choose A Project";
+            // 
             // wmpbox
             // 
             this.wmpbox.Image = global::WindowsFormsApplication1.Properties.Resources.WMP;
@@ -192,67 +239,32 @@
             this.WorkspaceBackButton.UseVisualStyleBackColor = true;
             this.WorkspaceBackButton.Click += new System.EventHandler(this.WorkspaceBackButton_Click);
             // 
-            // chooseaproject_label
+            // listBox1
             // 
-            this.chooseaproject_label.AutoSize = true;
-            this.chooseaproject_label.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseaproject_label.Location = new System.Drawing.Point(7, 3);
-            this.chooseaproject_label.Name = "chooseaproject_label";
-            this.chooseaproject_label.Size = new System.Drawing.Size(184, 24);
-            this.chooseaproject_label.TabIndex = 24;
-            this.chooseaproject_label.Text = "Choose A Project";
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(23, 43);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(300, 238);
+            this.listBox1.TabIndex = 28;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // ChooseProjectvScrollBar
+            // checkBox1
             // 
-            this.ChooseProjectvScrollBar.Location = new System.Drawing.Point(285, 37);
-            this.ChooseProjectvScrollBar.Name = "ChooseProjectvScrollBar";
-            this.ChooseProjectvScrollBar.Size = new System.Drawing.Size(26, 258);
-            this.ChooseProjectvScrollBar.TabIndex = 25;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(32, 54);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(80, 17);
+            this.checkBox1.TabIndex = 29;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // ChooseProjectBackButton
+            // vScrollBar1
             // 
-            this.ChooseProjectBackButton.Location = new System.Drawing.Point(6, 301);
-            this.ChooseProjectBackButton.Name = "ChooseProjectBackButton";
-            this.ChooseProjectBackButton.Size = new System.Drawing.Size(75, 23);
-            this.ChooseProjectBackButton.TabIndex = 26;
-            this.ChooseProjectBackButton.Text = "Back";
-            this.ChooseProjectBackButton.UseVisualStyleBackColor = true;
-            this.ChooseProjectBackButton.Click += new System.EventHandler(this.ChooseProjectBack_Click);
-            // 
-            // ChooseProjectNextButton
-            // 
-            this.ChooseProjectNextButton.Location = new System.Drawing.Point(288, 301);
-            this.ChooseProjectNextButton.Name = "ChooseProjectNextButton";
-            this.ChooseProjectNextButton.Size = new System.Drawing.Size(75, 23);
-            this.ChooseProjectNextButton.TabIndex = 27;
-            this.ChooseProjectNextButton.Text = "Next";
-            this.ChooseProjectNextButton.UseVisualStyleBackColor = true;
-            this.ChooseProjectNextButton.Click += new System.EventHandler(this.ChooseProjectNext_Click);
-            // 
-            // ChooseProject
-            // 
-            this.ChooseProject.Controls.Add(this.ChooseProjectvScrollBar);
-            this.ChooseProject.Controls.Add(this.All);
-            this.ChooseProject.Controls.Add(this.ChooseProjectNextButton);
-            this.ChooseProject.Controls.Add(this.ChooseProjectBackButton);
-            this.ChooseProject.Controls.Add(this.chooseaproject_label);
-            this.ChooseProject.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChooseProject.Location = new System.Drawing.Point(0, 0);
-            this.ChooseProject.Name = "ChooseProject";
-            this.ChooseProject.Size = new System.Drawing.Size(375, 355);
-            this.ChooseProject.TabIndex = 5;
-            this.ChooseProject.Visible = false;
-            this.ChooseProject.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseProject_Paint);
-            // 
-            // All
-            // 
-            this.All.BackColor = System.Drawing.SystemColors.Window;
-            this.All.FormattingEnabled = true;
-            this.All.Location = new System.Drawing.Point(80, 36);
-            this.All.Name = "All";
-            this.All.Size = new System.Drawing.Size(231, 259);
-            this.All.TabIndex = 28;
-            this.All.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            this.vScrollBar1.Location = new System.Drawing.Point(302, 43);
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(21, 238);
+            this.vScrollBar1.TabIndex = 30;
+            this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
             // 
             // CrescentLogin
             // 
@@ -269,10 +281,10 @@
             this.AsanaCrescentLogin.PerformLayout();
             this.ChooseWorkspace.ResumeLayout(false);
             this.ChooseWorkspace.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wmpbox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lfobox)).EndInit();
             this.ChooseProject.ResumeLayout(false);
             this.ChooseProject.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wmpbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lfobox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -296,8 +308,9 @@
         private System.Windows.Forms.Panel ChooseProject;
         private System.Windows.Forms.Button ChooseProjectNextButton;
         private System.Windows.Forms.Button ChooseProjectBackButton;
-        private System.Windows.Forms.VScrollBar ChooseProjectvScrollBar;
         private System.Windows.Forms.Label chooseaproject_label;
-        public System.Windows.Forms.CheckedListBox All;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.VScrollBar vScrollBar1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
