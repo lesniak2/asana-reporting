@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Authorization : Form
+    public partial class Authentication : Form
     {
-        public Authorization()
+        public Authentication()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void EnterButton_Click(object sender, EventArgs e)
         {
 
         }
@@ -25,6 +25,11 @@ namespace WindowsFormsApplication1
         private void APIAccessForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public string GetAPIKey()
+        {
+            return this.ApiTextBox.Text;
         }
     }
 }

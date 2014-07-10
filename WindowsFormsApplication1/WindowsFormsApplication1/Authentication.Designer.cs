@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class Authorization
+    partial class Authentication
     {
         /// <summary>
         /// Required designer variable.
@@ -28,47 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.APIAccessNext = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.EnterButton = new System.Windows.Forms.Button();
+            this.RequestApiLabel = new System.Windows.Forms.Label();
+            this.ApiTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // APIAccessNext
+            // EnterButton
             // 
-            this.APIAccessNext.Location = new System.Drawing.Point(186, 227);
-            this.APIAccessNext.Name = "APIAccessNext";
-            this.APIAccessNext.Size = new System.Drawing.Size(75, 23);
-            this.APIAccessNext.TabIndex = 0;
-            this.APIAccessNext.Text = "Enter";
-            this.APIAccessNext.UseVisualStyleBackColor = true;
-            this.APIAccessNext.Click += new System.EventHandler(this.button1_Click);
+            this.EnterButton.Location = new System.Drawing.Point(186, 227);
+            this.EnterButton.Name = "EnterButton";
+            this.EnterButton.Size = new System.Drawing.Size(75, 23);
+            this.EnterButton.TabIndex = 0;
+            this.EnterButton.Text = "Enter";
+            this.EnterButton.UseVisualStyleBackColor = true;
+            this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
+            this.EnterButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             // 
-            // label1
+            // RequestApiLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Garamond", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(184, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Please Enter Your API Key:";
+            this.RequestApiLabel.AutoSize = true;
+            this.RequestApiLabel.Font = new System.Drawing.Font("Garamond", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RequestApiLabel.Location = new System.Drawing.Point(12, 40);
+            this.RequestApiLabel.Name = "RequestApiLabel";
+            this.RequestApiLabel.Size = new System.Drawing.Size(184, 17);
+            this.RequestApiLabel.TabIndex = 1;
+            this.RequestApiLabel.Text = "Please Enter Your API Key:";
             // 
-            // textBox1
+            // ApiTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 93);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(249, 20);
-            this.textBox1.TabIndex = 2;
+            this.ApiTextBox.Location = new System.Drawing.Point(12, 93);
+            this.ApiTextBox.Name = "ApiTextBox";
+            this.ApiTextBox.Size = new System.Drawing.Size(249, 20);
+            this.ApiTextBox.TabIndex = 2;
             // 
-            // Authorization
+            // Authentication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.APIAccessNext);
-            this.Name = "Authorization";
+            this.Controls.Add(this.ApiTextBox);
+            this.Controls.Add(this.RequestApiLabel);
+            this.Controls.Add(this.EnterButton);
+            this.Name = "Authentication";
             this.Text = "Authorization";
             this.Load += new System.EventHandler(this.APIAccessForm_Load);
             this.ResumeLayout(false);
@@ -78,8 +79,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button APIAccessNext;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button EnterButton;
+        private System.Windows.Forms.Label RequestApiLabel;
+        private System.Windows.Forms.TextBox ApiTextBox;
     }
 }

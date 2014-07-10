@@ -58,7 +58,6 @@ ipch/
 AsanaNet-master/
 
 # Unnecessary until OAuth support
-TokenManager.cs
 Browser.cs
 Browser.Designer.cs
 Browser.resx
