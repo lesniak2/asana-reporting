@@ -141,8 +141,9 @@
             this.AsanaCresentLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AsanaCresentLogin.Location = new System.Drawing.Point(0, 0);
             this.AsanaCresentLogin.Name = "AsanaCresentLogin";
-            this.AsanaCresentLogin.Size = new System.Drawing.Size(318, 282);
+            this.AsanaCresentLogin.Size = new System.Drawing.Size(318, 287);
             this.AsanaCresentLogin.TabIndex = 2;
+            this.AsanaCresentLogin.Visible = false;
             this.AsanaCresentLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // ChooseWorkspace
@@ -155,7 +156,7 @@
             this.ChooseWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChooseWorkspace.Location = new System.Drawing.Point(0, 0);
             this.ChooseWorkspace.Name = "ChooseWorkspace";
-            this.ChooseWorkspace.Size = new System.Drawing.Size(318, 282);
+            this.ChooseWorkspace.Size = new System.Drawing.Size(318, 287);
             this.ChooseWorkspace.TabIndex = 5;
             this.ChooseWorkspace.Visible = false;
             this.ChooseWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
@@ -179,9 +180,8 @@
             this.ChooseProject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChooseProject.Location = new System.Drawing.Point(0, 0);
             this.ChooseProject.Name = "ChooseProject";
-            this.ChooseProject.Size = new System.Drawing.Size(318, 282);
+            this.ChooseProject.Size = new System.Drawing.Size(318, 287);
             this.ChooseProject.TabIndex = 5;
-            this.ChooseProject.Visible = false;
             this.ChooseProject.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseProject_Paint);
             // 
             // ChooseProjectNextButton
@@ -378,11 +378,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 282);
+            this.ClientSize = new System.Drawing.Size(318, 287);
             this.Controls.Add(this.AsanaCresentLogin);
             this.Controls.Add(this.groupBox1);
             this.Name = "CresentLogin";
-            this.Text = "Asana Cresent";
+            this.Text = "Login";
             this.Load += new System.EventHandler(this.CresentLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.AsanaCresentLogin.ResumeLayout(false);
