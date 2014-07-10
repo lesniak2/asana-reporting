@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1
         [STAThread]
         static void Main()
         {
-            string api_key = "";
+            Authentication auth = new Authentication();
             var asana = new Asana(api_key, AuthenticationType.Basic, (s1, s2, s3) => { });
             asana.GetMe(o =>
             {
