@@ -252,6 +252,7 @@
             this.WorkspaceNextButton.TabIndex = 9;
             this.WorkspaceNextButton.Text = "Next";
             this.WorkspaceNextButton.UseVisualStyleBackColor = true;
+            this.WorkspaceNextButton.Enabled = false;
             // 
             // Crescent
             // 

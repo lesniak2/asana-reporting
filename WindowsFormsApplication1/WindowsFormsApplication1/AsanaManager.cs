@@ -143,14 +143,24 @@ namespace AsanaCrescent
 
         private void WorkspaceCheckBox_CheckChanged(object sender, EventArgs e)
         {
+            crescent.WorkspaceNextButton.Enabled = false;
             if (((CheckBox)sender).Checked == true)
             {
+                crescent.WorkspaceNextButton.Enabled = true;
                 this.CurrentWorkspaceName = ((CheckBox)sender).Text;
                 foreach (CheckBox checkbox in WorkspaceCheckBoxes)
                 {
                     if (checkbox != sender)
                     {
                         checkbox.Checked = false;
+                    }
+                }
+
+                foreach (CheckBox checkbox in WorkspaceCheckBoxes)
+                {
+                    if (checkbox.Checked == true)
+                    {
+                        crescent.WorkspaceNextButton.Enabled = true;
                     }
                 }
             }
@@ -178,7 +188,6 @@ namespace AsanaCrescent
             // 
             crescent.ProjectPanel.Controls.Add(crescent.ProjectLoadingLabel);
             crescent.ProjectLoadingLabel.Visible = true;
-            
         }
     }
 }
