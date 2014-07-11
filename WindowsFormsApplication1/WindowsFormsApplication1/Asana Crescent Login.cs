@@ -7,96 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.ComponentModel;
 
-namespace WindowsFormsApplication1
+namespace AsanaCrescent
 {
-    public partial class CrescentLogin : Form
+    public partial class Crescent : Form
     {
-        public CrescentLogin()
+        public Crescent()
         {
             InitializeComponent();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void CrescentLogin_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void workspace_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void wmpbox_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void WorkspaceBackButton_Click(object sender, EventArgs e)
         {
-            ChooseWorkspace.Visible = false;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox8_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lfo_click(object sender, EventArgs e)
-        {
-            ChooseProject.Visible = true;
+            ChooseWorkspacePanel.Visible = false;
         }
 
         private void loginEnter_Click(object sender, EventArgs e)
         {
-            ChooseWorkspace.Visible = true;
-            
-            
-        }
-
-        private void ChooseProjectBack_Click(object sender, EventArgs e)
-        {
-            ChooseProject.Visible = false;
+            ChooseWorkspacePanel.Visible = true;
         }
 
         private void ChooseProjectNext_Click(object sender, EventArgs e)
@@ -104,79 +33,6 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void AllCheckB_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void InitiativesCheckB_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void InvestigationCheckB_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BacklogCheckB_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SprintCheckB_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void IncidentCheckB_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BudgetCheckB_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BudgetCheckB_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ClosedCheckB_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DeployedCheckB_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MasterCheckB_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ChooseProject_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {
-
-        }
     }
 }

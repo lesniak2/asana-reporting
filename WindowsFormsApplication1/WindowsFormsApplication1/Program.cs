@@ -4,12 +4,12 @@ using System.Windows.Forms;
 using System.Net;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Collections;
 using System.IO;
 using System.Threading;
 using Microsoft.VisualBasic;
 using AsanaNet;
-
-namespace WindowsFormsApplication1
+namespace AsanaCrescent
 {
     class Program 
     {
@@ -17,20 +17,18 @@ namespace WindowsFormsApplication1
         static void Main()
         {
             string api_key = "";
-
+            ArrayList workspaces = new ArrayList();
+            ArrayList projects = new ArrayList();
+            ArrayList ProjectCheckBoxes = new ArrayList();
             Authentication auth = new Authentication();
-            if (auth.ShowDialog() == DialogResult.OK)
-                api_key = auth.GetAPIKey();
-
-            Application.Run(new CrescentLogin());
-            /**
+           /// if (auth.ShowDialog() == DialogResult.OK)
+                api_key = "3DOlZLml.UwPmeVSIFztdL2DiGSF7T0N";//auth.GetAPIKey();
+            Crescent crescent = new Crescent();
             var asana = new Asana(api_key, AuthenticationType.Basic, (s1, s2, s3) => { });
-            asana.GetMe(o =>
-            {
-                var user = o as AsanaUser;
-                MessageBox.Show("Hello, " + user.Name);
-            }).Wait(); ;
-            */
+            AsanaManager manager = new AsanaManager(crescent, asana);
+            manager.PopulateWorkspaces();
+
+            Application.Run(crescent);
         }
 
         /*
