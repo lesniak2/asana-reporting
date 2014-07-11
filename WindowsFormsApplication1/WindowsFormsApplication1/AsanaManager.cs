@@ -93,6 +93,7 @@ namespace AsanaCrescent
 
         public void PopulateProjects()
         {
+            crescent.ProjectLoadingLabel.Text = "Loading projects...";
             yLoc = 0;
             try
             {
