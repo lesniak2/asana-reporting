@@ -153,6 +153,7 @@
             this.ChooseProjectPanel.Controls.Add(this.ProjectNextButton);
             this.ChooseProjectPanel.Controls.Add(this.ProjectBackButton);
             this.ChooseProjectPanel.Controls.Add(this.ProjectLabel);
+            this.ChooseProjectPanel.Controls.Add(this.ProjectLoadingLabel);
             this.ChooseProjectPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChooseProjectPanel.Location = new System.Drawing.Point(0, 0);
             this.ChooseProjectPanel.Name = "ChooseProjectPanel";
@@ -242,7 +243,6 @@
             // ProjectPanel
             // 
             this.ProjectPanel.AutoScroll = true;
-            this.ProjectPanel.Controls.Add(this.ProjectLoadingLabel);
             this.ProjectPanel.Location = new System.Drawing.Point(6, 17);
             this.ProjectPanel.Name = "ProjectPanel";
             this.ProjectPanel.Size = new System.Drawing.Size(297, 223);
@@ -251,7 +251,7 @@
             // ProjectLoadingLabel
             // 
             this.ProjectLoadingLabel.AutoSize = true;
-            this.ProjectLoadingLabel.Location = new System.Drawing.Point(101, 93);
+            this.ProjectLoadingLabel.Location = new System.Drawing.Point(3, 333);
             this.ProjectLoadingLabel.Name = "ProjectLoadingLabel";
             this.ProjectLoadingLabel.Size = new System.Drawing.Size(98, 13);
             this.ProjectLoadingLabel.TabIndex = 0;
