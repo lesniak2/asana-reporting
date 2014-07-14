@@ -17,16 +17,6 @@ namespace AsanaCrescent
             InitializeComponent();
         }
 
-        private void EnterButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void APIAccessForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public string GetAPIKey()
         {
             return this.ApiTextBox.Text;

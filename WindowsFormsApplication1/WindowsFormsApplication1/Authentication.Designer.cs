@@ -41,7 +41,6 @@
             this.EnterButton.TabIndex = 0;
             this.EnterButton.Text = "Enter";
             this.EnterButton.UseVisualStyleBackColor = true;
-            this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
             this.EnterButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             // 
             // RequestApiLabel
@@ -71,7 +70,6 @@
             this.Controls.Add(this.EnterButton);
             this.Name = "Authentication";
             this.Text = "Authorization";
-            this.Load += new System.EventHandler(this.APIAccessForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

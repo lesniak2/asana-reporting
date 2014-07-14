@@ -28,7 +28,7 @@ namespace AsanaCrescent
             ChooseWorkspacePanel.Visible = true;
         }
 
-        private void ChooseProjectNext_Click(object sender, EventArgs e)
+        private void ChooseTaskPanel_Paint(object sender, PaintEventArgs e)
         {
 
         }
