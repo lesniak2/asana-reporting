@@ -42,6 +42,7 @@
             this.TaskBackButton = new System.Windows.Forms.Button();
             this.TaskGroupBox = new System.Windows.Forms.GroupBox();
             this.TaskPanel = new System.Windows.Forms.Panel();
+            this.TaskLoadingLabel = new System.Windows.Forms.Label();
             this.TaskLabel = new System.Windows.Forms.Label();
             this.ProjectGroupBox = new System.Windows.Forms.GroupBox();
             this.ProjectPanel = new System.Windows.Forms.Panel();
@@ -161,6 +162,7 @@
             // 
             // ChooseTaskPanel
             // 
+            this.ChooseTaskPanel.Controls.Add(this.TaskLoadingLabel);
             this.ChooseTaskPanel.Controls.Add(this.GenerateButton);
             this.ChooseTaskPanel.Controls.Add(this.TaskBackButton);
             this.ChooseTaskPanel.Controls.Add(this.TaskGroupBox);
@@ -209,12 +211,21 @@
             this.TaskPanel.Size = new System.Drawing.Size(303, 227);
             this.TaskPanel.TabIndex = 0;
             // 
+            // TaskLoadingLabel
+            // 
+            this.TaskLoadingLabel.AutoSize = true;
+            this.TaskLoadingLabel.Location = new System.Drawing.Point(3, 333);
+            this.TaskLoadingLabel.Name = "TaskLoadingLabel";
+            this.TaskLoadingLabel.Size = new System.Drawing.Size(86, 13);
+            this.TaskLoadingLabel.TabIndex = 0;
+            this.TaskLoadingLabel.Text = "Loading Tasks...";
+            // 
             // TaskLabel
             // 
             this.TaskLabel.AutoSize = true;
             this.TaskLabel.Location = new System.Drawing.Point(104, 14);
             this.TaskLabel.Name = "TaskLabel";
-            this.TaskLabel.Size = new System.Drawing.Size(160, 13);
+            this.TaskLabel.Size = new System.Drawing.Size(109, 13);
             this.TaskLabel.TabIndex = 0;
             this.TaskLabel.Text = "Select tasks and tags";
             // 
@@ -375,5 +386,6 @@
         public System.Windows.Forms.Panel TaskPanel;
         public System.Windows.Forms.Button GenerateButton;
         public System.Windows.Forms.Button TaskBackButton;
+        public System.Windows.Forms.Label TaskLoadingLabel;
     }
 }

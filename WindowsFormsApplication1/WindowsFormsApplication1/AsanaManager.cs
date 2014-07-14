@@ -47,6 +47,7 @@ namespace AsanaCrescent
             crescent.ProjectNextButton.Click += new System.EventHandler(this.ProjectNextButton_Click);
             crescent.TaskBackButton.Click += new System.EventHandler(this.TaskBackButton_Click);
             crescent.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
+            crescent.TaskPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(TaskPanel_ControlAdded);
 
         }
 
@@ -98,7 +99,7 @@ namespace AsanaCrescent
                     WorkspaceDictionary.Add(workspace.Name, workspace);
                     this.AddCheckbox(workspace, crescent.WorkspacePanel);
                 }
-            }).Wait();
+            });
         }
 
         public void PopulateProjects()
@@ -140,21 +141,28 @@ namespace AsanaCrescent
 
         public void PopulateTasks()
         {
-            yLoc = 0;
+            yLoc = 0; 
+            crescent.TaskLoadingLabel.Text = "Loading Tasks...";
             foreach(CheckBox project in ProjectCheckBoxes)
             {
                 if(project.Checked == true)
                 {
+
                     asana.GetTasksInAProject(ProjectDictionary[project.Text], o =>
                     {
+                        //    crescent.TaskLoadingLabel.Text = "Loading Tasks...";
                         foreach (AsanaTask task in o)
                         {
                             TaskProjectDictionary.Add(task, ProjectDictionary[project.Text]);
                             tasks.Add(task);
+                        }
+                        foreach (AsanaTask task in o)
+                        {
                             this.AddCheckbox(task, crescent.TaskPanel);
                         }
                     });
                 }
+
             }
         }
 
@@ -186,7 +194,7 @@ namespace AsanaCrescent
         public void WorkspaceNextButton_Click(object sender, EventArgs e)
         {
             PopulateProjects();
-            crescent.ChooseProjectPanel.Visible = true;         
+            crescent.ChooseProjectPanel.Visible = true;
         }
 
         public void ProjectBackButton_Click(object sender, EventArgs e)
@@ -207,8 +215,17 @@ namespace AsanaCrescent
         }
 
         public void GenerateButton_Click(object sender, EventArgs e) 
-        {
+        { 
             MessageBox.Show("kk");
+        }
+
+        private void TaskPanel_ControlAdded(object sender, EventArgs e)
+        {
+            if (crescent.TaskPanel.Controls.Count == tasks.Count)
+            {
+                crescent.TaskLoadingLabel.Text = "Done";
+            }
+
         }
         private void ClearProjects()
         {
@@ -225,6 +242,8 @@ namespace AsanaCrescent
             TaskProjectDictionary.Clear();
             TaskDictionary.Clear();
             crescent.TaskPanel.Controls.Clear();
+            crescent.TaskPanel.Controls.Add(crescent.ProjectLoadingLabel);
+            crescent.TaskLoadingLabel.Visible = true;
 
         }
     }
