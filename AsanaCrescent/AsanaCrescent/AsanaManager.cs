@@ -120,21 +120,21 @@ namespace AsanaCrescent
                     if (crescent.ProjectLoadingLabel.InvokeRequired)
                     {
                         crescent.ProjectLoadingLabel.Invoke(new Action(() =>
-                            { crescent.ProjectLoadingLabel.Text = "Nothing here..."; }));
+                            { crescent.NothingHereProjectLabel.Visible = true; }));
                     }
                     else
-                        crescent.ProjectLoadingLabel.Text = "Nothing here...";
+                        crescent.NothingHereProjectLabel.Visible = true;
                 }
-                else
-                {
+                
+              
                     if (crescent.ProjectLoadingLabel.InvokeRequired)
                     {
                         crescent.ProjectLoadingLabel.Invoke(new Action(() =>
-                        { crescent.ProjectLoadingLabel.Visible = false; }));
+                        { crescent.ProjectLoadingLabel.Text = "Done"; }));
                     }
                     else
-                        crescent.ProjectLoadingLabel.Visible = false;
-                }
+                        crescent.ProjectLoadingLabel.Text = "Done";
+                
             });
 
         }
@@ -232,8 +232,8 @@ namespace AsanaCrescent
             projects.Clear();
             ProjectDictionary.Clear();
             crescent.ProjectPanel.Controls.Clear();
-            crescent.ProjectPanel.Controls.Add(crescent.ProjectLoadingLabel);
-            crescent.ProjectLoadingLabel.Visible = true;
+            crescent.ProjectPanel.Controls.Add(crescent.NothingHereProjectLabel);
+            crescent.NothingHereProjectLabel.Visible = false;
         }
 
         private void ClearTasks()

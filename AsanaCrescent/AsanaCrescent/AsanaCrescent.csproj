@@ -51,11 +51,11 @@
     <Compile Include="Asana Crescent Login.Designer.cs">
       <DependentUpon>Asana Crescent Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Authentication.cs">
+    <Compile Include="AuthenticationPrompt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Authentication.Designer.cs">
-      <DependentUpon>Authentication.cs</DependentUpon>
+    <Compile Include="AuthenticationPrompt.Designer.cs">
+      <DependentUpon>AuthenticationPrompt.cs</DependentUpon>
     </Compile>
     <Compile Include="AsanaManager.cs" />
     <Compile Include="Program.cs" />
@@ -63,8 +63,8 @@
     <EmbeddedResource Include="Asana Crescent Login.resx">
       <DependentUpon>Asana Crescent Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Authentication.resx">
-      <DependentUpon>Authentication.cs</DependentUpon>
+    <EmbeddedResource Include="AuthenticationPrompt.resx">
+      <DependentUpon>AuthenticationPrompt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

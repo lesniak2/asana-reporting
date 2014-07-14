@@ -48,11 +48,6 @@ namespace AsanaCrescent
 
         }
 
-        private void ProjectLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
     }
 }

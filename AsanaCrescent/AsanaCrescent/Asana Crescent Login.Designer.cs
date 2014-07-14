@@ -46,6 +46,7 @@
             this.TaskLabel = new System.Windows.Forms.Label();
             this.ProjectGroupBox = new System.Windows.Forms.GroupBox();
             this.ProjectPanel = new System.Windows.Forms.Panel();
+            this.NothingHereProjectLabel = new System.Windows.Forms.Label();
             this.ProjectNextButton = new System.Windows.Forms.Button();
             this.ProjectBackButton = new System.Windows.Forms.Button();
             this.ProjectLabel = new System.Windows.Forms.Label();
@@ -61,6 +62,7 @@
             this.ChooseTaskPanel.SuspendLayout();
             this.TaskGroupBox.SuspendLayout();
             this.ProjectGroupBox.SuspendLayout();
+            this.ProjectPanel.SuspendLayout();
             this.WorkspacesGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -246,11 +248,21 @@
             // ProjectPanel
             // 
             this.ProjectPanel.AutoScroll = true;
+            this.ProjectPanel.Controls.Add(this.NothingHereProjectLabel);
             this.ProjectPanel.Location = new System.Drawing.Point(3, 16);
             this.ProjectPanel.Name = "ProjectPanel";
             this.ProjectPanel.Size = new System.Drawing.Size(303, 230);
             this.ProjectPanel.TabIndex = 0;
             this.ProjectPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ProjectPanel_Paint);
+            // 
+            // NothingHereProjectLabel
+            // 
+            this.NothingHereProjectLabel.Location = new System.Drawing.Point(110, 95);
+            this.NothingHereProjectLabel.Text = "Nothing here...";
+            this.NothingHereProjectLabel.Name = "NothingHereProjectLabel";
+            this.NothingHereProjectLabel.Size = new System.Drawing.Size(100, 23);
+            this.NothingHereProjectLabel.TabIndex = 0;
+            this.NothingHereProjectLabel.Visible = false;
             // 
             // ProjectNextButton
             // 
@@ -278,7 +290,6 @@
             this.ProjectLabel.Size = new System.Drawing.Size(161, 24);
             this.ProjectLabel.TabIndex = 24;
             this.ProjectLabel.Text = "Select Project(s)";
-            this.ProjectLabel.Click += new System.EventHandler(this.ProjectLabel_Click);
             // 
             // ProjectLoadingLabel
             // 
@@ -355,6 +366,7 @@
             this.ChooseTaskPanel.PerformLayout();
             this.TaskGroupBox.ResumeLayout(false);
             this.ProjectGroupBox.ResumeLayout(false);
+            this.ProjectPanel.ResumeLayout(false);
             this.WorkspacesGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -389,5 +401,6 @@
         public System.Windows.Forms.Button GenerateButton;
         public System.Windows.Forms.Button TaskBackButton;
         public System.Windows.Forms.Label TaskLoadingLabel;
+        public System.Windows.Forms.Label NothingHereProjectLabel;
     }
 }
