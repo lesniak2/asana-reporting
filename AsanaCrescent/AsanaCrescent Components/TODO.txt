@@ -1,9 +1,9 @@
 
 [x]  Move the "Loading projects..."/"Done" Label to bottom left corner.
 [x]  Set AutoScroll property of TaskPanel to true
-[ ]  Create a separate "Nothing here" label to display in the center of the project and task groupboxes if nothing is found on asana
-[ ]  Move button starts and ends to lie on the same vertical axis as the edges of the group box
-[ ]  Remove "windowsapplicationform1" naming convention in folder structure (might be local changes only)
+[o]  Create a separate "Nothing here" label to display in the center of the project and task groupboxes if nothing is found on asana
+[x]  Move button starts and ends to lie on the same vertical axis as the edges of the group box
+[x]  Remove "windowsapplicationform1" naming convention in folder structure (might be local changes only)
 [ ]  Create a consistent naming convention and text style for the "Choose a ..." labels
 [ ]  Disable project next button until at least one project is populated and selected
 [ ]  Disable project back button until all projects are populated (or nothing here shows up)

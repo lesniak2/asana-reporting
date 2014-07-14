@@ -43,6 +43,16 @@ namespace AsanaCrescent
 
         }
 
+        private void ProjectGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ProjectLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

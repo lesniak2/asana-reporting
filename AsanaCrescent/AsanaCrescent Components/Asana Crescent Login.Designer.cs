@@ -128,7 +128,7 @@
             this.LoginPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LoginPanel.Location = new System.Drawing.Point(0, 0);
             this.LoginPanel.Name = "LoginPanel";
-            this.LoginPanel.Size = new System.Drawing.Size(375, 355);
+            this.LoginPanel.Size = new System.Drawing.Size(371, 357);
             this.LoginPanel.TabIndex = 2;
             // 
             // ChooseWorkspacePanel
@@ -141,7 +141,7 @@
             this.ChooseWorkspacePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChooseWorkspacePanel.Location = new System.Drawing.Point(0, 0);
             this.ChooseWorkspacePanel.Name = "ChooseWorkspacePanel";
-            this.ChooseWorkspacePanel.Size = new System.Drawing.Size(375, 355);
+            this.ChooseWorkspacePanel.Size = new System.Drawing.Size(371, 357);
             this.ChooseWorkspacePanel.TabIndex = 5;
             this.ChooseWorkspacePanel.Visible = false;
             // 
@@ -156,7 +156,7 @@
             this.ChooseProjectPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChooseProjectPanel.Location = new System.Drawing.Point(0, 0);
             this.ChooseProjectPanel.Name = "ChooseProjectPanel";
-            this.ChooseProjectPanel.Size = new System.Drawing.Size(375, 355);
+            this.ChooseProjectPanel.Size = new System.Drawing.Size(371, 357);
             this.ChooseProjectPanel.TabIndex = 5;
             this.ChooseProjectPanel.Visible = false;
             this.ChooseProjectPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseProjectPanel_Paint);
@@ -171,7 +171,7 @@
             this.ChooseTaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChooseTaskPanel.Location = new System.Drawing.Point(0, 0);
             this.ChooseTaskPanel.Name = "ChooseTaskPanel";
-            this.ChooseTaskPanel.Size = new System.Drawing.Size(375, 355);
+            this.ChooseTaskPanel.Size = new System.Drawing.Size(371, 357);
             this.ChooseTaskPanel.TabIndex = 29;
             this.ChooseTaskPanel.Visible = false;
             this.ChooseTaskPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseTaskPanel_Paint);
@@ -225,11 +225,12 @@
             // TaskLabel
             // 
             this.TaskLabel.AutoSize = true;
-            this.TaskLabel.Location = new System.Drawing.Point(104, 14);
+            this.TaskLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TaskLabel.Location = new System.Drawing.Point(121, 16);
             this.TaskLabel.Name = "TaskLabel";
-            this.TaskLabel.Size = new System.Drawing.Size(109, 13);
+            this.TaskLabel.Size = new System.Drawing.Size(150, 19);
             this.TaskLabel.TabIndex = 0;
-            this.TaskLabel.Text = "Select tasks and tags";
+            this.TaskLabel.Text = "Select Report Task(s)";
             // 
             // ProjectGroupBox
             // 
@@ -240,6 +241,7 @@
             this.ProjectGroupBox.TabIndex = 28;
             this.ProjectGroupBox.TabStop = false;
             this.ProjectGroupBox.Text = "Projects";
+            this.ProjectGroupBox.Enter += new System.EventHandler(this.ProjectGroupBox_Enter);
             // 
             // ProjectPanel
             // 
@@ -270,13 +272,13 @@
             // 
             // ProjectLabel
             // 
-            this.ProjectLabel.AutoSize = true;
-            this.ProjectLabel.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProjectLabel.Location = new System.Drawing.Point(103, 12);
+            this.ProjectLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProjectLabel.Location = new System.Drawing.Point(121, 16);
             this.ProjectLabel.Name = "ProjectLabel";
             this.ProjectLabel.Size = new System.Drawing.Size(161, 24);
             this.ProjectLabel.TabIndex = 24;
-            this.ProjectLabel.Text = "Select Projects";
+            this.ProjectLabel.Text = "Select Project(s)";
+            this.ProjectLabel.Click += new System.EventHandler(this.ProjectLabel_Click);
             // 
             // ProjectLoadingLabel
             // 
@@ -307,12 +309,12 @@
             // WorkspaceLabel
             // 
             this.WorkspaceLabel.AutoSize = true;
-            this.WorkspaceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkspaceLabel.Location = new System.Drawing.Point(103, 9);
+            this.WorkspaceLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WorkspaceLabel.Location = new System.Drawing.Point(121, 16);
             this.WorkspaceLabel.Name = "WorkspaceLabel";
-            this.WorkspaceLabel.Size = new System.Drawing.Size(163, 20);
+            this.WorkspaceLabel.Size = new System.Drawing.Size(141, 19);
             this.WorkspaceLabel.TabIndex = 3;
-            this.WorkspaceLabel.Text = "Choose A Workspace";
+            this.WorkspaceLabel.Text = "Select a Workspace";
             // 
             // WorkspaceBackButton
             // 
@@ -339,7 +341,7 @@
             this.AcceptButton = this.LoginEnterButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(375, 355);
+            this.ClientSize = new System.Drawing.Size(371, 357);
             this.Controls.Add(this.LoginPanel);
             this.Name = "Crescent";
             this.Text = "Crescent";
