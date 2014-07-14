@@ -38,18 +38,18 @@
             this.ChooseWorkspacePanel = new System.Windows.Forms.Panel();
             this.ChooseProjectPanel = new System.Windows.Forms.Panel();
             this.ChooseTaskPanel = new System.Windows.Forms.Panel();
+            this.TaskLoadingLabel = new System.Windows.Forms.Label();
             this.GenerateButton = new System.Windows.Forms.Button();
             this.TaskBackButton = new System.Windows.Forms.Button();
             this.TaskGroupBox = new System.Windows.Forms.GroupBox();
             this.TaskPanel = new System.Windows.Forms.Panel();
-            this.TaskLoadingLabel = new System.Windows.Forms.Label();
             this.TaskLabel = new System.Windows.Forms.Label();
             this.ProjectGroupBox = new System.Windows.Forms.GroupBox();
             this.ProjectPanel = new System.Windows.Forms.Panel();
-            this.ProjectLoadingLabel = new System.Windows.Forms.Label();
             this.ProjectNextButton = new System.Windows.Forms.Button();
             this.ProjectBackButton = new System.Windows.Forms.Button();
             this.ProjectLabel = new System.Windows.Forms.Label();
+            this.ProjectLoadingLabel = new System.Windows.Forms.Label();
             this.WorkspacesGroupBox = new System.Windows.Forms.GroupBox();
             this.WorkspacePanel = new System.Windows.Forms.Panel();
             this.WorkspaceLabel = new System.Windows.Forms.Label();
@@ -61,7 +61,6 @@
             this.ChooseTaskPanel.SuspendLayout();
             this.TaskGroupBox.SuspendLayout();
             this.ProjectGroupBox.SuspendLayout();
-            this.ProjectPanel.SuspendLayout();
             this.WorkspacesGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -160,6 +159,7 @@
             this.ChooseProjectPanel.Size = new System.Drawing.Size(375, 355);
             this.ChooseProjectPanel.TabIndex = 5;
             this.ChooseProjectPanel.Visible = false;
+            this.ChooseProjectPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseProjectPanel_Paint);
             // 
             // ChooseTaskPanel
             // 
@@ -176,9 +176,18 @@
             this.ChooseTaskPanel.Visible = false;
             this.ChooseTaskPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseTaskPanel_Paint);
             // 
+            // TaskLoadingLabel
+            // 
+            this.TaskLoadingLabel.AutoSize = true;
+            this.TaskLoadingLabel.Location = new System.Drawing.Point(3, 333);
+            this.TaskLoadingLabel.Name = "TaskLoadingLabel";
+            this.TaskLoadingLabel.Size = new System.Drawing.Size(86, 13);
+            this.TaskLoadingLabel.TabIndex = 0;
+            this.TaskLoadingLabel.Text = "Loading Tasks...";
+            // 
             // GenerateButton
             // 
-            this.GenerateButton.Location = new System.Drawing.Point(236, 301);
+            this.GenerateButton.Location = new System.Drawing.Point(240, 301);
             this.GenerateButton.Name = "GenerateButton";
             this.GenerateButton.Size = new System.Drawing.Size(99, 23);
             this.GenerateButton.TabIndex = 3;
@@ -187,7 +196,7 @@
             // 
             // TaskBackButton
             // 
-            this.TaskBackButton.Location = new System.Drawing.Point(39, 301);
+            this.TaskBackButton.Location = new System.Drawing.Point(36, 301);
             this.TaskBackButton.Name = "TaskBackButton";
             this.TaskBackButton.Size = new System.Drawing.Size(75, 23);
             this.TaskBackButton.TabIndex = 2;
@@ -206,21 +215,12 @@
             // 
             // TaskPanel
             // 
+            this.TaskPanel.AutoScroll = true;
             this.TaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TaskPanel.Location = new System.Drawing.Point(3, 16);
             this.TaskPanel.Name = "TaskPanel";
             this.TaskPanel.Size = new System.Drawing.Size(303, 227);
             this.TaskPanel.TabIndex = 0;
-            this.TaskPanel.AutoScroll = true;
-            // 
-            // TaskLoadingLabel
-            // 
-            this.TaskLoadingLabel.AutoSize = true;
-            this.TaskLoadingLabel.Location = new System.Drawing.Point(3, 333);
-            this.TaskLoadingLabel.Name = "TaskLoadingLabel";
-            this.TaskLoadingLabel.Size = new System.Drawing.Size(86, 13);
-            this.TaskLoadingLabel.TabIndex = 0;
-            this.TaskLoadingLabel.Text = "Loading Tasks...";
             // 
             // TaskLabel
             // 
@@ -244,23 +244,15 @@
             // ProjectPanel
             // 
             this.ProjectPanel.AutoScroll = true;
-            this.ProjectPanel.Location = new System.Drawing.Point(6, 17);
+            this.ProjectPanel.Location = new System.Drawing.Point(3, 16);
             this.ProjectPanel.Name = "ProjectPanel";
-            this.ProjectPanel.Size = new System.Drawing.Size(297, 223);
+            this.ProjectPanel.Size = new System.Drawing.Size(303, 230);
             this.ProjectPanel.TabIndex = 0;
-            // 
-            // ProjectLoadingLabel
-            // 
-            this.ProjectLoadingLabel.AutoSize = true;
-            this.ProjectLoadingLabel.Location = new System.Drawing.Point(3, 333);
-            this.ProjectLoadingLabel.Name = "ProjectLoadingLabel";
-            this.ProjectLoadingLabel.Size = new System.Drawing.Size(98, 13);
-            this.ProjectLoadingLabel.TabIndex = 0;
-            this.ProjectLoadingLabel.Text = "Loading Projects....";
+            this.ProjectPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ProjectPanel_Paint);
             // 
             // ProjectNextButton
             // 
-            this.ProjectNextButton.Location = new System.Drawing.Point(267, 301);
+            this.ProjectNextButton.Location = new System.Drawing.Point(264, 301);
             this.ProjectNextButton.Name = "ProjectNextButton";
             this.ProjectNextButton.Size = new System.Drawing.Size(75, 23);
             this.ProjectNextButton.TabIndex = 27;
@@ -269,7 +261,7 @@
             // 
             // ProjectBackButton
             // 
-            this.ProjectBackButton.Location = new System.Drawing.Point(17, 301);
+            this.ProjectBackButton.Location = new System.Drawing.Point(36, 301);
             this.ProjectBackButton.Name = "ProjectBackButton";
             this.ProjectBackButton.Size = new System.Drawing.Size(75, 23);
             this.ProjectBackButton.TabIndex = 26;
@@ -286,6 +278,15 @@
             this.ProjectLabel.TabIndex = 24;
             this.ProjectLabel.Text = "Select Projects";
             // 
+            // ProjectLoadingLabel
+            // 
+            this.ProjectLoadingLabel.AutoSize = true;
+            this.ProjectLoadingLabel.Location = new System.Drawing.Point(3, 333);
+            this.ProjectLoadingLabel.Name = "ProjectLoadingLabel";
+            this.ProjectLoadingLabel.Size = new System.Drawing.Size(98, 13);
+            this.ProjectLoadingLabel.TabIndex = 0;
+            this.ProjectLoadingLabel.Text = "Loading Projects....";
+            // 
             // WorkspacesGroupBox
             // 
             this.WorkspacesGroupBox.Controls.Add(this.WorkspacePanel);
@@ -298,9 +299,9 @@
             // 
             // WorkspacePanel
             // 
-            this.WorkspacePanel.Location = new System.Drawing.Point(6, 17);
+            this.WorkspacePanel.Location = new System.Drawing.Point(3, 17);
             this.WorkspacePanel.Name = "WorkspacePanel";
-            this.WorkspacePanel.Size = new System.Drawing.Size(297, 223);
+            this.WorkspacePanel.Size = new System.Drawing.Size(303, 229);
             this.WorkspacePanel.TabIndex = 0;
             // 
             // WorkspaceLabel
@@ -315,7 +316,7 @@
             // 
             // WorkspaceBackButton
             // 
-            this.WorkspaceBackButton.Location = new System.Drawing.Point(6, 301);
+            this.WorkspaceBackButton.Location = new System.Drawing.Point(36, 301);
             this.WorkspaceBackButton.Name = "WorkspaceBackButton";
             this.WorkspaceBackButton.Size = new System.Drawing.Size(75, 23);
             this.WorkspaceBackButton.TabIndex = 7;
@@ -326,7 +327,7 @@
             // WorkspaceNextButton
             // 
             this.WorkspaceNextButton.Enabled = false;
-            this.WorkspaceNextButton.Location = new System.Drawing.Point(267, 301);
+            this.WorkspaceNextButton.Location = new System.Drawing.Point(264, 301);
             this.WorkspaceNextButton.Name = "WorkspaceNextButton";
             this.WorkspaceNextButton.Size = new System.Drawing.Size(75, 23);
             this.WorkspaceNextButton.TabIndex = 9;
@@ -352,8 +353,6 @@
             this.ChooseTaskPanel.PerformLayout();
             this.TaskGroupBox.ResumeLayout(false);
             this.ProjectGroupBox.ResumeLayout(false);
-            this.ProjectPanel.ResumeLayout(false);
-            this.ProjectPanel.PerformLayout();
             this.WorkspacesGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 

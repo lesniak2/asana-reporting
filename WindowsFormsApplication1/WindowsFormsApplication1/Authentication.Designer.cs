@@ -35,13 +35,13 @@
             // 
             // EnterButton
             // 
+            this.EnterButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.EnterButton.Location = new System.Drawing.Point(186, 227);
             this.EnterButton.Name = "EnterButton";
             this.EnterButton.Size = new System.Drawing.Size(75, 23);
             this.EnterButton.TabIndex = 0;
             this.EnterButton.Text = "Enter";
             this.EnterButton.UseVisualStyleBackColor = true;
-            this.EnterButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             // 
             // RequestApiLabel
             // 

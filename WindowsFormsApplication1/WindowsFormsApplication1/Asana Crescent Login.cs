@@ -33,6 +33,16 @@ namespace AsanaCrescent
 
         }
 
+        private void ChooseProjectPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ProjectPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
 
     }
 }
