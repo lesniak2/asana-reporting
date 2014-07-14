@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsanaCrescent", "WindowsFormsApplication1\AsanaCrescent.csproj", "{F42B93AE-3AE8-4271-88DC-F2BECDA80D35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsanaCrescent", "AsanaCrescent\AsanaCrescent.csproj", "{F42B93AE-3AE8-4271-88DC-F2BECDA80D35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsanaNet", "WindowsFormsApplication1\AsanaNet-master\AsanaNet\AsanaNet.csproj", "{3740ED7E-52B6-4D40-92CD-DF0FF0E855E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsanaNet", "AsanaCrescent\AsanaNet-master\AsanaNet\AsanaNet.csproj", "{3740ED7E-52B6-4D40-92CD-DF0FF0E855E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
