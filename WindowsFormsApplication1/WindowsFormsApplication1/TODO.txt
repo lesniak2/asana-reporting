@@ -1,0 +1,14 @@
+
+[ ]  Center the "Loading projects..."/"Nothing here..." label
+[ ]  Move button starts and ends to lie on the same vertical axis as the edges of the group box
+[ ]  Create a consistent naming convention and text style for the "Choose a ..." labels
+[ ]  Disable project next button until at least one project is populated and selected
+[ ]  Disable project back button until all projects are populated (or nothing here shows up)
+[ ]  Disable task generate button until at least one task is selected
+[ ]  Disable task back button until all tasks are populated (or nothing here shows up)
+[ ]  Pull and store tasks based on project checkboxes
+[ ]  implement oauth2 authentication via Browser.cs
+[ ]  prompt user to re-enter api key or authenticate via oauth2 failing to connect
+[ ]  determine a course of action for no workspaces populating
+[ ]  rename authentication to AuthenticationPrompt
+[ ]  Test for wrapping of names that extend beyond frame, enable auto-ellipses or look for wrap functionality if they do
