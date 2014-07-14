@@ -211,6 +211,7 @@
             this.TaskPanel.Name = "TaskPanel";
             this.TaskPanel.Size = new System.Drawing.Size(303, 227);
             this.TaskPanel.TabIndex = 0;
+            this.TaskPanel.AutoScroll = true;
             // 
             // TaskLoadingLabel
             // 
