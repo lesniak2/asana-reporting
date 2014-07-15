@@ -135,12 +135,14 @@
             // 
             // ChooseWorkspacePanel
             // 
+            this.ChooseWorkspacePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ChooseWorkspacePanel.Controls.Add(this.ChooseProjectPanel);
             this.ChooseWorkspacePanel.Controls.Add(this.WorkspacesGroupBox);
             this.ChooseWorkspacePanel.Controls.Add(this.WorkspaceLabel);
             this.ChooseWorkspacePanel.Controls.Add(this.WorkspaceBackButton);
             this.ChooseWorkspacePanel.Controls.Add(this.WorkspaceNextButton);
-            this.ChooseWorkspacePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChooseWorkspacePanel.Location = new System.Drawing.Point(0, 0);
             this.ChooseWorkspacePanel.Name = "ChooseWorkspacePanel";
             this.ChooseWorkspacePanel.Size = new System.Drawing.Size(371, 357);
@@ -176,10 +178,10 @@
             this.ChooseTaskPanel.Size = new System.Drawing.Size(371, 357);
             this.ChooseTaskPanel.TabIndex = 29;
             this.ChooseTaskPanel.Visible = false;
-            this.ChooseTaskPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseTaskPanel_Paint);
             // 
             // TaskLoadingLabel
             // 
+            this.TaskLoadingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TaskLoadingLabel.AutoSize = true;
             this.TaskLoadingLabel.Location = new System.Drawing.Point(3, 333);
             this.TaskLoadingLabel.Name = "TaskLoadingLabel";
@@ -189,24 +191,31 @@
             // 
             // GenerateButton
             // 
+            this.GenerateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.GenerateButton.Location = new System.Drawing.Point(240, 301);
             this.GenerateButton.Name = "GenerateButton";
             this.GenerateButton.Size = new System.Drawing.Size(99, 23);
             this.GenerateButton.TabIndex = 3;
             this.GenerateButton.Text = "Generate Report";
             this.GenerateButton.UseVisualStyleBackColor = true;
+            this.GenerateButton.Enabled = false;
             // 
             // TaskBackButton
             // 
+            this.TaskBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TaskBackButton.Location = new System.Drawing.Point(36, 301);
             this.TaskBackButton.Name = "TaskBackButton";
             this.TaskBackButton.Size = new System.Drawing.Size(75, 23);
             this.TaskBackButton.TabIndex = 2;
             this.TaskBackButton.Text = "Back";
             this.TaskBackButton.UseVisualStyleBackColor = true;
+            this.TaskBackButton.Enabled = false;
             // 
             // TaskGroupBox
             // 
+            this.TaskGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TaskGroupBox.Controls.Add(this.TaskPanel);
             this.TaskGroupBox.Location = new System.Drawing.Point(33, 38);
             this.TaskGroupBox.Name = "TaskGroupBox";
@@ -217,8 +226,10 @@
             // 
             // TaskPanel
             // 
+            this.TaskPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TaskPanel.AutoScroll = true;
-            this.TaskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TaskPanel.Location = new System.Drawing.Point(3, 16);
             this.TaskPanel.Name = "TaskPanel";
             this.TaskPanel.Size = new System.Drawing.Size(303, 227);
@@ -226,6 +237,7 @@
             // 
             // TaskLabel
             // 
+            this.TaskLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.TaskLabel.AutoSize = true;
             this.TaskLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TaskLabel.Location = new System.Drawing.Point(121, 16);
@@ -236,6 +248,9 @@
             // 
             // ProjectGroupBox
             // 
+            this.ProjectGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ProjectGroupBox.Controls.Add(this.ProjectPanel);
             this.ProjectGroupBox.Location = new System.Drawing.Point(33, 38);
             this.ProjectGroupBox.Name = "ProjectGroupBox";
@@ -247,6 +262,9 @@
             // 
             // ProjectPanel
             // 
+            this.ProjectPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ProjectPanel.AutoScroll = true;
             this.ProjectPanel.Controls.Add(this.NothingHereProjectLabel);
             this.ProjectPanel.Location = new System.Drawing.Point(3, 16);
@@ -257,15 +275,20 @@
             // 
             // NothingHereProjectLabel
             // 
+            this.NothingHereProjectLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NothingHereProjectLabel.Location = new System.Drawing.Point(110, 95);
-            this.NothingHereProjectLabel.Text = "Nothing here...";
             this.NothingHereProjectLabel.Name = "NothingHereProjectLabel";
             this.NothingHereProjectLabel.Size = new System.Drawing.Size(100, 23);
             this.NothingHereProjectLabel.TabIndex = 0;
+            this.NothingHereProjectLabel.Text = "Nothing here...";
             this.NothingHereProjectLabel.Visible = false;
             // 
             // ProjectNextButton
             // 
+            this.ProjectNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProjectNextButton.Enabled = false;
             this.ProjectNextButton.Location = new System.Drawing.Point(264, 301);
             this.ProjectNextButton.Name = "ProjectNextButton";
             this.ProjectNextButton.Size = new System.Drawing.Size(75, 23);
@@ -275,6 +298,8 @@
             // 
             // ProjectBackButton
             // 
+            this.ProjectBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ProjectBackButton.Enabled = false;
             this.ProjectBackButton.Location = new System.Drawing.Point(36, 301);
             this.ProjectBackButton.Name = "ProjectBackButton";
             this.ProjectBackButton.Size = new System.Drawing.Size(75, 23);
@@ -284,6 +309,7 @@
             // 
             // ProjectLabel
             // 
+            this.ProjectLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.ProjectLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProjectLabel.Location = new System.Drawing.Point(121, 16);
             this.ProjectLabel.Name = "ProjectLabel";
@@ -293,6 +319,7 @@
             // 
             // ProjectLoadingLabel
             // 
+            this.ProjectLoadingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ProjectLoadingLabel.AutoSize = true;
             this.ProjectLoadingLabel.Location = new System.Drawing.Point(3, 333);
             this.ProjectLoadingLabel.Name = "ProjectLoadingLabel";
@@ -302,6 +329,9 @@
             // 
             // WorkspacesGroupBox
             // 
+            this.WorkspacesGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.WorkspacesGroupBox.Controls.Add(this.WorkspacePanel);
             this.WorkspacesGroupBox.Location = new System.Drawing.Point(33, 38);
             this.WorkspacesGroupBox.Name = "WorkspacesGroupBox";
@@ -312,6 +342,9 @@
             // 
             // WorkspacePanel
             // 
+            this.WorkspacePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.WorkspacePanel.Location = new System.Drawing.Point(3, 17);
             this.WorkspacePanel.Name = "WorkspacePanel";
             this.WorkspacePanel.Size = new System.Drawing.Size(303, 229);
@@ -319,6 +352,7 @@
             // 
             // WorkspaceLabel
             // 
+            this.WorkspaceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.WorkspaceLabel.AutoSize = true;
             this.WorkspaceLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WorkspaceLabel.Location = new System.Drawing.Point(121, 16);
@@ -329,6 +363,7 @@
             // 
             // WorkspaceBackButton
             // 
+            this.WorkspaceBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.WorkspaceBackButton.Location = new System.Drawing.Point(36, 301);
             this.WorkspaceBackButton.Name = "WorkspaceBackButton";
             this.WorkspaceBackButton.Size = new System.Drawing.Size(75, 23);
@@ -339,6 +374,7 @@
             // 
             // WorkspaceNextButton
             // 
+            this.WorkspaceNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.WorkspaceNextButton.Enabled = false;
             this.WorkspaceNextButton.Location = new System.Drawing.Point(264, 301);
             this.WorkspaceNextButton.Name = "WorkspaceNextButton";

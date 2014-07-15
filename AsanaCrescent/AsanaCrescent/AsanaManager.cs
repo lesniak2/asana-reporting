@@ -71,6 +71,7 @@ namespace AsanaCrescent
             else if (o is AsanaProject)
             {
                 test.Text = ((AsanaProject)o).Name;
+                test.CheckedChanged += new System.EventHandler(this.ProjectCheckBox_CheckChanged);
                 ProjectCheckBoxes.Add(test);
             }
             else if (o is AsanaWorkspace)
@@ -125,15 +126,21 @@ namespace AsanaCrescent
                     else
                         crescent.NothingHereProjectLabel.Visible = true;
                 }
-                
-              
-                    if (crescent.ProjectLoadingLabel.InvokeRequired)
+
+
+                if (crescent.ProjectLoadingLabel.InvokeRequired)
+                {
+                    crescent.ProjectLoadingLabel.Invoke(new Action(() =>
                     {
-                        crescent.ProjectLoadingLabel.Invoke(new Action(() =>
-                        { crescent.ProjectLoadingLabel.Text = "Done"; }));
-                    }
-                    else
                         crescent.ProjectLoadingLabel.Text = "Done";
+                        crescent.ProjectBackButton.Enabled = true;
+                    }));
+                }
+                else
+                {
+                    crescent.ProjectLoadingLabel.Text = "Done";
+                    crescent.ProjectBackButton.Enabled = true;
+                }
                 
             });
 
@@ -150,7 +157,6 @@ namespace AsanaCrescent
 
                     asana.GetTasksInAProject(ProjectDictionary[project.Text], o =>
                     {
-                        //    crescent.TaskLoadingLabel.Text = "Loading Tasks...";
                         foreach (AsanaTask task in o)
                         {
                             TaskProjectDictionary.Add(task, ProjectDictionary[project.Text]);
@@ -159,11 +165,40 @@ namespace AsanaCrescent
                         foreach (AsanaTask task in o)
                         {
                             this.AddCheckbox(task, crescent.TaskPanel);
+                        } 
+                        
+                        if (crescent.TaskBackButton.InvokeRequired)
+                        {
+                            crescent.TaskBackButton.Invoke(new Action(() =>
+                            { crescent.TaskBackButton.Enabled = true; }));
                         }
+                        else
+                            crescent.TaskBackButton.Enabled = true;
                     });
                 }
 
             }
+        }
+
+        private void ProjectCheckBox_CheckChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                crescent.ProjectNextButton.Enabled = true;
+                return;
+            }
+            else
+            {
+                foreach (CheckBox project in ProjectCheckBoxes)
+                {
+                    if (project.Checked)
+                    {
+                        crescent.ProjectNextButton.Enabled = true;
+                        return;
+                    }
+                }
+            }
+            crescent.ProjectNextButton.Enabled = false;
         }
 
         private void WorkspaceCheckBox_CheckChanged(object sender, EventArgs e)
@@ -234,6 +269,8 @@ namespace AsanaCrescent
             crescent.ProjectPanel.Controls.Clear();
             crescent.ProjectPanel.Controls.Add(crescent.NothingHereProjectLabel);
             crescent.NothingHereProjectLabel.Visible = false;
+            crescent.ProjectBackButton.Enabled = false;
+            crescent.ProjectNextButton.Enabled = false;
         }
 
         private void ClearTasks()
@@ -244,6 +281,7 @@ namespace AsanaCrescent
             crescent.TaskPanel.Controls.Clear();
             crescent.TaskPanel.Controls.Add(crescent.ProjectLoadingLabel);
             crescent.TaskLoadingLabel.Visible = true;
+            crescent.TaskBackButton.Enabled = false;
 
         }
     }
