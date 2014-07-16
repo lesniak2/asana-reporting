@@ -67,6 +67,7 @@ namespace AsanaCrescent
             {
                 test.Text = ((AsanaTask)o).Name;
                 TaskCheckBoxes.Add(test);
+                test.CheckedChanged += new System.EventHandler(this.TaskCheckBox_CheckChanged);
             }
             else if (o is AsanaProject)
             {
@@ -154,12 +155,12 @@ namespace AsanaCrescent
             {
                 if(project.Checked == true)
                 {
-
                     asana.GetTasksInAProject(ProjectDictionary[project.Text], o =>
                     {
                         foreach (AsanaTask task in o)
                         {
                             TaskProjectDictionary.Add(task, ProjectDictionary[project.Text]);
+                            TaskDictionary.Add(task.Name, task);
                             tasks.Add(task);
                         }
                         foreach (AsanaTask task in o)
@@ -201,6 +202,27 @@ namespace AsanaCrescent
             crescent.ProjectNextButton.Enabled = false;
         }
 
+        private void TaskCheckBox_CheckChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                crescent.GenerateButton.Enabled = true;
+                return;
+            }
+            else
+            {
+                foreach (CheckBox task in TaskCheckBoxes)
+                {
+                    if (task.Checked)
+                    {
+                        crescent.GenerateButton.Enabled = true;
+                        return;
+                    }
+                }
+            }
+            crescent.GenerateButton.Enabled = false;
+        }
+
         private void WorkspaceCheckBox_CheckChanged(object sender, EventArgs e)
         {
             crescent.WorkspaceNextButton.Enabled = false;
@@ -240,7 +262,6 @@ namespace AsanaCrescent
         public void ProjectNextButton_Click(object sender, EventArgs e)
         {
             PopulateTasks();
-            crescent.ChooseTaskPanel.Refresh();
             crescent.ChooseTaskPanel.Visible = true;
         }
         public void TaskBackButton_Click(object sender, EventArgs e)
@@ -251,7 +272,27 @@ namespace AsanaCrescent
 
         public void GenerateButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("kk");
+            string msg = "Output: Debug\\stories.txt";
+
+                foreach (CheckBox task in TaskCheckBoxes)
+                {
+                    if (task.Checked)
+                    {
+                        asana.GetStoriesInTask(TaskDictionary[task.Text], o =>
+                            {
+                                foreach (AsanaStory story in o)
+                                {
+                                    try
+                                    {
+                                        System.IO.File.AppendAllText("stories.txt", story.Text + story.Type + "\r\n");
+                                    }
+                                    catch (System.IO.IOException k){}
+                                }
+                                    
+                            });
+                    }
+                }
+            MessageBox.Show(msg);
         }
 
         private void TaskPanel_ControlAdded(object sender, EventArgs e)
@@ -260,7 +301,6 @@ namespace AsanaCrescent
             {
                 crescent.TaskLoadingLabel.Text = "Done";
             }
-
         }
         private void ClearProjects()
         {
