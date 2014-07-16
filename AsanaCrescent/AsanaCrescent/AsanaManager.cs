@@ -249,8 +249,8 @@ namespace AsanaCrescent
             ClearTasks();
         }
 
-        public void GenerateButton_Click(object sender, EventArgs e) 
-        { 
+        public void GenerateButton_Click(object sender, EventArgs e)
+        {
             MessageBox.Show("kk");
         }
 
@@ -283,6 +283,9 @@ namespace AsanaCrescent
             crescent.TaskLoadingLabel.Visible = true;
             crescent.TaskBackButton.Enabled = false;
 
+        }
+        private void AddTagPanelToCheckBox(CheckBox checkbox)
+        {
         }
     }
 }
