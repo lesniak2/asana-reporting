@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="AsanaManager.cs" />
     <Compile Include="ExcelMaster.cs" />
+    <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Asana Crescent Login.resx">
