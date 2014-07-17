@@ -27,6 +27,7 @@ namespace AsanaCrescent
         private string CurrentWorkspaceName;
         private CheckBox ProjectAllCheckBox;
         private CheckBox TaskAllCheckBox;
+        private ArrayList ColumnNames;
         public AsanaManager(Crescent c, Asana a)
         {
             crescent = c;
@@ -44,7 +45,7 @@ namespace AsanaCrescent
             TaskProjectDictionary = new Dictionary<AsanaTask,AsanaProject>();
             ProjectAllCheckBox = new CheckBox();
             TaskAllCheckBox = new CheckBox();
-
+            ColumnNames = new ArrayList();
             crescent.WorkspaceNextButton.Click += new System.EventHandler(this.WorkspaceNextButton_Click);
             crescent.ProjectBackButton.Click += new System.EventHandler(this.ProjectBackButton_Click);
             crescent.ProjectNextButton.Click += new System.EventHandler(this.ProjectNextButton_Click);
@@ -192,6 +193,9 @@ namespace AsanaCrescent
             {
                 crescent.TaskPanel.Controls.Add(TaskAllCheckBox);
             }
+            // Add "Task" and "Project" columns
+            ColumnNames.Add("Task");
+            ColumnNames.Add("Project");
             // Add tasks based on selected projects
             foreach(CheckBox project in ProjectCheckBoxes)
             {
@@ -201,11 +205,16 @@ namespace AsanaCrescent
                     {
                         foreach (AsanaTask task in o)
                         {
-                            TaskProjectDictionary.Add(task, ProjectDictionary[project.Text]);
-                            TaskDictionary.Add(task.Name, task);
-                            tasks.Add(task);
+                            
+                            if (!task.Name.EndsWith(":"))
+                            {
+                                TaskProjectDictionary.Add(task, ProjectDictionary[project.Text]);
+                                TaskDictionary.Add(task.Name, task);
+                                tasks.Add(task);
+                            }
+                            else ColumnNames.Add(task.Name.Substring(0, task.Name.Length - 1));
                         }
-                        foreach (AsanaTask task in o)
+                        foreach (AsanaTask task in tasks)
                         {
                             this.AddCheckbox(task, crescent.TaskPanel);
                         } 
@@ -314,27 +323,27 @@ namespace AsanaCrescent
 
         public void GenerateButton_Click(object sender, EventArgs e)
         {
-            string msg = "Output: Debug\\stories.txt";
-
+            ExcelMaster excel = new ExcelMaster();
+            excel.SetColumns((string[])ColumnNames.ToArray( typeof ( string ) ));
                 foreach (CheckBox task in TaskCheckBoxes)
                 {
                     if (task.Checked)
                     {
+                        ArrayList Stories = new ArrayList();
                         asana.GetStoriesInTask(TaskDictionary[task.Text], o =>
                             {
                                 foreach (AsanaStory story in o)
                                 {
-                                    try
-                                    {
-                                        System.IO.File.AppendAllText("stories.txt", story.Text + story.Type + "\r\n");
-                                    }
-                                    catch (System.IO.IOException k){}
+                                    Stories.Add(story);
                                 }
-                                    
-                            });
+                                string[] data = Parser.ParseStories(Stories, ColumnNames);
+                                data[0] = task.Text;
+                                data[1] = TaskProjectDictionary[TaskDictionary[task.Text]].Name;
+                                excel.AddRow(data);
+                            }).Wait();
                     }
                 }
-            MessageBox.Show(msg);
+                excel.Show();
         }
 
         private void TaskPanel_ControlAdded(object sender, EventArgs e)

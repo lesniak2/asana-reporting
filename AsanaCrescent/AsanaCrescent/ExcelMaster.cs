@@ -16,21 +16,15 @@ namespace AsanaCrescent
         private Excel._Workbook oWB;
         private Excel._Worksheet oSheet;
         private int currentRow = 2;
-        private bool saved = false;
-        Excel.Range oResizeRange;
         public ExcelMaster()
         {
             oXL = new Excel.Application();
             oWB = (Excel.Workbook)(oXL.Workbooks.Add(Missing.Value));
+            //Creates New Workbook
+            oSheet = (Excel.Worksheet)oWB.ActiveSheet;
         }
         public void AddRow(string[] arr)
         {
-           
-                //Starts Excel and Gets Application Object
-                oXL.Visible = true;
-
-                //Creates New Workbook
-                oSheet = (Excel.Worksheet)oWB.ActiveSheet;
 
                 char startCol = 'A';
                 char endCol = (char)(startCol + arr.Length - 1);
@@ -38,7 +32,7 @@ namespace AsanaCrescent
                 oSheet.get_Range("" + startCol + currentRow, "" + endCol + currentRow).Value2 = arr;
                 currentRow++;
         }
-        public void AddColumn(string[] col)
+        public void SetColumns(string[] col)
         {
             char titleCol = 'A';
             char endtitleCol = (char)(titleCol + col.Length - 1);
@@ -48,6 +42,12 @@ namespace AsanaCrescent
             oSheet.Application.ActiveWindow.SplitRow = 1;
             oSheet.Application.ActiveWindow.FreezePanes = true;
             
+        }
+
+        public void Show()
+        {
+            //Starts Excel and Gets Application Object
+            oXL.Visible = true;
         }
     }
 }
