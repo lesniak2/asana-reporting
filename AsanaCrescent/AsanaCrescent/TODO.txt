@@ -14,3 +14,7 @@
 [ ]  determine a course of action for no workspaces populating
 [x]  rename Authentication class and filename to AuthenticationPrompt 
 [x]  Test for wrapping of names that extend beyond frame, enable auto-ellipses or look for wrap functionality if they do
+[ ]  Loading Project label does not appear after hitting "back" from the task view
+[ ]  Add separate projects to separate worksheets in excel with their respective columns
+[ ]  Add pivot table functionality to data
+[ ]  Look into null spaces and check if they work in pivot tables
