@@ -25,6 +25,8 @@ namespace AsanaCrescent
         private Dictionary<string, AsanaTask> TaskDictionary;
         private Dictionary<AsanaTask, AsanaProject> TaskProjectDictionary;
         private string CurrentWorkspaceName;
+        private CheckBox ProjectAllCheckBox;
+        private CheckBox TaskAllCheckBox;
         public AsanaManager(Crescent c, Asana a)
         {
             crescent = c;
@@ -40,7 +42,8 @@ namespace AsanaCrescent
             ProjectDictionary = new Dictionary<string,AsanaProject>();
             TaskDictionary = new Dictionary<string,AsanaTask>();
             TaskProjectDictionary = new Dictionary<AsanaTask,AsanaProject>();
-
+            ProjectAllCheckBox = new CheckBox();
+            TaskAllCheckBox = new CheckBox();
 
             crescent.WorkspaceNextButton.Click += new System.EventHandler(this.WorkspaceNextButton_Click);
             crescent.ProjectBackButton.Click += new System.EventHandler(this.ProjectBackButton_Click);
@@ -50,14 +53,13 @@ namespace AsanaCrescent
             crescent.TaskPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(TaskPanel_ControlAdded);
 
         }
-
         private void AddCheckbox(AsanaObject o, Panel panel)
         {
             CheckBox test = new CheckBox();
             test.AutoSize = true;
             test.Location = new System.Drawing.Point(6, 5 + yLoc);
             if (o is AsanaTask)
-                yLoc += 50;
+                yLoc += 25;                         // TODO: Adjust to 50 after demo
             else 
                 yLoc += 25;
             test.Size = new System.Drawing.Size(80, 17);
@@ -109,6 +111,26 @@ namespace AsanaCrescent
             crescent.ProjectLoadingLabel.Text = "Loading projects...";
             yLoc = 0;
 
+            //Add a checkbox to select All
+            
+            ProjectAllCheckBox.AutoSize = true;
+            ProjectAllCheckBox.Location = new System.Drawing.Point(3, 5 + yLoc);
+            yLoc += 20;
+            ProjectAllCheckBox.Size = new System.Drawing.Size(80, 17);
+            ProjectAllCheckBox.TabIndex = 1;
+            ProjectAllCheckBox.UseVisualStyleBackColor = true;
+            ProjectAllCheckBox.Text = "All";
+            ProjectAllCheckBox.CheckedChanged += new System.EventHandler(this.ProjectAllCheckBox_CheckChanged);
+            if (crescent.ProjectPanel.InvokeRequired)
+            {
+                crescent.ProjectPanel.Invoke(new Action(() => { crescent.ProjectPanel.Controls.Add(ProjectAllCheckBox); }));
+            }
+            else
+            {
+                crescent.ProjectPanel.Controls.Add(ProjectAllCheckBox);
+            }
+
+            // get projects from Asana
             asana.GetProjectsInWorkspace(WorkspaceDictionary[this.CurrentWorkspaceName], o =>
             {
                 foreach (AsanaProject project in o)
@@ -151,6 +173,26 @@ namespace AsanaCrescent
         {
             yLoc = 0; 
             crescent.TaskLoadingLabel.Text = "Loading Tasks...";
+
+            //Add a checkbox to select All
+
+            TaskAllCheckBox.AutoSize = true;
+            TaskAllCheckBox.Location = new System.Drawing.Point(3, 5 + yLoc);
+            yLoc += 20;
+            TaskAllCheckBox.Size = new System.Drawing.Size(80, 17);
+            TaskAllCheckBox.TabIndex = 1;
+            TaskAllCheckBox.UseVisualStyleBackColor = true;
+            TaskAllCheckBox.Text = "All";
+            TaskAllCheckBox.CheckedChanged += new System.EventHandler(this.TaskAllCheckBox_CheckChanged);
+            if (crescent.TaskPanel.InvokeRequired)
+            {
+                crescent.TaskPanel.Invoke(new Action(() => { crescent.TaskPanel.Controls.Add(TaskAllCheckBox); }));
+            }
+            else
+            {
+                crescent.TaskPanel.Controls.Add(TaskAllCheckBox);
+            }
+            // Add tasks based on selected projects
             foreach(CheckBox project in ProjectCheckBoxes)
             {
                 if(project.Checked == true)
@@ -326,6 +368,41 @@ namespace AsanaCrescent
         }
         private void AddTagPanelToCheckBox(CheckBox checkbox)
         {
+        }
+
+        private void ProjectAllCheckBox_CheckChanged(object sender, EventArgs e)
+        {
+            if ((sender as CheckBox).Checked)
+            {
+                foreach (CheckBox project in ProjectCheckBoxes)
+                {
+                    project.Checked = true;
+                }
+                return;
+            }
+
+            foreach (CheckBox project in ProjectCheckBoxes)
+            {
+                project.Checked = false;
+            }
+        }
+
+        private void TaskAllCheckBox_CheckChanged(object sender, EventArgs e)
+        {
+            if ((sender as CheckBox).Checked)
+            {
+                foreach (CheckBox task in TaskCheckBoxes)
+                {
+                    task.Checked = true;
+                }
+                return;
+            }
+
+            foreach (CheckBox task in TaskCheckBoxes)
+            {
+                task.Checked = false;
+            }
+
         }
     }
 }
