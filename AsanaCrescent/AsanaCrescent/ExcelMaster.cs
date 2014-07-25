@@ -7,6 +7,9 @@ using System.ComponentModel;
 using System.Drawing;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
+using System.Collections;
+using Microsoft.VisualBasic;
+using AsanaNet;
 
 namespace AsanaCrescent
 {
@@ -14,40 +17,115 @@ namespace AsanaCrescent
     {
         private Excel.Application oXL;
         private Excel._Workbook oWB;
-        private Excel._Worksheet oSheet;
-        private int currentRow = 2;
+        private Excel.Sheets sheets;
+        private int[] currentRow;
+        private string[,] ColumnNames;
+        private Dictionary<string, int> ProjectWorksheetDictionary;
         public ExcelMaster()
         {
             oXL = new Excel.Application();
             oWB = (Excel.Workbook)(oXL.Workbooks.Add(Missing.Value));
-            //Creates New Workbook
-            oSheet = (Excel.Worksheet)oWB.ActiveSheet;
+            ProjectWorksheetDictionary = new Dictionary<string,int>();
+            sheets = oWB.Sheets;
         }
-        public void AddRow(string[] arr)
+        public void SetWorksheets(ArrayList projects)
         {
-
+            int worksheetsToAdd = projects.Count -3 <= 0 ? 0 : projects.Count -3;
+            currentRow = new int[projects.Count+1];
+                for (int i = 0; i < currentRow.Length ; i++)
+                {
+                    currentRow[i] = 2;
+                }
+                for (int i = 0; i < worksheetsToAdd; i++)
+                {
+                    sheets.Add(Type.Missing, sheets[sheets.Count], Type.Missing, Type.Missing);
+                }
+                    for (int i = 1; i < projects.Count + 1; i++)
+                    {
+                        string col_name = (projects[i - 1] as AsanaProject).Name;
+                        col_name = col_name.Replace(":", "");
+                        col_name = col_name.Replace("/", " ");
+                        col_name = col_name.Replace("\\", " ");
+                        sheets[i].Name = col_name;
+                        ProjectWorksheetDictionary.Add(col_name,i);
+                    }
+                    ColumnNames = new string[projects.Count + 1, 20];
+        }
+        public void AddRow(string[] arr, string worksheet)
+        {
+            int worksheetNum = ProjectWorksheetDictionary[worksheet];
+                Excel.Worksheet oSheet = (Excel.Worksheet) sheets[worksheetNum];
                 char startCol = 'A';
                 char endCol = (char)(startCol + arr.Length - 1);
-
-                oSheet.get_Range("" + startCol + currentRow, "" + endCol + currentRow).Value2 = arr;
-                currentRow++;
+                oSheet.get_Range("" + startCol + currentRow[worksheetNum], "" + endCol + currentRow[worksheetNum]).Value2 = arr;
+                currentRow[worksheetNum]++;
         }
-        public void SetColumns(string[] col)
+        public void SetColumns(string[] col, int WorksheetNum)
         {
-            char titleCol = 'A';
-            char endtitleCol = (char)(titleCol + col.Length - 1);
+            if (WorksheetNum > sheets.Count || col.Length == 0) return;
+                Excel.Worksheet oSheet = (Excel.Worksheet)sheets[WorksheetNum];
+                char titleCol = 'A';
+                char endtitleCol = (char)(titleCol + col.Length - 1);
+                oSheet.get_Range(titleCol + "1", endtitleCol + "1").Value2 = col;
+                oSheet.Application.ActiveWindow.SplitRow = 1;
+                oSheet.Application.ActiveWindow.FreezePanes = true;
 
-            oSheet.get_Range(titleCol + "1",endtitleCol+"1").Value2 = col;
-            oSheet.Activate();
-            oSheet.Application.ActiveWindow.SplitRow = 1;
-            oSheet.Application.ActiveWindow.FreezePanes = true;
-            
+                for (int i = 0; i < col.Length; i++)
+                {
+                    ColumnNames[WorksheetNum,i] = col[i];
+                    
+                }
         }
 
         public void Show()
         {
-            //Starts Excel and Gets Application Object
             oXL.Visible = true;
+        }
+
+        public string[] GetColumnNames(string worksheet)
+        {
+            int worksheetNum = ProjectWorksheetDictionary[worksheet];
+            string[] data = new string[20];
+            for(int i = 0; i < data.Length; i++)
+                data[i] = ColumnNames[worksheetNum, i];
+            return data;
+        }
+
+        public void SaveAndClose()
+        {
+            try
+            {
+                FileSystem.MkDir("reports");
+            }
+            catch (System.IO.IOException) { }
+            finally
+            {
+                string name = "asana_report_" + DateTime.Now.ToString().Replace(" ", "_").Replace(":", "").Replace(".", "").Replace("/", "");
+                name = name.Remove(name.Length - 3);
+                oWB.SaveAs(System.IO.Directory.GetCurrentDirectory() + "\\reports\\" + name + ".xlsx", Excel.XlFileFormat.xlOpenXMLWorkbook);
+                oWB.Close();
+                oXL.Quit();
+                releaseObject(oXL);
+                releaseObject(oWB);
+                releaseObject(sheets);
+            }
+        }
+
+        private void releaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+            }
+            finally
+            {
+                GC.Collect();
+            }
         }
     }
 }

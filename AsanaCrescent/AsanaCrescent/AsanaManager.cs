@@ -22,12 +22,16 @@ namespace AsanaCrescent
         private Asana asana;
         private Dictionary<string, AsanaWorkspace> WorkspaceDictionary;
         private Dictionary<string, AsanaProject> ProjectDictionary;
-        private Dictionary<string, AsanaTask> TaskDictionary;
+        private Dictionary<long, AsanaTask> TaskDictionary;
         private Dictionary<AsanaTask, AsanaProject> TaskProjectDictionary;
         private string CurrentWorkspaceName;
         private CheckBox ProjectAllCheckBox;
         private CheckBox TaskAllCheckBox;
         private ArrayList ColumnNames;
+        private ExcelMaster excel;
+        private ArrayList tags;
+        private ArrayList selectedProjects;
+        private Object lock1;
         public AsanaManager(Crescent c, Asana a)
         {
             crescent = c;
@@ -41,11 +45,15 @@ namespace AsanaCrescent
             tasks = new ArrayList();
             WorkspaceDictionary = new Dictionary<string, AsanaWorkspace>();
             ProjectDictionary = new Dictionary<string,AsanaProject>();
-            TaskDictionary = new Dictionary<string,AsanaTask>();
+            TaskDictionary = new Dictionary<long,AsanaTask>();
             TaskProjectDictionary = new Dictionary<AsanaTask,AsanaProject>();
             ProjectAllCheckBox = new CheckBox();
             TaskAllCheckBox = new CheckBox();
             ColumnNames = new ArrayList();
+            selectedProjects = new ArrayList();
+            excel = new ExcelMaster();
+            tags = new ArrayList();
+            lock1 = new Object();
             crescent.WorkspaceNextButton.Click += new System.EventHandler(this.WorkspaceNextButton_Click);
             crescent.ProjectBackButton.Click += new System.EventHandler(this.ProjectBackButton_Click);
             crescent.ProjectNextButton.Click += new System.EventHandler(this.ProjectNextButton_Click);
@@ -69,18 +77,21 @@ namespace AsanaCrescent
             if (o is AsanaTask)
             {
                 test.Text = ((AsanaTask)o).Name;
+                test.Name = "" + ((AsanaTask)o).ID;
                 TaskCheckBoxes.Add(test);
                 test.CheckedChanged += new System.EventHandler(this.TaskCheckBox_CheckChanged);
             }
             else if (o is AsanaProject)
             {
                 test.Text = ((AsanaProject)o).Name;
+                test.Name = "" + ((AsanaProject)o).ID;
                 test.CheckedChanged += new System.EventHandler(this.ProjectCheckBox_CheckChanged);
                 ProjectCheckBoxes.Add(test);
             }
             else if (o is AsanaWorkspace)
             {
                 test.Text = ((AsanaWorkspace)o).Name;
+                test.Name = "" + ((AsanaWorkspace)o).ID;
                 test.CheckedChanged += new System.EventHandler(this.WorkspaceCheckBox_CheckChanged);
                 WorkspaceCheckBoxes.Add(test);
             }
@@ -172,19 +183,19 @@ namespace AsanaCrescent
 
         public void PopulateTasks()
         {
-            yLoc = 0; 
-            crescent.TaskLoadingLabel.Text = "Loading Tasks...";
-
+            yLoc = 0;
             //Add a checkbox to select All
 
             TaskAllCheckBox.AutoSize = true;
             TaskAllCheckBox.Location = new System.Drawing.Point(3, 5 + yLoc);
+            TaskAllCheckBox.Checked = false;
             yLoc += 20;
             TaskAllCheckBox.Size = new System.Drawing.Size(80, 17);
             TaskAllCheckBox.TabIndex = 1;
             TaskAllCheckBox.UseVisualStyleBackColor = true;
             TaskAllCheckBox.Text = "All";
             TaskAllCheckBox.CheckedChanged += new System.EventHandler(this.TaskAllCheckBox_CheckChanged);
+
             if (crescent.TaskPanel.InvokeRequired)
             {
                 crescent.TaskPanel.Invoke(new Action(() => { crescent.TaskPanel.Controls.Add(TaskAllCheckBox); }));
@@ -193,43 +204,73 @@ namespace AsanaCrescent
             {
                 crescent.TaskPanel.Controls.Add(TaskAllCheckBox);
             }
-            // Add "Task" and "Project" columns
-            ColumnNames.Add("Task");
-            ColumnNames.Add("Project");
             // Add tasks based on selected projects
+            crescent.TaskLoadingLabel.Text = "Loading Tasks...";
+            int worksheetNum = 0;
             foreach(CheckBox project in ProjectCheckBoxes)
             {
                 if(project.Checked == true)
                 {
-                    asana.GetTasksInAProject(ProjectDictionary[project.Text], o =>
+                    // Add "Task" and "Project" columns
+                    AsanaProject lastProject = null;
+                    AsanaProject curProject = ProjectDictionary[project.Text];
+                    lock (lock1)
                     {
-                        foreach (AsanaTask task in o)
+                        asana.GetTasksInAProject(curProject, o =>
                         {
-                            
-                            if (!task.Name.EndsWith(":"))
+                            ColumnNames.Clear();
+                            ColumnNames.Add("Task");
+                            ColumnNames.Add("Project");
+                            ColumnNames.Add("Added To Project");
+                            ColumnNames.Add("Due");
+                            ColumnNames.Add("Completed");
+                            ColumnNames.Add("Assignee");
+                            ColumnNames.Add("Tags");
+                            foreach (AsanaTask task in o)
                             {
-                                TaskProjectDictionary.Add(task, ProjectDictionary[project.Text]);
-                                TaskDictionary.Add(task.Name, task);
-                                tasks.Add(task);
+                                if (!task.Name.EndsWith(":"))
+                                {
+                                    if (!TaskDictionary.ContainsKey(task.ID)) // prevent duplicate keys
+                                    {
+                                        TaskProjectDictionary.Add(task, ProjectDictionary[project.Text]);
+                                        TaskDictionary.Add(task.ID, task);
+                                        tasks.Add(task);
+                                    }
+                                }
+                                else
+                                {
+                                    bool flag = false;
+                                    foreach (string name in ColumnNames)
+                                    {
+                                        if (name == task.Name.Substring(0, task.Name.Length - 1))
+                                            flag = true;
+                                    }
+                                    if (!flag)
+                                    {
+                                        ColumnNames.Add(task.Name.Substring(0, task.Name.Length - 1));
+                                    }
+                                }
                             }
-                            else ColumnNames.Add(task.Name.Substring(0, task.Name.Length - 1));
-                        }
-                        foreach (AsanaTask task in tasks)
-                        {
-                            this.AddCheckbox(task, crescent.TaskPanel);
-                        } 
-                        
-                        if (crescent.TaskBackButton.InvokeRequired)
-                        {
-                            crescent.TaskBackButton.Invoke(new Action(() =>
-                            { crescent.TaskBackButton.Enabled = true; }));
-                        }
-                        else
-                            crescent.TaskBackButton.Enabled = true;
-                    });
+                            if (lastProject != curProject)
+                                worksheetNum++;
+                            excel.SetColumns((string[])ColumnNames.ToArray(typeof(string)), worksheetNum);
+                            foreach (AsanaTask task in tasks)
+                            {
+                                this.AddCheckbox(task, crescent.TaskPanel);
+                            }
+                        });
+                    }
                 }
 
             }
+
+            if (crescent.TaskBackButton.InvokeRequired)
+            {
+                crescent.TaskBackButton.Invoke(new Action(() =>
+                { crescent.TaskBackButton.Enabled = true; }));
+            }
+            else
+                crescent.TaskBackButton.Enabled = true;
         }
 
         private void ProjectCheckBox_CheckChanged(object sender, EventArgs e)
@@ -302,16 +343,32 @@ namespace AsanaCrescent
         public void WorkspaceNextButton_Click(object sender, EventArgs e)
         {
             PopulateProjects();
+            asana.GetTagsInWorkspace(WorkspaceDictionary[this.CurrentWorkspaceName], o =>
+            {
+                foreach (AsanaTag tag in o)
+                    tags.Add(tag.Name);
+
+            }).Wait();
             crescent.ChooseProjectPanel.Visible = true;
         }
 
         public void ProjectBackButton_Click(object sender, EventArgs e)
         {
             crescent.ChooseProjectPanel.Visible = false;
+            tags.Clear();
             ClearProjects();
         }
         public void ProjectNextButton_Click(object sender, EventArgs e)
         {
+            selectedProjects.Clear();
+            foreach (CheckBox project in ProjectCheckBoxes)
+            {
+                if (project.Checked)
+                {
+                    selectedProjects.Add(ProjectDictionary[project.Text]);
+                }
+            }
+            excel.SetWorksheets(selectedProjects);
             PopulateTasks();
             crescent.ChooseTaskPanel.Visible = true;
         }
@@ -323,27 +380,32 @@ namespace AsanaCrescent
 
         public void GenerateButton_Click(object sender, EventArgs e)
         {
-            ExcelMaster excel = new ExcelMaster();
-            excel.SetColumns((string[])ColumnNames.ToArray( typeof ( string ) ));
-                foreach (CheckBox task in TaskCheckBoxes)
+            ArrayList Stories = new ArrayList();
+            foreach (CheckBox task in TaskCheckBoxes)
                 {
+                
                     if (task.Checked)
                     {
-                        ArrayList Stories = new ArrayList();
-                        asana.GetStoriesInTask(TaskDictionary[task.Text], o =>
+                        AsanaTask t = TaskDictionary[Convert.ToInt64(task.Name)];
+                        asana.GetStoriesInTask(t, o =>
                             {
                                 foreach (AsanaStory story in o)
                                 {
                                     Stories.Add(story);
                                 }
-                                string[] data = Parser.ParseStories(Stories, ColumnNames);
-                                data[0] = task.Text;
-                                data[1] = TaskProjectDictionary[TaskDictionary[task.Text]].Name;
-                                excel.AddRow(data);
                             }).Wait();
+                        AsanaProject curProject = TaskProjectDictionary[t];
+                        string projName = curProject.Name.Replace(":", "");
+                        string[] cols = excel.GetColumnNames(projName);
+                        string[] data = Parser.ParseStories(Stories, (string[])tags.ToArray(typeof(string)), cols, curProject.Name);
+                        data[0] = task.Text;
+                        excel.AddRow(data, projName);
+                        data = null;
+                        Stories.Clear();
                     }
                 }
-                excel.Show();
+
+                excel.SaveAndClose();
         }
 
         private void TaskPanel_ControlAdded(object sender, EventArgs e)
@@ -373,7 +435,6 @@ namespace AsanaCrescent
             crescent.TaskPanel.Controls.Add(crescent.ProjectLoadingLabel);
             crescent.TaskLoadingLabel.Visible = true;
             crescent.TaskBackButton.Enabled = false;
-
         }
         private void AddTagPanelToCheckBox(CheckBox checkbox)
         {

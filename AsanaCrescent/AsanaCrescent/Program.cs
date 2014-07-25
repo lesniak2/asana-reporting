@@ -40,32 +40,24 @@ namespace AsanaCrescent
             Crescent crescent = new Crescent();
             var asana = new Asana(api_key, AuthenticationType.Basic, (s1, s2, s3) => { });
             AsanaManager manager = new AsanaManager(crescent, asana);
+            AsanaWorkspace[] w = new AsanaWorkspace[3];
+            int i = 0;
+            asana.GetWorkspaces(o =>
+            {
+                foreach (AsanaWorkspace workspace in o)
+                {
+                    w[i++] = workspace;
+                }
+            }).Wait();
+            asana.GetTagsInWorkspace(w[0], o =>
+            {
+                foreach (AsanaTag tag in o)
+                    Console.WriteLine();
+            });
+
             manager.PopulateWorkspaces();
 
             Application.Run(crescent);
         }
-
-        /*
-
-
-            Uri authuri = new Uri(auth);
-            Console.WriteLine(auth);
-            Process.Start(auth);
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(authuri);
-            req.Method = "GET";
-            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-
-
-            var dataStream = res.GetResponseStream();
-
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-
-            reader.Close();
-            dataStream.Close();
-            res.Close();
-            Console.WriteLine(responseFromServer);
-        
-        }*/
     }
 }
