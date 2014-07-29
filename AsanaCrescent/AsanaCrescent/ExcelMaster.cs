@@ -30,6 +30,7 @@ namespace AsanaCrescent
         }
         public void SetWorksheets(ArrayList projects)
         {
+            ProjectWorksheetDictionary.Clear();
             int worksheetsToAdd = projects.Count -3 <= 0 ? 0 : projects.Count -3;
             currentRow = new int[projects.Count+1];
                 for (int i = 0; i < currentRow.Length ; i++)
@@ -91,6 +92,10 @@ namespace AsanaCrescent
             return data;
         }
 
+        public void ClearWorksheets()
+        {
+            sheets.Delete();
+        }
         public void SaveAndClose()
         {
             try

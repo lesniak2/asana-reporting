@@ -42,7 +42,7 @@
             this.GenerateButton = new System.Windows.Forms.Button();
             this.TaskBackButton = new System.Windows.Forms.Button();
             this.TaskGroupBox = new System.Windows.Forms.GroupBox();
-            this.TaskPanel = new System.Windows.Forms.Panel();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.TaskLabel = new System.Windows.Forms.Label();
             this.ProjectGroupBox = new System.Windows.Forms.GroupBox();
             this.ProjectPanel = new System.Windows.Forms.Panel();
@@ -192,31 +192,31 @@
             // GenerateButton
             // 
             this.GenerateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.GenerateButton.Enabled = false;
             this.GenerateButton.Location = new System.Drawing.Point(240, 301);
             this.GenerateButton.Name = "GenerateButton";
             this.GenerateButton.Size = new System.Drawing.Size(99, 23);
             this.GenerateButton.TabIndex = 3;
             this.GenerateButton.Text = "Generate Report";
             this.GenerateButton.UseVisualStyleBackColor = true;
-            this.GenerateButton.Enabled = false;
             // 
             // TaskBackButton
             // 
             this.TaskBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.TaskBackButton.Enabled = false;
             this.TaskBackButton.Location = new System.Drawing.Point(36, 301);
             this.TaskBackButton.Name = "TaskBackButton";
             this.TaskBackButton.Size = new System.Drawing.Size(75, 23);
             this.TaskBackButton.TabIndex = 2;
             this.TaskBackButton.Text = "Back";
             this.TaskBackButton.UseVisualStyleBackColor = true;
-            this.TaskBackButton.Enabled = false;
             // 
             // TaskGroupBox
             // 
             this.TaskGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TaskGroupBox.Controls.Add(this.TaskPanel);
+            this.TaskGroupBox.Controls.Add(this.tabControl);
             this.TaskGroupBox.Location = new System.Drawing.Point(33, 38);
             this.TaskGroupBox.Name = "TaskGroupBox";
             this.TaskGroupBox.Size = new System.Drawing.Size(309, 246);
@@ -224,16 +224,17 @@
             this.TaskGroupBox.TabStop = false;
             this.TaskGroupBox.Text = "Tasks";
             // 
-            // TaskPanel
+            // tabControl
             // 
-            this.TaskPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TaskPanel.AutoScroll = true;
-            this.TaskPanel.Location = new System.Drawing.Point(3, 16);
-            this.TaskPanel.Name = "TaskPanel";
-            this.TaskPanel.Size = new System.Drawing.Size(303, 227);
-            this.TaskPanel.TabIndex = 0;
+            this.tabControl.Location = new System.Drawing.Point(6, 16);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(300, 227);
+            this.tabControl.TabIndex = 0;
+            this.tabControl.Visible = false;
             // 
             // TaskLabel
             // 
@@ -433,10 +434,10 @@
         public System.Windows.Forms.Panel ChooseTaskPanel;
         private System.Windows.Forms.Label TaskLabel;
         private System.Windows.Forms.GroupBox TaskGroupBox;
-        public System.Windows.Forms.Panel TaskPanel;
         public System.Windows.Forms.Button GenerateButton;
         public System.Windows.Forms.Button TaskBackButton;
         public System.Windows.Forms.Label TaskLoadingLabel;
         public System.Windows.Forms.Label NothingHereProjectLabel;
+        public System.Windows.Forms.TabControl tabControl;
     }
 }
