@@ -61,21 +61,23 @@ namespace AsanaCrescent
                 oSheet.get_Range("" + startCol + currentRow[worksheetNum], "" + endCol + currentRow[worksheetNum]).Value2 = arr;
                 currentRow[worksheetNum]++;
         }
-        public void SetColumns(string[] col, int WorksheetNum)
+        public void SetColumns(string[] col, string worksheetName)
         {
-            if (WorksheetNum > sheets.Count || col.Length == 0) return;
-                Excel.Worksheet oSheet = (Excel.Worksheet)sheets[WorksheetNum];
-                char titleCol = 'A';
-                char endtitleCol = (char)(titleCol + col.Length - 1);
-                oSheet.get_Range(titleCol + "1", endtitleCol + "1").Value2 = col;
-                oSheet.Application.ActiveWindow.SplitRow = 1;
-                oSheet.Application.ActiveWindow.FreezePanes = true;
-
-                for (int i = 0; i < col.Length; i++)
-                {
-                    ColumnNames[WorksheetNum,i] = col[i];
+            int i;
+            for (i = 1; i <= sheets.Count && worksheetName != sheets[i].Name; i++)
+                ;
+            Excel.Worksheet oSheet = (Excel.Worksheet)sheets[i];
+            char titleCol = 'A';
+            char endtitleCol = (char)(titleCol + col.Length - 1);
+            oSheet.get_Range(titleCol + "1", endtitleCol + "1").Value2 = col;
+            oSheet.Application.ActiveWindow.SplitRow = 1;
+            oSheet.Application.ActiveWindow.FreezePanes = true;
+            
+            for (int j = 0; j < col.Length; j++)
+            {
+                ColumnNames[i,j] = col[j];
                     
-                }
+            }
         }
 
         public void Show()
@@ -115,7 +117,14 @@ namespace AsanaCrescent
                 releaseObject(sheets);
             }
         }
-
+        public void CloseWithoutSaving()
+        {
+            oWB.Close(false);
+            oXL.Quit();
+            releaseObject(oXL);
+            releaseObject(oWB);
+            releaseObject(sheets);
+        }
         private void releaseObject(object obj)
         {
             try

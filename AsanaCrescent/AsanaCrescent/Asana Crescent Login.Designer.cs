@@ -38,6 +38,8 @@
             this.ChooseWorkspacePanel = new System.Windows.Forms.Panel();
             this.ChooseProjectPanel = new System.Windows.Forms.Panel();
             this.ChooseTaskPanel = new System.Windows.Forms.Panel();
+            this.GenerateCancelButton = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.TaskLoadingLabel = new System.Windows.Forms.Label();
             this.GenerateButton = new System.Windows.Forms.Button();
             this.TaskBackButton = new System.Windows.Forms.Button();
@@ -167,6 +169,8 @@
             // 
             // ChooseTaskPanel
             // 
+            this.ChooseTaskPanel.Controls.Add(this.GenerateCancelButton);
+            this.ChooseTaskPanel.Controls.Add(this.progressBar1);
             this.ChooseTaskPanel.Controls.Add(this.TaskLoadingLabel);
             this.ChooseTaskPanel.Controls.Add(this.GenerateButton);
             this.ChooseTaskPanel.Controls.Add(this.TaskBackButton);
@@ -178,6 +182,27 @@
             this.ChooseTaskPanel.Size = new System.Drawing.Size(371, 357);
             this.ChooseTaskPanel.TabIndex = 29;
             this.ChooseTaskPanel.Visible = false;
+            // 
+            // GenerateCancelButton
+            // 
+            this.GenerateCancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.GenerateCancelButton.Location = new System.Drawing.Point(240, 301);
+            this.GenerateCancelButton.Name = "GenerateCancelButton";
+            this.GenerateCancelButton.Size = new System.Drawing.Size(99, 23);
+            this.GenerateCancelButton.TabIndex = 5;
+            this.GenerateCancelButton.Text = "Cancel";
+            this.GenerateCancelButton.UseVisualStyleBackColor = true;
+            this.GenerateCancelButton.Visible = false;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.progressBar1.Location = new System.Drawing.Point(6, 330);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(105, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.TabIndex = 4;
+            this.progressBar1.Visible = false;
             // 
             // TaskLoadingLabel
             // 
@@ -439,5 +464,7 @@
         public System.Windows.Forms.Label TaskLoadingLabel;
         public System.Windows.Forms.Label NothingHereProjectLabel;
         public System.Windows.Forms.TabControl tabControl;
+        public System.Windows.Forms.ProgressBar progressBar1;
+        public System.Windows.Forms.Button GenerateCancelButton;
     }
 }

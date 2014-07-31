@@ -116,8 +116,8 @@ namespace AsanaCrescent
             {
                 foreach(string tag in tags) 
                 {
-                    string t = "added to " + tag +".";
-                    if (story.Text.Contains(t))
+                    string t = "added to " + tag;
+                    if (story.Text.Contains(t) && story.Text.Length == story.Text.IndexOf(t) + t.Length)
                     {
                         d += tag + ", ";
                         break;
