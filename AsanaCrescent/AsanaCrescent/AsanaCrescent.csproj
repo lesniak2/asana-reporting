@@ -58,7 +58,7 @@
       <DependentUpon>AuthenticationPrompt.cs</DependentUpon>
     </Compile>
     <Compile Include="AsanaManager.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="ProjectInExcel.cs" />
     <Compile Include="ExcelMaster.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
