@@ -548,6 +548,7 @@ namespace AsanaCrescent
                 }
                 worker.ReportProgress((int) (i*100.0/total));
             }
+            excel.MakeWorksheetsTables();
         }
         private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
