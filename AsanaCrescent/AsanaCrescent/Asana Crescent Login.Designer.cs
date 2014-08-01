@@ -473,6 +473,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(226)))), ((int)(((byte)(233)))));
             this.ClientSize = new System.Drawing.Size(396, 258);
             this.Controls.Add(this.AuthenticationPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Crescent";
             this.Text = "Crescent";
             this.AuthenticationPanel.ResumeLayout(false);

@@ -381,11 +381,15 @@ namespace AsanaCrescent
                     tags.Add(tag.Name);
 
             }).Wait();
+            crescent.FormBorderStyle = FormBorderStyle.Sizable;
+            crescent.ClientSize = new System.Drawing.Size(396, 450);
             crescent.ChooseProjectPanel.Visible = true;
         }
 
         public void ProjectBackButton_Click(object sender, EventArgs e)
         {
+            crescent.FormBorderStyle = FormBorderStyle.FixedSingle;
+            crescent.ClientSize = new System.Drawing.Size(396, 298);
             ProjectAllCheckBox.Checked = false;
             crescent.ChooseProjectPanel.Visible = false;
             tags.Clear();
