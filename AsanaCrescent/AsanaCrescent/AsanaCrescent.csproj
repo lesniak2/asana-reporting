@@ -100,8 +100,6 @@
     <None Include="Resources\WMP.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AsanaCrescentLogo.bmp" />
-    <Content Include="Resources\AsanaCrescentLogo.png" />
     <Content Include="Resources\leapfrog.png" />
   </ItemGroup>
   <ItemGroup>
