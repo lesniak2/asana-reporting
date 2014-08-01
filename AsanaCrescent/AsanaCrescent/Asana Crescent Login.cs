@@ -22,10 +22,12 @@ namespace AsanaCrescent
         private void WorkspaceBackButton_Click(object sender, EventArgs e)
         {
             ChooseWorkspacePanel.Visible = false;
+            asanacrescentLogo.Visible = true;
         }
 
         private void APIKeyButton_Click(object sender, EventArgs e)
         {
+            asanacrescentLogo.Visible = false;
             var asana = new Asana(APIKeyBox.Text, AuthenticationType.Basic, (s1, s2, s3) => { });
             AsanaManager manager = new AsanaManager(this, asana);
             ChooseWorkspacePanel.Visible = true;
@@ -62,6 +64,11 @@ namespace AsanaCrescent
         }
 
         private void TaskLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Crescent));
             this.APIKeyButton = new AsanaCrescent.AsanaButton();
             this.APIKeyLabel = new System.Windows.Forms.Label();
             this.APIKeyBox = new System.Windows.Forms.TextBox();
             this.AuthenticationPanel = new System.Windows.Forms.Panel();
+            this.asanacrescentLogo = new System.Windows.Forms.PictureBox();
             this.ChooseWorkspacePanel = new System.Windows.Forms.Panel();
             this.ChooseProjectPanel = new System.Windows.Forms.Panel();
             this.ChooseTaskPanel = new System.Windows.Forms.Panel();
@@ -56,6 +58,7 @@
             this.WorkspaceBackButton = new System.Windows.Forms.Button();
             this.WorkspaceNextButton = new System.Windows.Forms.Button();
             this.AuthenticationPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.asanacrescentLogo)).BeginInit();
             this.ChooseWorkspacePanel.SuspendLayout();
             this.ChooseProjectPanel.SuspendLayout();
             this.ChooseTaskPanel.SuspendLayout();
@@ -107,6 +110,7 @@
             // AuthenticationPanel
             // 
             this.AuthenticationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(228)))), ((int)(((byte)(234)))));
+            this.AuthenticationPanel.Controls.Add(this.asanacrescentLogo);
             this.AuthenticationPanel.Controls.Add(this.ChooseWorkspacePanel);
             this.AuthenticationPanel.Controls.Add(this.APIKeyBox);
             this.AuthenticationPanel.Controls.Add(this.APIKeyButton);
@@ -116,6 +120,16 @@
             this.AuthenticationPanel.Name = "AuthenticationPanel";
             this.AuthenticationPanel.Size = new System.Drawing.Size(396, 258);
             this.AuthenticationPanel.TabIndex = 2;
+            // 
+            // asanacrescentLogo
+            // 
+            this.asanacrescentLogo.Image = ((System.Drawing.Image)(resources.GetObject("asanacrescentLogo.Image")));
+            this.asanacrescentLogo.Location = new System.Drawing.Point(29, 12);
+            this.asanacrescentLogo.Name = "asanacrescentLogo";
+            this.asanacrescentLogo.Size = new System.Drawing.Size(355, 50);
+            this.asanacrescentLogo.TabIndex = 6;
+            this.asanacrescentLogo.TabStop = false;
+            this.asanacrescentLogo.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // ChooseWorkspacePanel
             // 
@@ -272,7 +286,7 @@
             this.TaskLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.TaskLabel.AutoSize = true;
             this.TaskLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TaskLabel.Location = new System.Drawing.Point(109, 10);
+            this.TaskLabel.Location = new System.Drawing.Point(103, 14);
             this.TaskLabel.Name = "TaskLabel";
             this.TaskLabel.Size = new System.Drawing.Size(197, 25);
             this.TaskLabel.TabIndex = 0;
@@ -464,6 +478,7 @@
             this.Text = "Crescent";
             this.AuthenticationPanel.ResumeLayout(false);
             this.AuthenticationPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.asanacrescentLogo)).EndInit();
             this.ChooseWorkspacePanel.ResumeLayout(false);
             this.ChooseWorkspacePanel.PerformLayout();
             this.ChooseProjectPanel.ResumeLayout(false);
@@ -507,5 +522,6 @@
         private AsanaButton APIKeyButton;
         public System.Windows.Forms.Panel ProjectPanel;
         public System.Windows.Forms.Label NothingHereProjectLabel;
+        private System.Windows.Forms.PictureBox asanacrescentLogo;
     }
 }
