@@ -54,14 +54,18 @@ namespace AsanaCrescent
                     }
                     ColumnNames = new string[projects.Count + 1, 20];
         }
-        public void AddRow(string[] arr, string worksheet)
+        public void AddRow(string[] data, string worksheet)
         {
             int worksheetNum = ProjectWorksheetDictionary[worksheet];
                 Excel.Worksheet oSheet = (Excel.Worksheet) sheets[worksheetNum];
                 char startCol = 'A';
-                char endCol = (char)(startCol + arr.Length - 1);
-                oSheet.get_Range("" + startCol + currentRow[worksheetNum], "" + endCol + currentRow[worksheetNum]).Value2 = arr;
+                char endCol = (char)(startCol + data.Length - 1);
+                oSheet.get_Range("" + startCol + currentRow[worksheetNum], "" + endCol + currentRow[worksheetNum]).Value2 = data;
                 currentRow[worksheetNum]++;
+        }
+        public void AddDataRange(string[][] data, string worksheet)
+        {
+
         }
         public void SetColumns(string[] col, string worksheetName)
         {
