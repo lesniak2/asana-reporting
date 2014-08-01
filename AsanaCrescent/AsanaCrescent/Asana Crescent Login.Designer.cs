@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Crescent));
             this.APIKeyButton = new AsanaCrescent.AsanaButton();
             this.APIKeyLabel = new System.Windows.Forms.Label();
             this.APIKeyBox = new System.Windows.Forms.TextBox();
@@ -123,7 +122,7 @@
             // 
             // asanacrescentLogo
             // 
-            this.asanacrescentLogo.Image = ((System.Drawing.Image)(resources.GetObject("asanacrescentLogo.Image")));
+            this.asanacrescentLogo.Image = global::WindowsFormsApplication1.Properties.Resources.asanacrescent2;
             this.asanacrescentLogo.Location = new System.Drawing.Point(29, 12);
             this.asanacrescentLogo.Name = "asanacrescentLogo";
             this.asanacrescentLogo.Size = new System.Drawing.Size(355, 50);
