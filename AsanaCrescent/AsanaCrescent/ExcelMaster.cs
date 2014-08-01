@@ -20,6 +20,7 @@ namespace AsanaCrescent
         private Excel.Sheets sheets;
         private int[] currentRow;
         private string[,] ColumnNames;
+        private int validWorksheets;
         private Dictionary<string, int> ProjectWorksheetDictionary;
         public ExcelMaster()
         {
@@ -33,6 +34,7 @@ namespace AsanaCrescent
             ProjectWorksheetDictionary.Clear();
             int worksheetsToAdd = projects.Count -3 <= 0 ? 0 : projects.Count -3;
             currentRow = new int[projects.Count+1];
+            validWorksheets = projects.Count;
                 for (int i = 0; i < currentRow.Length ; i++)
                 {
                     currentRow[i] = 2;
@@ -139,6 +141,19 @@ namespace AsanaCrescent
             finally
             {
                 GC.Collect();
+            }
+        }
+        public void MakeWorksheetsTables()
+        {
+            for (int i = 0; i < validWorksheets; i++)
+            {
+                Excel.Worksheet CurrentWorksheet = (Excel.Worksheet)sheets[i+1];
+                int LastRow = currentRow[i+1]; // -1
+                string LastCol = "U";
+                Excel.Range tRange = CurrentWorksheet.get_Range("A1", LastCol + LastRow);
+                CurrentWorksheet.ListObjects.Add(Excel.XlListObjectSourceType.xlSrcRange, tRange,
+                Type.Missing, Excel.XlYesNoGuess.xlYes, Type.Missing).Name = "Test Table";
+                CurrentWorksheet.ListObjects["Test Table"].TableStyle = "TableStyleMedium3";
             }
         }
     }

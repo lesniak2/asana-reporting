@@ -137,7 +137,19 @@ namespace AsanaCrescent
                 {
                     workspaces.Add(workspace);
                     WorkspaceDictionary.Add(workspace.Name, workspace);
-                    this.AddCheckbox(workspace, crescent.WorkspacePanel);
+                    Button WorkspaceButton = new Button();
+                    WorkspaceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+                    WorkspaceButton.Enabled = false;
+                    WorkspaceButton.Location = new System.Drawing.Point(50, yLoc+30);
+                    yLoc += 30;
+                    WorkspaceButton.Name = "WorkspaceButton";
+                    WorkspaceButton.TabIndex = 3;
+                    WorkspaceButton.Text = workspace.Name;
+                    WorkspaceButton.AutoSize = true;
+                    WorkspaceButton.UseVisualStyleBackColor = true;
+                    WorkspaceButton.Visible = true;
+
+                    crescent.WorkspacePanel.Controls.Add(WorkspaceButton);
                 }
             });
         }
@@ -550,6 +562,7 @@ namespace AsanaCrescent
                 }
                 worker.ReportProgress((int) (i*100.0/total));
             }
+            excel.MakeWorksheetsTables();
         }
         private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
