@@ -405,6 +405,7 @@ namespace AsanaCrescent
             }
             PopulateTasks();
             crescent.ChooseTaskPanel.Visible = true;
+            crescent.FindForm().WindowState = FormWindowState.Maximized;
         }
         public void TaskBackButton_Click(object sender, EventArgs e)
         {
@@ -412,6 +413,7 @@ namespace AsanaCrescent
             crescent.ChooseTaskPanel.Visible = false;
             selectedProjects.Clear();
             ClearTasks();
+            crescent.FindForm().WindowState = FormWindowState.Normal;
         }
 
         public void GenerateButton_Click(object sender, EventArgs e)

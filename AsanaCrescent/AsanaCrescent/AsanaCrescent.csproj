@@ -51,6 +51,9 @@
     <Compile Include="Asana Crescent Login.Designer.cs">
       <DependentUpon>Asana Crescent Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="AsanaButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AuthenticationPrompt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +100,8 @@
     <None Include="Resources\WMP.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\AsanaCrescentLogo.bmp" />
+    <Content Include="Resources\AsanaCrescentLogo.png" />
     <Content Include="Resources\leapfrog.png" />
   </ItemGroup>
   <ItemGroup>

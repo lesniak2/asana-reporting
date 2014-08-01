@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.ComponentModel;
+using AsanaNet;
 
 namespace AsanaCrescent
 {
@@ -23,9 +24,12 @@ namespace AsanaCrescent
             ChooseWorkspacePanel.Visible = false;
         }
 
-        private void loginEnter_Click(object sender, EventArgs e)
+        private void APIKeyButton_Click(object sender, EventArgs e)
         {
+            var asana = new Asana(APIKeyBox.Text, AuthenticationType.Basic, (s1, s2, s3) => { });
+            AsanaManager manager = new AsanaManager(this, asana);
             ChooseWorkspacePanel.Visible = true;
+            manager.PopulateWorkspaces();
         }
         private void ChooseProjectPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -38,6 +42,26 @@ namespace AsanaCrescent
         }
 
         private void ProjectGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoginLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoginUsernameBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChooseTaskPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void TaskLabel_Click(object sender, EventArgs e)
         {
 
         }
