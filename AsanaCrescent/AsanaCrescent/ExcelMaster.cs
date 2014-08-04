@@ -19,6 +19,7 @@ namespace AsanaCrescent
         private Excel._Workbook oWB;
         private Excel.Sheets sheets;
         private int[] currentRow;
+        private string[] currentCol;
         private string[,] ColumnNames;
         private int validWorksheets;
         private Dictionary<string, int> ProjectWorksheetDictionary;
@@ -34,10 +35,12 @@ namespace AsanaCrescent
             ProjectWorksheetDictionary.Clear();
             int worksheetsToAdd = projects.Count -3 <= 0 ? 0 : projects.Count -3;
             currentRow = new int[projects.Count+1];
+            currentCol = new string[projects.Count + 1];
             validWorksheets = projects.Count;
                 for (int i = 0; i < currentRow.Length ; i++)
                 {
                     currentRow[i] = 2;
+                    currentCol[i] = "A";
                 }
                 for (int i = 0; i < worksheetsToAdd; i++)
                 {
@@ -52,7 +55,7 @@ namespace AsanaCrescent
                         sheets[i].Name = col_name;
                         ProjectWorksheetDictionary.Add(col_name,i);
                     }
-                    ColumnNames = new string[projects.Count + 1, 20];
+                    ColumnNames = new string[projects.Count + 1, 50];
         }
         public void AddRow(string[] data, string worksheet)
         {
@@ -60,6 +63,7 @@ namespace AsanaCrescent
                 Excel.Worksheet oSheet = (Excel.Worksheet) sheets[worksheetNum];
                 char startCol = 'A';
                 char endCol = (char)(startCol + data.Length - 1);
+                currentCol[worksheetNum] = ""+endCol;
                 oSheet.get_Range("" + startCol + currentRow[worksheetNum], "" + endCol + currentRow[worksheetNum]).Value2 = data;
                 currentRow[worksheetNum]++;
         }
@@ -157,13 +161,14 @@ namespace AsanaCrescent
         {
             for (int i = 0; i < validWorksheets; i++)
             {
+                // get last column
                 Excel.Worksheet CurrentWorksheet = (Excel.Worksheet)sheets[i+1];
                 int LastRow = currentRow[i+1]; // -1
-                string LastCol = "U";
+                string LastCol = currentCol[i+1];
                 Excel.Range tRange = CurrentWorksheet.get_Range("A1", LastCol + LastRow);
                 CurrentWorksheet.ListObjects.Add(Excel.XlListObjectSourceType.xlSrcRange, tRange,
                 Type.Missing, Excel.XlYesNoGuess.xlYes, Type.Missing).Name = "Test Table";
-                CurrentWorksheet.ListObjects["Test Table"].TableStyle = "TableStyleMedium3";
+                CurrentWorksheet.ListObjects["Test Table"].TableStyle = "TableStyleMedium2"; 
             }
         }
     }
