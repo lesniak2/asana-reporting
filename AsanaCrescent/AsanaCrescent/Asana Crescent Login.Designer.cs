@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+       #region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -56,6 +56,7 @@
             this.WorkspaceLabel = new System.Windows.Forms.Label();
             this.WorkspaceBackButton = new System.Windows.Forms.Button();
             this.WorkspaceNextButton = new System.Windows.Forms.Button();
+            this.WorkspaceNothingHereLabel = new System.Windows.Forms.Label();
             this.AuthenticationPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.asanacrescentLogo)).BeginInit();
             this.ChooseWorkspacePanel.SuspendLayout();
@@ -65,6 +66,7 @@
             this.ProjectGroupBox.SuspendLayout();
             this.ProjectPanel.SuspendLayout();
             this.WorkspacesGroupBox.SuspendLayout();
+            this.WorkspacePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // APIKeyButton
@@ -84,7 +86,6 @@
             this.APIKeyButton.TabIndex = 2;
             this.APIKeyButton.Text = "Go";
             this.APIKeyButton.UseVisualStyleBackColor = false;
-            this.APIKeyButton.Click += new System.EventHandler(this.APIKeyButton_Click);
             // 
             // APIKeyLabel
             // 
@@ -100,11 +101,11 @@
             // APIKeyBox
             // 
             this.APIKeyBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.APIKeyBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.APIKeyBox.Location = new System.Drawing.Point(98, 95);
             this.APIKeyBox.Name = "APIKeyBox";
-            this.APIKeyBox.Size = new System.Drawing.Size(240, 20);
+            this.APIKeyBox.Size = new System.Drawing.Size(240, 25);
             this.APIKeyBox.TabIndex = 0;
-            this.APIKeyBox.TextChanged += new System.EventHandler(this.LoginUsernameBox_TextChanged);
             // 
             // AuthenticationPanel
             // 
@@ -128,7 +129,6 @@
             this.asanacrescentLogo.Size = new System.Drawing.Size(355, 50);
             this.asanacrescentLogo.TabIndex = 6;
             this.asanacrescentLogo.TabStop = false;
-            this.asanacrescentLogo.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // ChooseWorkspacePanel
             // 
@@ -158,7 +158,6 @@
             this.ChooseProjectPanel.Size = new System.Drawing.Size(396, 258);
             this.ChooseProjectPanel.TabIndex = 5;
             this.ChooseProjectPanel.Visible = false;
-            this.ChooseProjectPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseProjectPanel_Paint);
             // 
             // ChooseTaskPanel
             // 
@@ -175,7 +174,6 @@
             this.ChooseTaskPanel.Size = new System.Drawing.Size(396, 258);
             this.ChooseTaskPanel.TabIndex = 29;
             this.ChooseTaskPanel.Visible = false;
-            this.ChooseTaskPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ChooseTaskPanel_Paint);
             // 
             // GenerateCancelButton
             // 
@@ -253,6 +251,7 @@
             this.TaskBackButton.TabIndex = 2;
             this.TaskBackButton.Text = "Back";
             this.TaskBackButton.UseVisualStyleBackColor = false;
+            this.TaskBackButton.Enabled = true;
             // 
             // TaskGroupBox
             // 
@@ -290,7 +289,6 @@
             this.TaskLabel.Size = new System.Drawing.Size(197, 25);
             this.TaskLabel.TabIndex = 0;
             this.TaskLabel.Text = "Select Report Task(s)";
-            this.TaskLabel.Click += new System.EventHandler(this.TaskLabel_Click);
             // 
             // ProjectGroupBox
             // 
@@ -305,7 +303,6 @@
             this.ProjectGroupBox.TabIndex = 28;
             this.ProjectGroupBox.TabStop = false;
             this.ProjectGroupBox.Text = "Projects";
-            this.ProjectGroupBox.Enter += new System.EventHandler(this.ProjectGroupBox_Enter);
             // 
             // ProjectPanel
             // 
@@ -318,7 +315,6 @@
             this.ProjectPanel.Name = "ProjectPanel";
             this.ProjectPanel.Size = new System.Drawing.Size(322, 127);
             this.ProjectPanel.TabIndex = 0;
-            this.ProjectPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ProjectPanel_Paint);
             // 
             // NothingHereProjectLabel
             // 
@@ -411,6 +407,7 @@
             this.WorkspacePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.WorkspacePanel.Controls.Add(this.WorkspaceNothingHereLabel);
             this.WorkspacePanel.Location = new System.Drawing.Point(3, 17);
             this.WorkspacePanel.Name = "WorkspacePanel";
             this.WorkspacePanel.Size = new System.Drawing.Size(328, 124);
@@ -444,7 +441,6 @@
             this.WorkspaceBackButton.TabIndex = 7;
             this.WorkspaceBackButton.Text = "Back";
             this.WorkspaceBackButton.UseVisualStyleBackColor = false;
-            this.WorkspaceBackButton.Click += new System.EventHandler(this.WorkspaceBackButton_Click);
             // 
             // WorkspaceNextButton
             // 
@@ -464,6 +460,18 @@
             this.WorkspaceNextButton.TabIndex = 9;
             this.WorkspaceNextButton.Text = "Next";
             this.WorkspaceNextButton.UseVisualStyleBackColor = false;
+            // 
+            // WorkspaceNothingHereLabel
+            // 
+            this.WorkspaceNothingHereLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.WorkspaceNothingHereLabel.AutoSize = true;
+            this.WorkspaceNothingHereLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WorkspaceNothingHereLabel.Location = new System.Drawing.Point(83, 20);
+            this.WorkspaceNothingHereLabel.Name = "WorkspaceNothingHereLabel";
+            this.WorkspaceNothingHereLabel.Size = new System.Drawing.Size(145, 17);
+            this.WorkspaceNothingHereLabel.TabIndex = 10;
+            this.WorkspaceNothingHereLabel.Text = "No workspaces found...";
+            this.WorkspaceNothingHereLabel.Visible = false;
             // 
             // Crescent
             // 
@@ -489,18 +497,20 @@
             this.ProjectGroupBox.ResumeLayout(false);
             this.ProjectPanel.ResumeLayout(false);
             this.WorkspacesGroupBox.ResumeLayout(false);
+            this.WorkspacePanel.ResumeLayout(false);
+            this.WorkspacePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
-        #endregion
+        #endregion 
 
-        private System.Windows.Forms.TextBox APIKeyBox;
+        public System.Windows.Forms.TextBox APIKeyBox;
         private System.Windows.Forms.Label APIKeyLabel;
         private System.Windows.Forms.Panel AuthenticationPanel;
         private System.Windows.Forms.Label WorkspaceLabel;
-        private System.Windows.Forms.Panel ChooseWorkspacePanel;
-        private System.Windows.Forms.Button WorkspaceBackButton;
+        public System.Windows.Forms.Panel ChooseWorkspacePanel;
+        public System.Windows.Forms.Button WorkspaceBackButton;
         public System.Windows.Forms.Panel ChooseProjectPanel;
         public System.Windows.Forms.Button ProjectNextButton;
         public System.Windows.Forms.Button ProjectBackButton;
@@ -508,6 +518,7 @@
         private System.Windows.Forms.GroupBox ProjectGroupBox;
         private System.Windows.Forms.GroupBox WorkspacesGroupBox;
         public System.Windows.Forms.Panel WorkspacePanel;
+        public System.Windows.Forms.Label WorkspaceNothingHereLabel;
         public System.Windows.Forms.Button WorkspaceNextButton;
         public System.Windows.Forms.Label ProjectLoadingLabel;
         public System.Windows.Forms.Panel ChooseTaskPanel;
@@ -519,9 +530,9 @@
         public System.Windows.Forms.TabControl tabControl;
         public System.Windows.Forms.ProgressBar progressBar1;
         public System.Windows.Forms.Button GenerateCancelButton;
-        private AsanaButton APIKeyButton;
+        public System.Windows.Forms.Button APIKeyButton;
         public System.Windows.Forms.Panel ProjectPanel;
         public System.Windows.Forms.Label NothingHereProjectLabel;
-        private System.Windows.Forms.PictureBox asanacrescentLogo;
+        public System.Windows.Forms.PictureBox asanacrescentLogo;
     }
 }
