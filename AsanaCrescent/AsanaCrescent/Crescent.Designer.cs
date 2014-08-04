@@ -325,8 +325,8 @@
             this.NothingHereProjectLabel.Name = "NothingHereProjectLabel";
             this.NothingHereProjectLabel.Size = new System.Drawing.Size(151, 24);
             this.NothingHereProjectLabel.TabIndex = 0;
-            this.NothingHereProjectLabel.Text = "Nothing here...";
-            this.NothingHereProjectLabel.Visible = false;
+            this.NothingHereProjectLabel.Text = "Loading projects...";
+            this.NothingHereProjectLabel.Visible = true;
             // 
             // ProjectNextButton
             // 
@@ -470,8 +470,8 @@
             this.WorkspaceNothingHereLabel.Name = "WorkspaceNothingHereLabel";
             this.WorkspaceNothingHereLabel.Size = new System.Drawing.Size(145, 17);
             this.WorkspaceNothingHereLabel.TabIndex = 10;
-            this.WorkspaceNothingHereLabel.Text = "No workspaces found...";
-            this.WorkspaceNothingHereLabel.Visible = false;
+            this.WorkspaceNothingHereLabel.Text = "Loading workspaces...";
+            this.WorkspaceNothingHereLabel.Visible = true;
             // 
             // Crescent
             // 
@@ -505,34 +505,34 @@
 
         #endregion 
 
-        public System.Windows.Forms.TextBox APIKeyBox;
+        private System.Windows.Forms.TextBox APIKeyBox;
         private System.Windows.Forms.Label APIKeyLabel;
         private System.Windows.Forms.Panel AuthenticationPanel;
         private System.Windows.Forms.Label WorkspaceLabel;
-        public System.Windows.Forms.Panel ChooseWorkspacePanel;
-        public System.Windows.Forms.Button WorkspaceBackButton;
-        public System.Windows.Forms.Panel ChooseProjectPanel;
-        public System.Windows.Forms.Button ProjectNextButton;
-        public System.Windows.Forms.Button ProjectBackButton;
+        private System.Windows.Forms.Panel ChooseWorkspacePanel;
+        private System.Windows.Forms.Button WorkspaceBackButton;
+        private System.Windows.Forms.Panel ChooseProjectPanel;
+        private System.Windows.Forms.Button ProjectNextButton;
+        private System.Windows.Forms.Button ProjectBackButton;
         private System.Windows.Forms.Label ProjectLabel;
         private System.Windows.Forms.GroupBox ProjectGroupBox;
         private System.Windows.Forms.GroupBox WorkspacesGroupBox;
-        public System.Windows.Forms.Panel WorkspacePanel;
-        public System.Windows.Forms.Label WorkspaceNothingHereLabel;
-        public System.Windows.Forms.Button WorkspaceNextButton;
-        public System.Windows.Forms.Label ProjectLoadingLabel;
-        public System.Windows.Forms.Panel ChooseTaskPanel;
+        private System.Windows.Forms.Panel WorkspacePanel;
+        private System.Windows.Forms.Label WorkspaceNothingHereLabel;
+        private System.Windows.Forms.Button WorkspaceNextButton;
+        private System.Windows.Forms.Label ProjectLoadingLabel;
+        private System.Windows.Forms.Panel ChooseTaskPanel;
         private System.Windows.Forms.Label TaskLabel;
         private System.Windows.Forms.GroupBox TaskGroupBox;
-        public System.Windows.Forms.Button GenerateButton;
-        public System.Windows.Forms.Button TaskBackButton;
-        public System.Windows.Forms.Label TaskLoadingLabel;
-        public System.Windows.Forms.TabControl tabControl;
-        public System.Windows.Forms.ProgressBar progressBar1;
-        public System.Windows.Forms.Button GenerateCancelButton;
-        public System.Windows.Forms.Button APIKeyButton;
-        public System.Windows.Forms.Panel ProjectPanel;
-        public System.Windows.Forms.Label NothingHereProjectLabel;
-        public System.Windows.Forms.PictureBox asanacrescentLogo;
+        private System.Windows.Forms.Button GenerateButton;
+        private System.Windows.Forms.Button TaskBackButton;
+        private System.Windows.Forms.Label TaskLoadingLabel;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button GenerateCancelButton;
+        private System.Windows.Forms.Button APIKeyButton;
+        private System.Windows.Forms.Panel ProjectPanel;
+        private System.Windows.Forms.Label NothingHereProjectLabel;
+        private System.Windows.Forms.PictureBox asanacrescentLogo;
     }
 }
