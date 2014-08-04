@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.APIKeyButton = new AsanaCrescent.AsanaButton();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Crescent));
+            this.APIKeyButton = new System.Windows.Forms.Button();
             this.APIKeyLabel = new System.Windows.Forms.Label();
             this.APIKeyBox = new System.Windows.Forms.TextBox();
             this.AuthenticationPanel = new System.Windows.Forms.Panel();
@@ -53,10 +54,10 @@
             this.ProjectLoadingLabel = new System.Windows.Forms.Label();
             this.WorkspacesGroupBox = new System.Windows.Forms.GroupBox();
             this.WorkspacePanel = new System.Windows.Forms.Panel();
+            this.WorkspaceNothingHereLabel = new System.Windows.Forms.Label();
             this.WorkspaceLabel = new System.Windows.Forms.Label();
             this.WorkspaceBackButton = new System.Windows.Forms.Button();
             this.WorkspaceNextButton = new System.Windows.Forms.Button();
-            this.WorkspaceNothingHereLabel = new System.Windows.Forms.Label();
             this.AuthenticationPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.asanacrescentLogo)).BeginInit();
             this.ChooseWorkspacePanel.SuspendLayout();
@@ -123,7 +124,7 @@
             // 
             // asanacrescentLogo
             // 
-            this.asanacrescentLogo.Image = global::WindowsFormsApplication1.Properties.Resources.asanacrescent2;
+            this.asanacrescentLogo.Image = global::AsanaCrescent.Properties.Resources.asanacrescent2;
             this.asanacrescentLogo.Location = new System.Drawing.Point(29, 12);
             this.asanacrescentLogo.Name = "asanacrescentLogo";
             this.asanacrescentLogo.Size = new System.Drawing.Size(355, 50);
@@ -237,7 +238,6 @@
             // 
             this.TaskBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TaskBackButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(141)))), ((int)(((byte)(214)))));
-            this.TaskBackButton.Enabled = false;
             this.TaskBackButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(96)))), ((int)(((byte)(161)))));
             this.TaskBackButton.FlatAppearance.BorderSize = 0;
             this.TaskBackButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(167)))), ((int)(((byte)(225)))));
@@ -251,7 +251,6 @@
             this.TaskBackButton.TabIndex = 2;
             this.TaskBackButton.Text = "Back";
             this.TaskBackButton.UseVisualStyleBackColor = false;
-            this.TaskBackButton.Enabled = true;
             // 
             // TaskGroupBox
             // 
@@ -326,7 +325,6 @@
             this.NothingHereProjectLabel.Size = new System.Drawing.Size(151, 24);
             this.NothingHereProjectLabel.TabIndex = 0;
             this.NothingHereProjectLabel.Text = "Loading projects...";
-            this.NothingHereProjectLabel.Visible = true;
             // 
             // ProjectNextButton
             // 
@@ -413,6 +411,17 @@
             this.WorkspacePanel.Size = new System.Drawing.Size(328, 124);
             this.WorkspacePanel.TabIndex = 0;
             // 
+            // WorkspaceNothingHereLabel
+            // 
+            this.WorkspaceNothingHereLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.WorkspaceNothingHereLabel.AutoSize = true;
+            this.WorkspaceNothingHereLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WorkspaceNothingHereLabel.Location = new System.Drawing.Point(83, 20);
+            this.WorkspaceNothingHereLabel.Name = "WorkspaceNothingHereLabel";
+            this.WorkspaceNothingHereLabel.Size = new System.Drawing.Size(136, 17);
+            this.WorkspaceNothingHereLabel.TabIndex = 10;
+            this.WorkspaceNothingHereLabel.Text = "Loading workspaces...";
+            // 
             // WorkspaceLabel
             // 
             this.WorkspaceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -461,18 +470,6 @@
             this.WorkspaceNextButton.Text = "Next";
             this.WorkspaceNextButton.UseVisualStyleBackColor = false;
             // 
-            // WorkspaceNothingHereLabel
-            // 
-            this.WorkspaceNothingHereLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.WorkspaceNothingHereLabel.AutoSize = true;
-            this.WorkspaceNothingHereLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkspaceNothingHereLabel.Location = new System.Drawing.Point(83, 20);
-            this.WorkspaceNothingHereLabel.Name = "WorkspaceNothingHereLabel";
-            this.WorkspaceNothingHereLabel.Size = new System.Drawing.Size(145, 17);
-            this.WorkspaceNothingHereLabel.TabIndex = 10;
-            this.WorkspaceNothingHereLabel.Text = "Loading workspaces...";
-            this.WorkspaceNothingHereLabel.Visible = true;
-            // 
             // Crescent
             // 
             this.AcceptButton = this.APIKeyButton;
@@ -482,6 +479,7 @@
             this.ClientSize = new System.Drawing.Size(396, 258);
             this.Controls.Add(this.AuthenticationPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Crescent";
             this.Text = "Crescent";
             this.AuthenticationPanel.ResumeLayout(false);

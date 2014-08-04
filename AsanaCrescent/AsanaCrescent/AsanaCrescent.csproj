@@ -7,8 +7,8 @@
     <ProjectGuid>{F42B93AE-3AE8-4271-88DC-F2BECDA80D35}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsFormsApplication1</RootNamespace>
-    <AssemblyName>WindowsFormsApplication1</AssemblyName>
+    <RootNamespace>AsanaCrescent</RootNamespace>
+    <AssemblyName>AsanaCrescent</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -51,12 +54,6 @@
     <Compile Include="Crescent.Designer.cs">
       <DependentUpon>Crescent.cs</DependentUpon>
     </Compile>
-    <Compile Include="AuthenticationPrompt.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AuthenticationPrompt.Designer.cs">
-      <DependentUpon>AuthenticationPrompt.cs</DependentUpon>
-    </Compile>
     <Compile Include="ProjectInExcel.cs" />
     <Compile Include="ExcelMaster.cs" />
     <Compile Include="Parser.cs" />
@@ -64,9 +61,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Crescent.resx">
       <DependentUpon>Crescent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AuthenticationPrompt.resx">
-      <DependentUpon>AuthenticationPrompt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -98,6 +92,8 @@
   <ItemGroup>
     <None Include="Resources\AsanaCrescentLogo.bmp" />
     <None Include="Resources\asanacrescent2.png" />
+    <Content Include="Asanacrescentexewindowicon.ico" />
+    <Content Include="favicon.ico" />
     <Content Include="Resources\AsanaCrescentLogo.png" />
     <Content Include="Resources\leapfrog.png" />
   </ItemGroup>
