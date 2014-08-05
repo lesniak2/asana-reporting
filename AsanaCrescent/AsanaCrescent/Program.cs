@@ -17,7 +17,6 @@ namespace AsanaCrescent
         static void Main()
         {
             Crescent crescent = new Crescent();
-            Application.EnableVisualStyles();
             Application.Run(crescent);
         }
     }

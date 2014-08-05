@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsanaCheckbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Crescent.cs">
       <SubType>Form</SubType>
     </Compile>

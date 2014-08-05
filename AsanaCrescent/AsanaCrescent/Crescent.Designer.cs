@@ -47,25 +47,24 @@
             this.TaskLabel = new System.Windows.Forms.Label();
             this.ProjectGroupBox = new System.Windows.Forms.GroupBox();
             this.ProjectPanel = new System.Windows.Forms.Panel();
-            this.NothingHereProjectLabel = new System.Windows.Forms.Label();
             this.ProjectNextButton = new System.Windows.Forms.Button();
             this.ProjectBackButton = new System.Windows.Forms.Button();
             this.ProjectLabel = new System.Windows.Forms.Label();
             this.ProjectLoadingLabel = new System.Windows.Forms.Label();
             this.WorkspacesGroupBox = new System.Windows.Forms.GroupBox();
             this.WorkspacePanel = new System.Windows.Forms.Panel();
-            this.WorkspaceNothingHereLabel = new System.Windows.Forms.Label();
+            this.WorkspaceLoadingLabel = new System.Windows.Forms.Label();
             this.WorkspaceLabel = new System.Windows.Forms.Label();
             this.WorkspaceBackButton = new System.Windows.Forms.Button();
             this.WorkspaceNextButton = new System.Windows.Forms.Button();
             this.AuthenticationPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.asanacrescentLogo)).BeginInit();
+            this.KeyPreview = true;
             this.ChooseWorkspacePanel.SuspendLayout();
             this.ChooseProjectPanel.SuspendLayout();
             this.ChooseTaskPanel.SuspendLayout();
             this.TaskGroupBox.SuspendLayout();
             this.ProjectGroupBox.SuspendLayout();
-            this.ProjectPanel.SuspendLayout();
             this.WorkspacesGroupBox.SuspendLayout();
             this.WorkspacePanel.SuspendLayout();
             this.SuspendLayout();
@@ -74,6 +73,7 @@
             // 
             this.APIKeyButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.APIKeyButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(141)))), ((int)(((byte)(214)))));
+            this.APIKeyButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.APIKeyButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(96)))), ((int)(((byte)(161)))));
             this.APIKeyButton.FlatAppearance.BorderSize = 0;
             this.APIKeyButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(167)))), ((int)(((byte)(225)))));
@@ -84,7 +84,7 @@
             this.APIKeyButton.Location = new System.Drawing.Point(247, 131);
             this.APIKeyButton.Name = "APIKeyButton";
             this.APIKeyButton.Size = new System.Drawing.Size(60, 27);
-            this.APIKeyButton.TabIndex = 2;
+            this.APIKeyButton.TabStop = false;
             this.APIKeyButton.Text = "Go";
             this.APIKeyButton.UseVisualStyleBackColor = false;
             // 
@@ -136,6 +136,7 @@
             this.ChooseWorkspacePanel.Controls.Add(this.ChooseProjectPanel);
             this.ChooseWorkspacePanel.Controls.Add(this.WorkspacesGroupBox);
             this.ChooseWorkspacePanel.Controls.Add(this.WorkspaceLabel);
+            this.ChooseWorkspacePanel.Controls.Add(this.WorkspaceLoadingLabel);
             this.ChooseWorkspacePanel.Controls.Add(this.WorkspaceBackButton);
             this.ChooseWorkspacePanel.Controls.Add(this.WorkspaceNextButton);
             this.ChooseWorkspacePanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -182,6 +183,7 @@
             this.GenerateCancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(141)))), ((int)(((byte)(214)))));
             this.GenerateCancelButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(96)))), ((int)(((byte)(161)))));
             this.GenerateCancelButton.FlatAppearance.BorderSize = 0;
+            this.GenerateCancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GenerateCancelButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(167)))), ((int)(((byte)(225)))));
             this.GenerateCancelButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(169)))), ((int)(((byte)(227)))));
             this.GenerateCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -190,7 +192,7 @@
             this.GenerateCancelButton.Location = new System.Drawing.Point(226, 202);
             this.GenerateCancelButton.Name = "GenerateCancelButton";
             this.GenerateCancelButton.Size = new System.Drawing.Size(141, 23);
-            this.GenerateCancelButton.TabIndex = 5;
+            this.GenerateCancelButton.TabStop = false;
             this.GenerateCancelButton.Text = "Cancel";
             this.GenerateCancelButton.UseVisualStyleBackColor = false;
             this.GenerateCancelButton.Visible = false;
@@ -211,9 +213,9 @@
             this.TaskLoadingLabel.AutoSize = true;
             this.TaskLoadingLabel.Location = new System.Drawing.Point(3, 234);
             this.TaskLoadingLabel.Name = "TaskLoadingLabel";
-            this.TaskLoadingLabel.Size = new System.Drawing.Size(86, 13);
+            this.TaskLoadingLabel.Size = new System.Drawing.Size(82, 13);
             this.TaskLoadingLabel.TabIndex = 0;
-            this.TaskLoadingLabel.Text = "Loading Tasks...";
+            this.TaskLoadingLabel.Text = "Loading tasks...";
             // 
             // GenerateButton
             // 
@@ -222,6 +224,7 @@
             this.GenerateButton.Enabled = false;
             this.GenerateButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(96)))), ((int)(((byte)(161)))));
             this.GenerateButton.FlatAppearance.BorderSize = 0;
+            this.GenerateButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GenerateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(167)))), ((int)(((byte)(225)))));
             this.GenerateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(169)))), ((int)(((byte)(227)))));
             this.GenerateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -230,7 +233,7 @@
             this.GenerateButton.Location = new System.Drawing.Point(226, 202);
             this.GenerateButton.Name = "GenerateButton";
             this.GenerateButton.Size = new System.Drawing.Size(138, 23);
-            this.GenerateButton.TabIndex = 3;
+            this.GenerateButton.TabStop = false;
             this.GenerateButton.Text = "Generate Report";
             this.GenerateButton.UseVisualStyleBackColor = false;
             // 
@@ -240,6 +243,7 @@
             this.TaskBackButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(141)))), ((int)(((byte)(214)))));
             this.TaskBackButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(96)))), ((int)(((byte)(161)))));
             this.TaskBackButton.FlatAppearance.BorderSize = 0;
+            this.TaskBackButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TaskBackButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(167)))), ((int)(((byte)(225)))));
             this.TaskBackButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(169)))), ((int)(((byte)(227)))));
             this.TaskBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -248,7 +252,7 @@
             this.TaskBackButton.Location = new System.Drawing.Point(36, 202);
             this.TaskBackButton.Name = "TaskBackButton";
             this.TaskBackButton.Size = new System.Drawing.Size(75, 23);
-            this.TaskBackButton.TabIndex = 2;
+            this.TaskBackButton.TabStop = false;
             this.TaskBackButton.Text = "Back";
             this.TaskBackButton.UseVisualStyleBackColor = false;
             // 
@@ -263,7 +267,6 @@
             this.TaskGroupBox.Name = "TaskGroupBox";
             this.TaskGroupBox.Size = new System.Drawing.Size(334, 147);
             this.TaskGroupBox.TabIndex = 1;
-            this.TaskGroupBox.TabStop = false;
             this.TaskGroupBox.Text = "Tasks";
             // 
             // tabControl
@@ -309,22 +312,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProjectPanel.AutoScroll = true;
-            this.ProjectPanel.Controls.Add(this.NothingHereProjectLabel);
             this.ProjectPanel.Location = new System.Drawing.Point(6, 17);
             this.ProjectPanel.Name = "ProjectPanel";
             this.ProjectPanel.Size = new System.Drawing.Size(322, 127);
             this.ProjectPanel.TabIndex = 0;
-            // 
-            // NothingHereProjectLabel
-            // 
-            this.NothingHereProjectLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.NothingHereProjectLabel.Location = new System.Drawing.Point(110, 54);
-            this.NothingHereProjectLabel.Name = "NothingHereProjectLabel";
-            this.NothingHereProjectLabel.Size = new System.Drawing.Size(151, 24);
-            this.NothingHereProjectLabel.TabIndex = 0;
-            this.NothingHereProjectLabel.Text = "Loading projects...";
             // 
             // ProjectNextButton
             // 
@@ -333,6 +324,7 @@
             this.ProjectNextButton.Enabled = false;
             this.ProjectNextButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(96)))), ((int)(((byte)(161)))));
             this.ProjectNextButton.FlatAppearance.BorderSize = 0;
+            this.ProjectNextButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ProjectNextButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(167)))), ((int)(((byte)(225)))));
             this.ProjectNextButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(169)))), ((int)(((byte)(227)))));
             this.ProjectNextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -341,7 +333,7 @@
             this.ProjectNextButton.Location = new System.Drawing.Point(289, 202);
             this.ProjectNextButton.Name = "ProjectNextButton";
             this.ProjectNextButton.Size = new System.Drawing.Size(75, 23);
-            this.ProjectNextButton.TabIndex = 27;
+            this.ProjectNextButton.TabStop = false;
             this.ProjectNextButton.Text = "Next";
             this.ProjectNextButton.UseVisualStyleBackColor = false;
             // 
@@ -349,9 +341,9 @@
             // 
             this.ProjectBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ProjectBackButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(141)))), ((int)(((byte)(214)))));
-            this.ProjectBackButton.Enabled = false;
             this.ProjectBackButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(96)))), ((int)(((byte)(161)))));
             this.ProjectBackButton.FlatAppearance.BorderSize = 0;
+            this.ProjectBackButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ProjectBackButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(167)))), ((int)(((byte)(225)))));
             this.ProjectBackButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(169)))), ((int)(((byte)(227)))));
             this.ProjectBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -360,7 +352,7 @@
             this.ProjectBackButton.Location = new System.Drawing.Point(36, 202);
             this.ProjectBackButton.Name = "ProjectBackButton";
             this.ProjectBackButton.Size = new System.Drawing.Size(75, 23);
-            this.ProjectBackButton.TabIndex = 26;
+            this.ProjectBackButton.TabStop = false;
             this.ProjectBackButton.Text = "Back";
             this.ProjectBackButton.UseVisualStyleBackColor = false;
             // 
@@ -405,22 +397,22 @@
             this.WorkspacePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.WorkspacePanel.Controls.Add(this.WorkspaceNothingHereLabel);
             this.WorkspacePanel.Location = new System.Drawing.Point(3, 17);
             this.WorkspacePanel.Name = "WorkspacePanel";
             this.WorkspacePanel.Size = new System.Drawing.Size(328, 124);
             this.WorkspacePanel.TabIndex = 0;
             // 
-            // WorkspaceNothingHereLabel
+            // WorkspaceLoadingLabel
             // 
-            this.WorkspaceNothingHereLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.WorkspaceNothingHereLabel.AutoSize = true;
-            this.WorkspaceNothingHereLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WorkspaceNothingHereLabel.Location = new System.Drawing.Point(83, 20);
-            this.WorkspaceNothingHereLabel.Name = "WorkspaceNothingHereLabel";
-            this.WorkspaceNothingHereLabel.Size = new System.Drawing.Size(136, 17);
-            this.WorkspaceNothingHereLabel.TabIndex = 10;
-            this.WorkspaceNothingHereLabel.Text = "Loading workspaces...";
+            this.WorkspaceLoadingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.WorkspaceLoadingLabel.AutoSize = true;
+            this.WorkspaceLoadingLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WorkspaceLoadingLabel.Location = new System.Drawing.Point(3, 234);
+            this.WorkspaceLoadingLabel.Name = "WorkspaceLoadingLabel";
+            this.WorkspaceLoadingLabel.Size = new System.Drawing.Size(136, 17);
+            this.WorkspaceLoadingLabel.TabIndex = 10;
+            this.WorkspaceLoadingLabel.Text = "Loading workspaces...";
+            this.WorkspaceLoadingLabel.Visible = true;
             // 
             // WorkspaceLabel
             // 
@@ -439,6 +431,7 @@
             this.WorkspaceBackButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(141)))), ((int)(((byte)(214)))));
             this.WorkspaceBackButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(96)))), ((int)(((byte)(161)))));
             this.WorkspaceBackButton.FlatAppearance.BorderSize = 0;
+            this.WorkspaceBackButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WorkspaceBackButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(167)))), ((int)(((byte)(225)))));
             this.WorkspaceBackButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(169)))), ((int)(((byte)(227)))));
             this.WorkspaceBackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -447,7 +440,7 @@
             this.WorkspaceBackButton.Location = new System.Drawing.Point(36, 202);
             this.WorkspaceBackButton.Name = "WorkspaceBackButton";
             this.WorkspaceBackButton.Size = new System.Drawing.Size(75, 23);
-            this.WorkspaceBackButton.TabIndex = 7;
+            this.WorkspaceBackButton.TabStop = false;
             this.WorkspaceBackButton.Text = "Back";
             this.WorkspaceBackButton.UseVisualStyleBackColor = false;
             // 
@@ -458,6 +451,7 @@
             this.WorkspaceNextButton.Enabled = false;
             this.WorkspaceNextButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(96)))), ((int)(((byte)(161)))));
             this.WorkspaceNextButton.FlatAppearance.BorderSize = 0;
+            this.WorkspaceNextButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.WorkspaceNextButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(167)))), ((int)(((byte)(225)))));
             this.WorkspaceNextButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(169)))), ((int)(((byte)(227)))));
             this.WorkspaceNextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -466,13 +460,12 @@
             this.WorkspaceNextButton.Location = new System.Drawing.Point(289, 202);
             this.WorkspaceNextButton.Name = "WorkspaceNextButton";
             this.WorkspaceNextButton.Size = new System.Drawing.Size(75, 23);
-            this.WorkspaceNextButton.TabIndex = 9;
+            this.WorkspaceNextButton.TabStop = false;
             this.WorkspaceNextButton.Text = "Next";
             this.WorkspaceNextButton.UseVisualStyleBackColor = false;
             // 
             // Crescent
             // 
-            this.AcceptButton = this.APIKeyButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(226)))), ((int)(((byte)(233)))));
@@ -493,7 +486,6 @@
             this.ChooseTaskPanel.PerformLayout();
             this.TaskGroupBox.ResumeLayout(false);
             this.ProjectGroupBox.ResumeLayout(false);
-            this.ProjectPanel.ResumeLayout(false);
             this.WorkspacesGroupBox.ResumeLayout(false);
             this.WorkspacePanel.ResumeLayout(false);
             this.WorkspacePanel.PerformLayout();
@@ -516,7 +508,7 @@
         private System.Windows.Forms.GroupBox ProjectGroupBox;
         private System.Windows.Forms.GroupBox WorkspacesGroupBox;
         private System.Windows.Forms.Panel WorkspacePanel;
-        private System.Windows.Forms.Label WorkspaceNothingHereLabel;
+        private System.Windows.Forms.Label WorkspaceLoadingLabel;
         private System.Windows.Forms.Button WorkspaceNextButton;
         private System.Windows.Forms.Label ProjectLoadingLabel;
         private System.Windows.Forms.Panel ChooseTaskPanel;
@@ -530,7 +522,6 @@
         private System.Windows.Forms.Button GenerateCancelButton;
         private System.Windows.Forms.Button APIKeyButton;
         private System.Windows.Forms.Panel ProjectPanel;
-        private System.Windows.Forms.Label NothingHereProjectLabel;
         private System.Windows.Forms.PictureBox asanacrescentLogo;
     }
 }
