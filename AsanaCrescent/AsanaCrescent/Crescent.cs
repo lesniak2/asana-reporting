@@ -204,7 +204,6 @@ namespace AsanaCrescent
                 yLoc += 20;
                 ProjectAllCheckBox.Size = new System.Drawing.Size(80, 17);
                 ProjectAllCheckBox.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                ProjectAllCheckBox.Cursor = System.Windows.Forms.Cursors.Hand;
                 ProjectAllCheckBox.TabIndex = 1;
                 ProjectAllCheckBox.UseVisualStyleBackColor = true;
                 ProjectAllCheckBox.Text = "All";
