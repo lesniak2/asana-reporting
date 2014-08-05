@@ -342,7 +342,7 @@ namespace AsanaCrescent
 
         private void TaskCheckBox_CheckChanged(object sender, EventArgs e)
         {
-            if (((CheckBox)sender).Checked)
+            if (((CheckBox)sender).Checked && this.TaskLoadingLabel.Text == "Done")
             {
                 this.GenerateButton.Enabled = true;
                 return;
@@ -351,7 +351,7 @@ namespace AsanaCrescent
             {
                 foreach (CheckBox task in TaskCheckBoxes)
                 {
-                    if (task.Checked)
+                    if (task.Checked && this.TaskLoadingLabel.Text == "Done")
                     {
                         this.GenerateButton.Enabled = true;
                         return;
@@ -442,6 +442,7 @@ namespace AsanaCrescent
             this.tabControl.TabPages.Clear();
             this.tabControl.Controls.Clear();
             this.ChooseTaskPanel.Visible = false;
+            this.GenerateButton.Enabled = false;
             this.ChooseProjectPanel.Focus();
             ClearTasks();
             this.FindForm().WindowState = FormWindowState.Normal;
@@ -557,7 +558,17 @@ namespace AsanaCrescent
 
                 case (int)AsanaManager.PopulateTasks:
                     this.TaskLoadingLabel.Invoke(new Action(() =>
-                        { this.TaskLoadingLabel.Text = "Done"; }));
+                        { 
+                          this.TaskLoadingLabel.Text = "Done";
+
+                          foreach (CheckBox task in TaskCheckBoxes)
+                          {
+                              if (task.Checked)
+                              {
+                                  this.GenerateButton.Enabled = true;
+                              }
+                          }
+                        }));
                     break;
             }
 
