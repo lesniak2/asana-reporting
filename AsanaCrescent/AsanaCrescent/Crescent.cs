@@ -164,6 +164,7 @@ namespace AsanaCrescent
             this.WorkspacePanel.Controls.Clear();
             this.ChooseWorkspacePanel.Visible = false;
             this.asanacrescentLogo.Visible = true;
+            this.WorkspaceNextButton.Enabled = false;
             this.AuthenticationPanel.Focus();
             tags.Clear();
             workspaces.Clear();
