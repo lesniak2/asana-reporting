@@ -16,7 +16,9 @@ namespace AsanaCrescent
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
             Crescent crescent = new Crescent();
+            crescent.StartPosition = FormStartPosition.CenterScreen;
             Application.Run(crescent);
         }
     }

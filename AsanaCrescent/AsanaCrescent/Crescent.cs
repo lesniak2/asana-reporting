@@ -103,43 +103,43 @@ namespace AsanaCrescent
         }
         private void AddCheckbox(AsanaObject o, Panel panel)
         {
-            CheckBox test = new CheckBox();
-            test.AutoSize = true;
-            test.Location = new System.Drawing.Point(6, 5 + yLoc);
+            CheckBox checkbox = new CheckBox();
+            checkbox.AutoSize = true;
+            checkbox.Location = new System.Drawing.Point(6, 5 + yLoc);
             yLoc += 25;
-            test.Size = new System.Drawing.Size(80, 17);
-            test.TabIndex = 1;
-         //   test.UseVisualStyleBackColor = true;
+            checkbox.Size = new System.Drawing.Size(80, 17);
+            checkbox.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             if (o is AsanaProject)
             {
-                test.Text = ((AsanaProject)o).Name;
-                test.Name = "" + ((AsanaProject)o).ID;
-                test.CheckedChanged += new System.EventHandler(this.ProjectCheckBox_CheckChanged);
-                ProjectCheckBoxes.Add(test);
+                checkbox.Text = ((AsanaProject)o).Name;
+                checkbox.Name = "" + ((AsanaProject)o).ID;
+                checkbox.CheckedChanged += new System.EventHandler(this.ProjectCheckBox_CheckChanged);
+                ProjectCheckBoxes.Add(checkbox);
             }
             else if (o is AsanaWorkspace)
             {
-                test.Text = ((AsanaWorkspace)o).Name;
-                test.Name = "" + ((AsanaWorkspace)o).ID;
-                test.CheckedChanged += new System.EventHandler(this.WorkspaceCheckBox_CheckChanged);
-                WorkspaceCheckBoxes.Add(test);
+                checkbox.Text = ((AsanaWorkspace)o).Name;
+                checkbox.Name = "" + ((AsanaWorkspace)o).ID;
+                checkbox.CheckedChanged += new System.EventHandler(this.WorkspaceCheckBox_CheckChanged);
+                WorkspaceCheckBoxes.Add(checkbox);
             }
-            panel.Invoke(new Action(() => { panel.Controls.Add(test); }));
+            panel.Invoke(new Action(() => { panel.Controls.Add(checkbox); }));
         }
 
         private void AddTabCheckbox(AsanaTask task, int TabIndex)
         {
             if (!CancelTaskPopulating)
             {
-                CheckBox test = new CheckBox();
-                test.Text = task.Name;
-                test.AutoSize = true;
-                test.Name = "" + task.ID;
-                test.Location = new System.Drawing.Point(6, (int)TaskYLoc[TabIndex] + 25);
+                CheckBox checkbox = new CheckBox();
+                checkbox.Text = task.Name;
+                checkbox.AutoSize = true;
+                checkbox.Name = "" + task.ID;
+                checkbox.Location = new System.Drawing.Point(6, (int)TaskYLoc[TabIndex] + 25);
+                checkbox.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 TaskYLoc[TabIndex] = (int)TaskYLoc[TabIndex] + 25;
-                TaskCheckBoxes.Add(test);
-                test.CheckedChanged += new System.EventHandler(this.TaskCheckBox_CheckChanged);
-                this.tabControl.Invoke(new Action(() => { this.tabControl.TabPages[TabIndex].Controls.Add(test); }));
+                TaskCheckBoxes.Add(checkbox);
+                checkbox.CheckedChanged += new System.EventHandler(this.TaskCheckBox_CheckChanged);
+                this.tabControl.Invoke(new Action(() => { this.tabControl.TabPages[TabIndex].Controls.Add(checkbox); }));
             }
         }
         public void bw_PopulateWorkspaces()
@@ -200,9 +200,10 @@ namespace AsanaCrescent
                 //Add a checkbox to select All
 
                 ProjectAllCheckBox.AutoSize = true;
-                ProjectAllCheckBox.Location = new System.Drawing.Point(3, 5 + yLoc);
+                ProjectAllCheckBox.Location = new System.Drawing.Point(0, 3);
                 yLoc += 20;
                 ProjectAllCheckBox.Size = new System.Drawing.Size(80, 17);
+                ProjectAllCheckBox.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 ProjectAllCheckBox.Cursor = System.Windows.Forms.Cursors.Hand;
                 ProjectAllCheckBox.TabIndex = 1;
                 ProjectAllCheckBox.UseVisualStyleBackColor = true;
@@ -239,15 +240,16 @@ namespace AsanaCrescent
             {
                 CheckBox all = new CheckBox();
                 all.AutoSize = true;
-                all.Location = new System.Drawing.Point(3, 5);
+                all.Location = new System.Drawing.Point(0, 3);
                 all.Checked = false;
+                all.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 all.Name = project.Name;
                 all.Size = new System.Drawing.Size(80, 17);
                 all.UseVisualStyleBackColor = true;
                 all.Text = "All";
                 all.CheckedChanged += new System.EventHandler(this.TaskAllCheckBox_CheckChanged);
                 TaskAllCheckBox.Add(all);
-                TaskYLoc.Add(5);
+                TaskYLoc.Add(3);
 
                 TabPage tab = new TabPage(project.Name);
                 tab.Controls.Add(all);
@@ -407,7 +409,6 @@ namespace AsanaCrescent
         public void ProjectNextButton_Click(object sender, EventArgs e)
         {
 
-            Application.EnableVisualStyles();
             selectedProjects.Clear();
             ProjectExcelDictionary.Clear();
 
