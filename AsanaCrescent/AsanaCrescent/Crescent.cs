@@ -174,6 +174,7 @@ namespace AsanaCrescent
         {
             this.asanacrescentLogo.Visible = false;
             this.SetAsanaConnection(this.APIKeyBox.Text);
+            this.ClientSize = new System.Drawing.Size(396, 455);
             this.ChooseWorkspacePanel.Visible = true;
             this.ChooseWorkspacePanel.Focus();
             GeneralWorker.RunWorkerAsync(AsanaManager.PopulateWorkspaces);
@@ -398,7 +399,7 @@ namespace AsanaCrescent
         public void ProjectBackButton_Click(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(396, 298);
+            this.ClientSize = new System.Drawing.Size(396, 455);
             ProjectAllCheckBox.Checked = false;
             this.ChooseProjectPanel.Visible = false;
             this.ChooseWorkspacePanel.Focus();
