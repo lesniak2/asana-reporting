@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
-using System.Net;
-using System.Diagnostics;
-using System.ComponentModel;
-using System.Collections;
-using System.IO;
-using System.Threading;
-using Microsoft.VisualBasic;
-using AsanaNet;
+
 namespace AsanaCrescent
 {
     class Program 
     {
+        /// <summary>
+        /// Entry point to the application. Not very complicated
+        /// </summary>
         [STAThread]
         static void Main()
         {
