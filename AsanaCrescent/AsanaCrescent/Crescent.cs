@@ -47,7 +47,6 @@ namespace AsanaCrescent
 
             TaskYLoc = new ArrayList();
             tags = new ArrayList();
-            lock1 = new Object();
 
             this.APIKeyButton.Click += new System.EventHandler(this.APIKeyButton_Click);
             this.WorkspaceBackButton.Click += new System.EventHandler(this.WorkspaceBackButton_Click);
@@ -176,7 +175,8 @@ namespace AsanaCrescent
         }
 
         /// <summary>
-        /// Reset the current workspaces and handle all of the GUI work
+        /// Cancels the population of workspaces if ongoing
+        /// and returns to the authentication screen
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -439,7 +439,7 @@ namespace AsanaCrescent
             }
         }
         /// <summary>
-        /// Populates and shows the Projects screen
+        /// Populates and shows the Projects screen.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -452,7 +452,8 @@ namespace AsanaCrescent
             GeneralWorker.RunWorkerAsync(AsanaManager.PopulateProjects);
         }
         /// <summary>
-        /// 
+        /// Cancels the population of projects if ongoing
+        /// and return to the workspace screen.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -471,6 +472,11 @@ namespace AsanaCrescent
             tags.Clear();
             ClearProjects();
         }
+        /// <summary>
+        /// Populates and shows the tabcontrol and tasks.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void ProjectNextButton_Click(object sender, EventArgs e)
         {
             selectedProjects.Clear();
@@ -491,20 +497,14 @@ namespace AsanaCrescent
             GeneralWorker.RunWorkerAsync(AsanaManager.PopulateTasks);
 
         }
+        /// <summary>
+        /// Cancels the population of tasks if still ongoing
+        /// and returns to the projects screen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void TaskBackButton_Click(object sender, EventArgs e)
         {
-            /**
-            // wait for asana connections to end
-            for (int i = 0; i < TaskConnectionEnded.Count; i++)
-            {
-                if ((bool)TaskConnectionEnded[i] == false)
-                {
-                    i = 0;
-                    Thread.Sleep(10);
-                    break;
-                }
-            }
-            */
             if (GeneralWorker.IsBusy)
             {
                 GeneralWorker.CancelAsync();
@@ -518,7 +518,12 @@ namespace AsanaCrescent
             this.tabControl.Controls.Clear();
             ClearTasks();
         }
-
+        /// <summary>
+        /// Calls the background worker to start generating the report
+        /// and sets a cancel button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void GenerateButton_Click(object sender, EventArgs e)
         {
             this.GenerateButton.Visible = false;
@@ -528,6 +533,9 @@ namespace AsanaCrescent
             this.progressBar1.Visible = true;
             ReportGenerator.RunWorkerAsync();
         }
+        /// <summary>
+        /// Resets the state of projects within this instance.
+        /// </summary>
         private void ClearProjects()
         {
             projects.Clear();
@@ -536,7 +544,9 @@ namespace AsanaCrescent
             this.ProjectPanel.Controls.Clear();
             this.ProjectNextButton.Enabled = false;
         }
-
+        /// <summary>
+        /// Resets the state of tasks within this instance.
+        /// </summary>
         private void ClearTasks()
         {
             tasks.Clear();
@@ -546,7 +556,12 @@ namespace AsanaCrescent
             this.tabControl.TabPages.Clear();
             this.tabControl.Controls.Clear();
         }
-
+        /// <summary>
+        /// Handles the "All" checkbox logic for projects. When checked,
+        /// check everything. Otherwise uncheck everything.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProjectAllCheckBox_CheckChanged(object sender, EventArgs e)
         {
             if ((sender as CheckBox).Checked)
@@ -563,7 +578,13 @@ namespace AsanaCrescent
                 project.Checked = false;
             }
         }
-
+        /// <summary>
+        /// Handles the "All" checkbox logic for tasks. When checked,
+        /// check all tasks within the current project tab. Otherwise,
+        /// uncheck all tasks within the current project tab.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TaskAllCheckBox_CheckChanged(object sender, EventArgs e)
         {
             if ((sender as CheckBox).Checked)
@@ -589,7 +610,11 @@ namespace AsanaCrescent
             }
 
         }
-
+        /// <summary>
+        /// The asynchronous handler for everything but report generation.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             _resetEvent.Reset();
@@ -610,9 +635,16 @@ namespace AsanaCrescent
                 default:
                     break;
             }
+            //unblock any waiting threads
             _resetEvent.Set();
 
         }
+        /// <summary>
+        /// Gui logic for the completion of the general worker's
+        /// asynchronous calls.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled == true)
@@ -651,25 +683,37 @@ namespace AsanaCrescent
             }
 
         }
-
+        /// <summary>
+        /// Generates a report by consolidating the workspaces, projects,
+        /// tasks, tags, and stories and exporting them into a formatted Excel
+        /// document. Reports are saved in a folder "reports".
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bw_GenerateReport(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
+            this.GetWorkspaceTags();
+
+            //set up excel
             excel = new ExcelMaster();
             excel.SetWorksheets(selectedProjects);
 
-            this.GetWorkspaceTags();
             foreach (AsanaProject project in selectedProjects)
             {
                 string col = project.Name;
+                // excel doesn't like worksheet names with these characters
                 col = col.Replace(":", "");
                 col = col.Replace("/", " ");
                 col = col.Replace("\\", " ");
                 excel.SetColumns((string[])ProjectExcelDictionary[project.Name].Columns.ToArray(typeof(string)), col);
             }
+
             ArrayList Stories = new ArrayList();
             int i = 0;
             int total = TaskCheckBoxes.Count;
+            //throw every selected task in excel, row by row
+            //TODO: (someday) Implement adding ranges of multiple rows at once
             foreach (CheckBox task in TaskCheckBoxes)
             {
                 if (worker.CancellationPending)
@@ -701,10 +745,21 @@ namespace AsanaCrescent
             }
             excel.MakeWorksheetsTables();
         }
+        /// <summary>
+        /// Updates the progress bar.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bw_GenerateReportProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             this.progressBar1.Value = e.ProgressPercentage;
         }
+        /// <summary>
+        /// Closes and saves (or just closes) the excel report,
+        /// then resets the buttons in the tasks screen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bw_GenerateReportRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if ((e.Cancelled == true))
@@ -721,7 +776,11 @@ namespace AsanaCrescent
             this.GenerateCancelButton.Visible = false;
             this.TaskBackButton.Enabled = true;
         }
-
+        /// <summary>
+        /// Stops the report from generating.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GenerateCancelButton_Click(object sender, EventArgs e)
         {
             if (ReportGenerator.WorkerSupportsCancellation)
@@ -729,6 +788,11 @@ namespace AsanaCrescent
                 ReportGenerator.CancelAsync();
             }
         }
+        /// <summary>
+        /// Disables the "Enter" key from doing anything.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Crescent_KeyPressed(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -760,7 +824,6 @@ namespace AsanaCrescent
         private ArrayList TaskAllCheckBox;
         private ArrayList tags;
         private ArrayList selectedProjects;
-        private Object lock1;
         private ArrayList TaskYLoc;
         private BackgroundWorker ReportGenerator;
         private BackgroundWorker GeneralWorker;
