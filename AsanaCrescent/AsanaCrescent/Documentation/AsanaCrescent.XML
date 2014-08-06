@@ -1,0 +1,388 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AsanaCrescent</name>
+    </assembly>
+    <members>
+        <member name="M:AsanaCrescent.Crescent.SetAsanaConnection(System.String)">
+            <summary>
+            Set up the connection with Asana using an APIKey and the AsanaNet Library
+            </summary>
+            <param name="APIKey"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.AddCheckbox(AsanaNet.AsanaObject,System.Windows.Forms.Panel)">
+            <summary>
+            Adds a CheckBox to either the WorkspacePanel or the ProjectPanel. Vertical Y location
+            is kept track by an arraylist.
+            </summary>
+            <param name="o"></param>
+            <param name="panel"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.AddTabCheckbox(AsanaNet.AsanaTask,System.Int32)">
+            <summary>
+            Adds a CheckBox to a specific tab in the tabcontrol for tasks.
+            </summary>
+            <param name="task"></param>
+            <param name="TabIndex"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.bw_PopulateWorkspaces(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Gets a list of worskpaces from Asana and displays them in the WorkspacePanel
+            from which the user can select.
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.APIKeyButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Connects to Asana and populates the Workspaces
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.WorkspaceBackButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Cancels the population of workspaces if ongoing
+            and returns to the authentication screen
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.GetWorkspaceTags">
+            <summary>
+            Get a list of all the tags within the workspace.
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.bw_PopulateProjects(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Populate the list of projects as checkboxes in the project panel.
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.bw_PopulateTasks(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Populate the list of tasks in each of the projects and place them
+            in their correct tab in the tabcontrol.
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.ProjectCheckBox_CheckChanged(System.Object,System.EventArgs)">
+            <summary>
+            Allows the user to progress to the next screen if at least one project is selected.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.TaskCheckBox_CheckChanged(System.Object,System.EventArgs)">
+            <summary>
+            User is allowed to generate reports if everything is done loading
+            and at least one box is checked
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.WorkspaceCheckBox_CheckChanged(System.Object,System.EventArgs)">
+            <summary>
+            Allows the user to progress to the project screen
+            if exactly one workspace is selected.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.WorkspaceNextButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Populates and shows the Projects screen.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.ProjectBackButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Cancels the population of projects if ongoing
+            and return to the workspace screen.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.ProjectNextButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Populates and shows the tabcontrol and tasks.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.TaskBackButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Cancels the population of tasks if still ongoing
+            and returns to the projects screen.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.GenerateButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Calls the background worker to start generating the report
+            and sets a cancel button.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.ClearProjects">
+            <summary>
+            Resets the state of projects within this instance.
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.ClearTasks">
+            <summary>
+            Resets the state of tasks within this instance.
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.ProjectAllCheckBox_CheckChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles the "All" checkbox logic for projects. When checked,
+            check everything. Otherwise uncheck everything.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.TaskAllCheckBox_CheckChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles the "All" checkbox logic for tasks. When checked,
+            check all tasks within the current project tab. Otherwise,
+            uncheck all tasks within the current project tab.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.bw_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            The asynchronous handler for everything but report generation.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.bw_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            Gui logic for the completion of the general worker's
+            asynchronous calls.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.bw_GenerateReport(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Generates a report by consolidating the workspaces, projects,
+            tasks, tags, and stories and exporting them into a formatted Excel
+            document. Reports are saved in a folder "reports".
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.bw_GenerateReportProgressChanged(System.Object,System.ComponentModel.ProgressChangedEventArgs)">
+            <summary>
+            Updates the progress bar.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.bw_GenerateReportRunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            Closes and saves (or just closes) the excel report,
+            then resets the buttons in the tasks screen.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.GenerateCancelButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Stops the report from generating.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.Crescent_KeyPressed(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Disables the "Enter" key from doing anything.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:AsanaCrescent.Crescent.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AsanaCrescent.Crescent.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AsanaCrescent.ProjectInExcel">
+            <summary>
+            A simple way to represent the projects in Asana as a worksheet
+            in Microsoft Excel.
+            </summary>
+        </member>
+        <member name="T:AsanaCrescent.ExcelMaster">
+            <summary>
+            A very simple Asana to Excel library.
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.ExcelMaster.SetWorksheets(System.Collections.ArrayList)">
+            <summary>
+            Adds as many number of worksheets as there are projects
+            and sets their name to be the name of the project.
+            </summary>
+            <param name="projects">The list of projects used to make the worksheets.</param>
+        </member>
+        <member name="M:AsanaCrescent.ExcelMaster.AddRow(System.String[],System.String)">
+            <summary>
+            Adds a row of data to the appropriate worksheet.
+            </summary>
+            <param name="data">The row to add into excel</param>
+            <param name="worksheet">The name of the worksheet to which we add the row</param>
+        </member>
+        <member name="M:AsanaCrescent.ExcelMaster.AddDataRange(System.String[0:,0:],System.String)">
+            <summary>
+            Currently unused, but will add a 2D array to excel rather than a single row.
+            </summary>
+            <param name="data">The data to add to excel</param>
+            <param name="worksheet">The name of the worksheet to which we add the row</param>
+        </member>
+        <member name="M:AsanaCrescent.ExcelMaster.SetColumns(System.String[],System.String)">
+            <summary>
+            Sets the cell in the first row to be a column name.
+            </summary>
+            <param name="col">An array of column names to add</param>
+            <param name="worksheetName">The name of the worksheet to which we add the columns</param>
+        </member>
+        <member name="M:AsanaCrescent.ExcelMaster.Show">
+            <summary>
+            Displays the Excel document. Useful for debugging or watching what the code does in excel.
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.ExcelMaster.GetColumnNames(System.String)">
+            <summary>
+            Get the names of the columns in a particular worksheet.
+            </summary>
+            <param name="worksheet">The worksheet from which to get the columns</param>
+            <returns></returns>
+        </member>
+        <member name="M:AsanaCrescent.ExcelMaster.ClearWorksheets">
+            <summary>
+            Destroys all worksheets in Excel.
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.ExcelMaster.SaveAndClose">
+            <summary>
+            Creates a "reports" directory in the current location if it doesn't exist,
+            and saves the excel document as a .xlsx file with a name based on the time
+            of generation, down to the second.
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.ExcelMaster.CloseWithoutSaving">
+            <summary>
+            Closes the excel document without saving work.
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.ExcelMaster.releaseObject(System.Object)">
+            <summary>
+            Properly disposes of Excel Interop objects
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:AsanaCrescent.ExcelMaster.MakeWorksheetsTables">
+            <summary>
+            Converts all of the data in a worksheet to a table with column headers
+            in Excel.
+            </summary>
+        </member>
+        <member name="T:AsanaCrescent.Parser">
+            <summary>
+            All of the searching for dates within stories happens here. 
+            </summary>
+        </member>
+        <member name="M:AsanaCrescent.Parser.ParseStories(System.Collections.ArrayList,System.String[],System.String[],System.String)">
+            <summary>
+            Looks through the stories for a particular task to find the most recent information
+            an event occurred in a task.
+            </summary>
+            <param name="stories">All of the stories associated with a particular task</param>
+            <param name="tags">The tags in the workspace that each task may be given</param>
+            <param name="columns">The data to pull from Asana. Also the columns in the report.</param>
+            <param name="proj">The current project we are working with.</param>
+            <returns>An array of data in </returns>
+        </member>
+        <member name="M:AsanaCrescent.Parser.ParseSubProjects(System.Collections.ArrayList)">
+            <summary>
+            Currently not used, but finds the sections in a project.
+            </summary>
+            <param name="tasks">All of the "tasks" in a particular projects. Sections are stored
+            as tasks in Asana.</param>
+            <returns>An array of strings containing the names of each section</returns>
+        </member>
+        <member name="M:AsanaCrescent.Parser.findDate(System.Collections.ArrayList,System.String)">
+            <summary>
+            Gets the most recent Date within the stories for a specific piece of data.
+            </summary>
+            <param name="stories">The list of stories to parse for a given task</param>
+            <param name="s">A string related to the type of date to be retrieved</param>
+            <returns></returns>
+        </member>
+        <member name="M:AsanaCrescent.Parser.findTags(System.Collections.ArrayList,System.String[])">
+            <summary>
+            Searches a Task for everything it has been tagged with.
+            </summary>
+            <param name="stories">The list of stories to parse</param>
+            <param name="tags">The tags in the current workspace</param>
+            <returns>All of the tags associated with a task</returns>
+        </member>
+        <member name="M:AsanaCrescent.Parser.findAssignee(System.Collections.ArrayList)">
+            <summary>
+            Search a task for its most recent assignee
+            </summary>
+            <param name="stories">The stories in a task to parse</param>
+            <returns>The most recent assignee on the task. Note that if the user who entered his/her
+            API Key is the assignee, the return value will be "me".</returns>
+        </member>
+        <member name="M:AsanaCrescent.Program.Main">
+            <summary>
+            Entry point to the application. Not very complicated
+            </summary>
+        </member>
+        <member name="T:AsanaCrescent.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:AsanaCrescent.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:AsanaCrescent.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:AsanaCrescent.Properties.Resources.asanacrescent2">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AsanaCrescent.Properties.Resources.leapfrog">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:AsanaCrescent.Properties.Resources.WMP">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+    </members>
+</doc>
