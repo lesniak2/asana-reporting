@@ -54,13 +54,8 @@ ipch/
 *.sdf
 *.cachefile
 
-# AsanaNet Library
-AsanaNet-master/
-
-# Unnecessary until OAuth support
-Browser.cs
-Browser.Designer.cs
-Browser.resx
+# AsanaNet Library -- included due to making changes, see readme.md
+#AsanaNet-master/
 
 # Visual Studio profiler
 *.psess
