@@ -14,76 +14,54 @@ namespace AsanaCrescent
     {
         PopulateWorkspaces,
         PopulateProjects,
-        PopulateTasks
+        PopulateTasks,
+        Cancelled
     };
 
     public partial class Crescent : Form
     {
-        private int yLoc = 0;
-        private ArrayList workspaces;
-        private int bw_state;
-        private ArrayList projects;
-        private ArrayList tasks;
-        private ArrayList WorkspaceCheckBoxes;
-        private ArrayList ProjectCheckBoxes;
-        private ArrayList TaskCheckBoxes;
-        private Asana asana;
-        public static bool CancelTaskPopulating;
-        private ArrayList TaskConnectionEnded;
-        private ExcelMaster excel;
-        private Dictionary<string, AsanaWorkspace> WorkspaceDictionary;
-        private Dictionary<string, AsanaProject> ProjectDictionary;
-        private Dictionary<long, AsanaTask> TaskDictionary;
-        private Dictionary<AsanaTask, AsanaProject> TaskProjectDictionary;
-        private Dictionary<AsanaProject, int> ProjectTabDictionary;
-        private Dictionary<string, ProjectInExcel> ProjectExcelDictionary;
-        private string CurrentWorkspaceName;
-        private CheckBox ProjectAllCheckBox;
-        private ArrayList TaskAllCheckBox;
-        private ArrayList tags;
-        private ArrayList selectedProjects;
-        private Object lock1;
-        private ArrayList TaskYLoc;
-        private BackgroundWorker ReportGenerator;
-        private BackgroundWorker GeneralWorker;
-
         public Crescent()
         {
             InitializeComponent();
             asana = null;
-            CancelTaskPopulating = false;
-            workspaces = new ArrayList();
-            WorkspaceCheckBoxes = new ArrayList();
-            ProjectCheckBoxes = new ArrayList();
-            TaskCheckBoxes = new ArrayList();
-            projects = new ArrayList();
+
             tasks = new ArrayList();
+            projects = new ArrayList();
+            workspaces = new ArrayList();
+
+            TaskCheckBoxes = new ArrayList();
+            ProjectCheckBoxes = new ArrayList();
+            WorkspaceCheckBoxes = new ArrayList();
             TaskConnectionEnded = new ArrayList();
-            WorkspaceDictionary = new Dictionary<string, AsanaWorkspace>();
-            ProjectDictionary = new Dictionary<string, AsanaProject>();
+
             TaskDictionary = new Dictionary<long, AsanaTask>();
+            ProjectDictionary = new Dictionary<string, AsanaProject>();
+            WorkspaceDictionary = new Dictionary<string, AsanaWorkspace>();
             TaskProjectDictionary = new Dictionary<AsanaTask, AsanaProject>();
             ProjectTabDictionary = new Dictionary<AsanaProject, int>();
             ProjectExcelDictionary = new Dictionary<string, ProjectInExcel>();
+
             ProjectAllCheckBox = new CheckBox();
             TaskAllCheckBox = new ArrayList();
             selectedProjects = new ArrayList();
+
             TaskYLoc = new ArrayList();
             tags = new ArrayList();
             lock1 = new Object();
+
+            this.APIKeyButton.Click += new System.EventHandler(this.APIKeyButton_Click);
+            this.WorkspaceBackButton.Click += new System.EventHandler(this.WorkspaceBackButton_Click);
             this.WorkspaceNextButton.Click += new System.EventHandler(this.WorkspaceNextButton_Click);
             this.ProjectBackButton.Click += new System.EventHandler(this.ProjectBackButton_Click);
             this.ProjectNextButton.Click += new System.EventHandler(this.ProjectNextButton_Click);
             this.TaskBackButton.Click += new System.EventHandler(this.TaskBackButton_Click);
             this.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
             this.GenerateCancelButton.Click += new System.EventHandler(this.GenerateCancelButton_Click);
-            this.APIKeyButton.Click += new System.EventHandler(this.APIKeyButton_Click);
-            this.WorkspaceBackButton.Click += new System.EventHandler(this.WorkspaceBackButton_Click);
             this.KeyPress += new KeyPressEventHandler(this.Crescent_KeyPressed);
 
             GeneralWorker = new BackgroundWorker();
             GeneralWorker.WorkerReportsProgress = false;
-            GeneralWorker.WorkerSupportsCancellation = false;
+            GeneralWorker.WorkerSupportsCancellation = true;
             GeneralWorker.DoWork += new DoWorkEventHandler(bw_DoWork);
             GeneralWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
 
@@ -95,14 +73,25 @@ namespace AsanaCrescent
             ReportGenerator.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_GenerateReportRunWorkerCompleted);
 
         }
-
-        public void SetAsanaConnection(String APIKey)
+        /// <summary>
+        /// Set up the connection with Asana using an APIKey and the AsanaNet Library
+        /// </summary>
+        /// <param name="APIKey"></param>
+        private void SetAsanaConnection(String APIKey)
         {
             asana = null;
             asana = new Asana(APIKey, AuthenticationType.Basic, (s1, s2, s3) => { });
         }
+        /// <summary>
+        /// Adds a CheckBox to either the WorkspacePanel or the ProjectPanel. Vertical Y location
+        /// is kept track by an arraylist.
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="panel"></param>
         private void AddCheckbox(AsanaObject o, Panel panel)
         {
+            if(GeneralWorker.CancellationPending)
+                return;
             CheckBox checkbox = new CheckBox();
             checkbox.AutoSize = true;
             checkbox.Location = new System.Drawing.Point(6, 5 + yLoc);
@@ -125,10 +114,14 @@ namespace AsanaCrescent
             }
             panel.Invoke(new Action(() => { panel.Controls.Add(checkbox); }));
         }
-
+        /// <summary>
+        /// Adds a CheckBox to a specific tab in the tabcontrol for tasks.
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="TabIndex"></param>
         private void AddTabCheckbox(AsanaTask task, int TabIndex)
         {
-            if (!CancelTaskPopulating)
+            if (!GeneralWorker.CancellationPending)
             {
                 CheckBox checkbox = new CheckBox();
                 checkbox.Text = task.Name;
@@ -142,8 +135,14 @@ namespace AsanaCrescent
                 this.tabControl.Invoke(new Action(() => { this.tabControl.TabPages[TabIndex].Controls.Add(checkbox); }));
             }
         }
-        public void bw_PopulateWorkspaces()
+
+        /// <summary>
+        /// Gets a list of worskpaces from Asana and displays them in the WorkspacePanel
+        /// from which the user can select.
+        /// </summary>
+        public void bw_PopulateWorkspaces(object sender, DoWorkEventArgs e)
         {
+            BackgroundWorker worker = sender as BackgroundWorker;
             yLoc = 0;
             this.WorkspaceLoadingLabel.Invoke(new Action(() => { 
                 this.WorkspaceLoadingLabel.Text = "Loading workspaces..."; 
@@ -152,6 +151,8 @@ namespace AsanaCrescent
             {
                 foreach (AsanaWorkspace workspace in o)
                 {
+                    if (worker.CancellationPending)
+                        break;
                     workspaces.Add(workspace);
                     WorkspaceDictionary.Add(workspace.Name, workspace);
                     this.AddCheckbox(workspace, this.WorkspacePanel);
@@ -159,18 +160,11 @@ namespace AsanaCrescent
             }).Wait();
         }
 
-        private void WorkspaceBackButton_Click(object sender, EventArgs e)
-        {
-            this.WorkspacePanel.Controls.Clear();
-            this.ChooseWorkspacePanel.Visible = false;
-            this.asanacrescentLogo.Visible = true;
-            this.WorkspaceNextButton.Enabled = false;
-            this.AuthenticationPanel.Focus();
-            tags.Clear();
-            workspaces.Clear();
-            WorkspaceDictionary.Clear();
-        }
-
+        /// <summary>
+        /// Connects to Asana and populates the Workspaces
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void APIKeyButton_Click(object sender, EventArgs e)
         {
             this.asanacrescentLogo.Visible = false;
@@ -181,6 +175,32 @@ namespace AsanaCrescent
             GeneralWorker.RunWorkerAsync(AsanaManager.PopulateWorkspaces);
         }
 
+        /// <summary>
+        /// Reset the current workspaces and handle all of the GUI work
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WorkspaceBackButton_Click(object sender, EventArgs e)
+        {
+            if(GeneralWorker.IsBusy)
+            {
+                GeneralWorker.CancelAsync();
+                _resetEvent.WaitOne();
+            }
+            this.WorkspacePanel.Controls.Clear();
+            this.WorkspaceCheckBoxes.Clear();
+            this.workspaces.Clear();
+            this.WorkspaceDictionary.Clear();
+            this.ClientSize = new System.Drawing.Size(396, 258);
+            this.ChooseWorkspacePanel.Visible = false;
+            this.asanacrescentLogo.Visible = true;
+            this.WorkspaceNextButton.Enabled = false;
+            this.AuthenticationPanel.Focus();
+        }
+
+        /// <summary>
+        /// Get a list of all the tags within the workspace.
+        /// </summary>
         public void GetWorkspaceTags()
         {
             asana.GetTagsInWorkspace(WorkspaceDictionary[this.CurrentWorkspaceName], o =>
@@ -191,8 +211,12 @@ namespace AsanaCrescent
             }).Wait();
         }
 
-        public void bw_PopulateProjects()
+        /// <summary>
+        /// Populate the list of projects as checkboxes in the project panel.
+        /// </summary>
+        public void bw_PopulateProjects(object sender, DoWorkEventArgs e)
         {
+            BackgroundWorker worker = sender as BackgroundWorker;
             this.Invoke(new Action(() =>
             {
 
@@ -218,6 +242,8 @@ namespace AsanaCrescent
                 {
                     foreach (AsanaProject project in o)
                     {
+                        if (worker.CancellationPending)
+                            break;
                         projects.Add(project);
                         ProjectDictionary.Add(project.Name, project);
                         this.AddCheckbox(project, this.ProjectPanel);
@@ -226,9 +252,13 @@ namespace AsanaCrescent
 
 
         }
-
-        public void bw_PopulateTasks()
+        /// <summary>
+        /// Populate the list of tasks in each of the projects and place them
+        /// in their correct tab in the tabcontrol.
+        /// </summary>
+        public void bw_PopulateTasks(object sender, DoWorkEventArgs ev)
         {
+            BackgroundWorker worker = sender as BackgroundWorker;
             this.Invoke(new Action(() =>
             {
                 this.TaskLoadingLabel.Text = "Loading tasks...";
@@ -236,7 +266,7 @@ namespace AsanaCrescent
             }));
             foreach (AsanaProject project in selectedProjects)
                 TaskConnectionEnded.Add(false);
-            //Add a checkbox to select All
+            //Add a checkbox to select All for each project
             foreach (AsanaProject project in selectedProjects)
             {
                 CheckBox all = new CheckBox();
@@ -264,24 +294,23 @@ namespace AsanaCrescent
             int j = 0;
             foreach (AsanaProject project in selectedProjects)
             {
-                if (CancelTaskPopulating)
+                if(worker.CancellationPending)
                 {
-                    for (int i = 0; i < TaskConnectionEnded.Count; i++)
-                        TaskConnectionEnded[i] = true;
+           //         for (int i = 0; i < TaskConnectionEnded.Count; i++)
+           //             TaskConnectionEnded[i] = true;
                     break;
                 }
                 ProjectInExcel excelproj = new ProjectInExcel();
                 ProjectExcelDictionary.Add(project.Name, excelproj);
-                // Add "Task" and "Project" columns
                 asana.GetTasksInAProject(project, o =>
                 {
                     int tmp = j;
 
                     foreach (AsanaTask task in o)
                     {
-                        if (CancelTaskPopulating)
+                        if (worker.CancellationPending)
                             break;
-                        if (!task.Name.EndsWith(":"))
+                        if (!task.Name.EndsWith(":")) // sections in asana end with ":"
                         {
                             if (!TaskDictionary.ContainsKey(task.ID)) // prevent duplicate keys
                             {
@@ -292,14 +321,16 @@ namespace AsanaCrescent
                                 {
                                     TabControl tc = this.tabControl;
                                     int i;
+                                    // get the correct tab page for the project
                                     for (i = 0; i < tc.TabCount && tc.TabPages[i].Text != project.Name; i++)
                                         ;
-                                    this.AddTabCheckbox(task, i);
+                                    if(tc.TabCount > 0)
+                                        this.AddTabCheckbox(task, i);
                                 }));
 
                             }
                         }
-                        else
+                        else // add it to the columns and tabs in the tabcontrol
                         {
                             bool flag = false;
                             foreach (string name in excelproj.Columns)
@@ -313,14 +344,18 @@ namespace AsanaCrescent
                             }
                         }
 
-                        TaskConnectionEnded[tmp] = true;
+                 //       TaskConnectionEnded[tmp] = true;
                     }
                 }).Wait();
 
             }
 
         }
-
+        /// <summary>
+        /// Allows the user to progress to the next screen if at least one project is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProjectCheckBox_CheckChanged(object sender, EventArgs e)
         {
             if (((CheckBox)sender).Checked)
@@ -342,6 +377,13 @@ namespace AsanaCrescent
             this.ProjectNextButton.Enabled = false;
         }
 
+        
+        /// <summary>
+        /// User is allowed to generate reports if everything is done loading
+        /// and at least one box is checked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TaskCheckBox_CheckChanged(object sender, EventArgs e)
         {
             if (((CheckBox)sender).Checked && this.TaskLoadingLabel.Text == "Done")
@@ -362,14 +404,22 @@ namespace AsanaCrescent
             }
             this.GenerateButton.Enabled = false;
         }
-
+        /// <summary>
+        /// Allows the user to progress to the project screen
+        /// if exactly one workspace is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WorkspaceCheckBox_CheckChanged(object sender, EventArgs e)
         {
             this.WorkspaceNextButton.Enabled = false;
+
+            // if the user selects a different workspace (i.e. didnt click the same one twice)
             if (((CheckBox)sender).Checked == true)
             {
                 this.WorkspaceNextButton.Enabled = true;
                 this.CurrentWorkspaceName = ((CheckBox)sender).Text;
+                // set all workspaces other than the one selected to be unchecked
                 foreach (CheckBox checkbox in WorkspaceCheckBoxes)
                 {
                     if (checkbox != sender)
@@ -377,17 +427,22 @@ namespace AsanaCrescent
                         checkbox.Checked = false;
                     }
                 }
-
+                // check if at least one checkbox is selected
                 foreach (CheckBox checkbox in WorkspaceCheckBoxes)
                 {
                     if (checkbox.Checked == true)
                     {
                         this.WorkspaceNextButton.Enabled = true;
+                        return;
                     }
                 }
             }
         }
-
+        /// <summary>
+        /// Populates and shows the Projects screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void WorkspaceNextButton_Click(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.Sizable;
@@ -396,9 +451,18 @@ namespace AsanaCrescent
             this.ChooseProjectPanel.Focus();
             GeneralWorker.RunWorkerAsync(AsanaManager.PopulateProjects);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void ProjectBackButton_Click(object sender, EventArgs e)
         {
+            if (GeneralWorker.IsBusy)
+            {
+                GeneralWorker.CancelAsync();
+                _resetEvent.WaitOne();
+            }
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(396, 455);
             ProjectAllCheckBox.Checked = false;
@@ -409,7 +473,6 @@ namespace AsanaCrescent
         }
         public void ProjectNextButton_Click(object sender, EventArgs e)
         {
-
             selectedProjects.Clear();
             ProjectExcelDictionary.Clear();
 
@@ -422,14 +485,15 @@ namespace AsanaCrescent
             }
             this.ChooseTaskPanel.Visible = true;
             this.ChooseTaskPanel.Focus();
+            this.TaskBackButton.Enabled = true;
             this.FindForm().WindowState = FormWindowState.Maximized;
             this.tabControl.Visible = true;
-            
             GeneralWorker.RunWorkerAsync(AsanaManager.PopulateTasks);
+
         }
         public void TaskBackButton_Click(object sender, EventArgs e)
         {
-
+            /**
             // wait for asana connections to end
             for (int i = 0; i < TaskConnectionEnded.Count; i++)
             {
@@ -440,14 +504,19 @@ namespace AsanaCrescent
                     break;
                 }
             }
-
-            this.tabControl.TabPages.Clear();
-            this.tabControl.Controls.Clear();
+            */
+            if (GeneralWorker.IsBusy)
+            {
+                GeneralWorker.CancelAsync();
+                _resetEvent.WaitOne();
+            }
             this.ChooseTaskPanel.Visible = false;
             this.GenerateButton.Enabled = false;
             this.ChooseProjectPanel.Focus();
-            ClearTasks();
             this.FindForm().WindowState = FormWindowState.Normal;
+            this.tabControl.TabPages.Clear();
+            this.tabControl.Controls.Clear();
+            ClearTasks();
         }
 
         public void GenerateButton_Click(object sender, EventArgs e)
@@ -523,28 +592,31 @@ namespace AsanaCrescent
 
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            lock (lock1)
-            {
-                bw_state = (int)e.Argument;
-            }
+            _resetEvent.Reset();
+            bw_state = (int)e.Argument;
             switch ((int)e.Argument)
             {
                 case (int)AsanaManager.PopulateWorkspaces :
-                    this.bw_PopulateWorkspaces();
+                    this.bw_PopulateWorkspaces(sender, e);
                     break;
                 case (int)AsanaManager.PopulateProjects :
-                    this.bw_PopulateProjects();
+                    this.bw_PopulateProjects(sender, e);
                     break;
                 case (int)AsanaManager.PopulateTasks :
-                    this.bw_PopulateTasks();
+                    this.bw_PopulateTasks(sender, e);
                     break;
-                default: 
-                    return;
+                case (int)AsanaManager.Cancelled :
+                    break;
+                default:
+                    break;
             }
+            _resetEvent.Set();
 
         }
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (e.Cancelled == true)
+                bw_state = (int)AsanaManager.Cancelled;
             BackgroundWorker worker = sender as BackgroundWorker;
             switch (bw_state)
             {
@@ -562,7 +634,7 @@ namespace AsanaCrescent
                     this.TaskLoadingLabel.Invoke(new Action(() =>
                         { 
                           this.TaskLoadingLabel.Text = "Done";
-
+                          this.GenerateButton.Enabled = false;
                           foreach (CheckBox task in TaskCheckBoxes)
                           {
                               if (task.Checked)
@@ -571,6 +643,10 @@ namespace AsanaCrescent
                               }
                           }
                         }));
+                    break;
+                case (int)AsanaManager.Cancelled:
+                    break;
+                default:
                     break;
             }
 
@@ -639,7 +715,6 @@ namespace AsanaCrescent
             {
                 excel.SaveAndClose();
             }
-            Crescent.CancelTaskPopulating = false;
             this.progressBar1.Visible = false;
             this.progressBar1.Value = 0;
             this.GenerateButton.Visible = true;
@@ -649,7 +724,6 @@ namespace AsanaCrescent
 
         private void GenerateCancelButton_Click(object sender, EventArgs e)
         {
-            Crescent.CancelTaskPopulating = true;
             if (ReportGenerator.WorkerSupportsCancellation)
             {
                 ReportGenerator.CancelAsync();
@@ -660,5 +734,36 @@ namespace AsanaCrescent
             if (e.KeyChar == (char)Keys.Enter)
                 e.Handled = true;
         }
+
+
+
+        private AutoResetEvent _resetEvent = new AutoResetEvent(false);
+        private int yLoc = 0;
+        private int bw_state;
+        private string CurrentWorkspaceName;
+        private Asana asana;
+        private ExcelMaster excel;
+        private ArrayList tasks;
+        private ArrayList projects;
+        private ArrayList workspaces;
+        private ArrayList TaskCheckBoxes;
+        private ArrayList ProjectCheckBoxes;
+        private ArrayList WorkspaceCheckBoxes;
+        private ArrayList TaskConnectionEnded;
+        private Dictionary<long, AsanaTask> TaskDictionary;
+        private Dictionary<string, AsanaProject> ProjectDictionary;
+        private Dictionary<string, AsanaWorkspace> WorkspaceDictionary;
+        private Dictionary<AsanaTask, AsanaProject> TaskProjectDictionary;
+        private Dictionary<AsanaProject, int> ProjectTabDictionary;
+        private Dictionary<string, ProjectInExcel> ProjectExcelDictionary;
+        private CheckBox ProjectAllCheckBox;
+        private ArrayList TaskAllCheckBox;
+        private ArrayList tags;
+        private ArrayList selectedProjects;
+        private Object lock1;
+        private ArrayList TaskYLoc;
+        private BackgroundWorker ReportGenerator;
+        private BackgroundWorker GeneralWorker;
+
     }
 }
