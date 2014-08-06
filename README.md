@@ -4,7 +4,7 @@ AsanaCrescent
 Pull important data related to tasks within your team project from Asana into Excel.
 
 ##User Notes:
-	1) You can find your API Key [here](http://app.asana.com/-/account_api)
+	1) You can find your API Key at: http://app.asana.com/-/account_api
 	2) Workspaces will not show up if you don't enter your API Key correctly or you do not have internet.
 	3) Reports are currently saved in a folder called "reports" which will be created in the same directory
 		as the executable.
