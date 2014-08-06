@@ -38,3 +38,10 @@ Pull important data related to tasks within your team project from Asana into Ex
 		wait times.
 	2) Nothing has been done to handle dropped internet connections in the middle of report generations or checkbox populations.
 	3) -Optional- Add support for OAuth2 login
+	
+## Deploy:
+	1) Make sure AsanaNet is a reference. 
+	2) Build the solution.
+	3) Check the bin\release folder for AsanaCrescent.exe and AsanaNet.dll. Run AsanaCrescent.exe to ensure everything is in working order.
+	4) Use the tool ILMerge (http://www.microsoft.com/en-us/download/details.aspx?id=17630) to add the AsanaNet.dll in the executable.
+	5) Ignore any other files generated from ILMerge, e.g. .pdb and .csproj
