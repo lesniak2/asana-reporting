@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
+﻿using System.Collections;
+
 namespace AsanaCrescent
 {
-
+    /// <summary>
+    /// A simple way to represent the projects in Asana as a worksheet
+    /// in Microsoft Excel.
+    /// </summary>
     class ProjectInExcel
     {
         public string Name { get; set; }
         private ArrayList columns;
-        public ArrayList Columns 
+
+        public ArrayList Columns
         {
             get
             {

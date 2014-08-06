@@ -86,7 +86,7 @@ namespace AsanaCrescent
         /// <param name="panel"></param>
         private void AddCheckbox(AsanaObject o, Panel panel)
         {
-            if(GeneralWorker.CancellationPending)
+            if (GeneralWorker.CancellationPending)
                 return;
             CheckBox checkbox = new CheckBox();
             checkbox.AutoSize = true;
@@ -140,8 +140,9 @@ namespace AsanaCrescent
         {
             BackgroundWorker worker = sender as BackgroundWorker;
             yLoc = 0;
-            this.WorkspaceLoadingLabel.Invoke(new Action(() => { 
-                this.WorkspaceLoadingLabel.Text = "Loading workspaces..."; 
+            this.WorkspaceLoadingLabel.Invoke(new Action(() =>
+            {
+                this.WorkspaceLoadingLabel.Text = "Loading workspaces...";
             }));
             asana.GetWorkspaces(o =>
             {
@@ -179,7 +180,7 @@ namespace AsanaCrescent
         /// <param name="e"></param>
         private void WorkspaceBackButton_Click(object sender, EventArgs e)
         {
-            if(GeneralWorker.IsBusy)
+            if (GeneralWorker.IsBusy)
             {
                 GeneralWorker.CancelAsync();
                 _resetEvent.WaitOne();
@@ -234,18 +235,18 @@ namespace AsanaCrescent
                 this.ProjectPanel.Invoke(new Action(() => { this.ProjectPanel.Controls.Add(ProjectAllCheckBox); }));
 
             }));
-                // get projects from Asana
-                asana.GetProjectsInWorkspace(WorkspaceDictionary[this.CurrentWorkspaceName], o =>
+            // get projects from Asana
+            asana.GetProjectsInWorkspace(WorkspaceDictionary[this.CurrentWorkspaceName], o =>
+            {
+                foreach (AsanaProject project in o)
                 {
-                    foreach (AsanaProject project in o)
-                    {
-                        if (worker.CancellationPending)
-                            break;
-                        projects.Add(project);
-                        ProjectDictionary.Add(project.Name, project);
-                        this.AddCheckbox(project, this.ProjectPanel);
-                    }
-                }).Wait();
+                    if (worker.CancellationPending)
+                        break;
+                    projects.Add(project);
+                    ProjectDictionary.Add(project.Name, project);
+                    this.AddCheckbox(project, this.ProjectPanel);
+                }
+            }).Wait();
 
 
         }
@@ -284,17 +285,17 @@ namespace AsanaCrescent
                 tab.AutoScroll = true;
 
                 this.tabControl.Invoke(new Action(() =>
-                {   this.tabControl.TabPages.Add(tab); }));
-                
+                { this.tabControl.TabPages.Add(tab); }));
+
             }
             // Add tasks based on selected projects
             int j = 0;
             foreach (AsanaProject project in selectedProjects)
             {
-                if(worker.CancellationPending)
+                if (worker.CancellationPending)
                 {
-           //         for (int i = 0; i < TaskConnectionEnded.Count; i++)
-           //             TaskConnectionEnded[i] = true;
+                    //         for (int i = 0; i < TaskConnectionEnded.Count; i++)
+                    //             TaskConnectionEnded[i] = true;
                     break;
                 }
                 ProjectInExcel excelproj = new ProjectInExcel();
@@ -321,7 +322,7 @@ namespace AsanaCrescent
                                     // get the correct tab page for the project
                                     for (i = 0; i < tc.TabCount && tc.TabPages[i].Text != project.Name; i++)
                                         ;
-                                    if(tc.TabCount > 0)
+                                    if (tc.TabCount > 0)
                                         this.AddTabCheckbox(task, i);
                                 }));
 
@@ -341,7 +342,7 @@ namespace AsanaCrescent
                             }
                         }
 
-                 //       TaskConnectionEnded[tmp] = true;
+                        //       TaskConnectionEnded[tmp] = true;
                     }
                 }).Wait();
 
@@ -374,7 +375,7 @@ namespace AsanaCrescent
             this.ProjectNextButton.Enabled = false;
         }
 
-        
+
         /// <summary>
         /// User is allowed to generate reports if everything is done loading
         /// and at least one box is checked
@@ -618,16 +619,16 @@ namespace AsanaCrescent
             bw_state = (int)e.Argument;
             switch ((int)e.Argument)
             {
-                case (int)AsanaManager.PopulateWorkspaces :
+                case (int)AsanaManager.PopulateWorkspaces:
                     this.bw_PopulateWorkspaces(sender, e);
                     break;
-                case (int)AsanaManager.PopulateProjects :
+                case (int)AsanaManager.PopulateProjects:
                     this.bw_PopulateProjects(sender, e);
                     break;
-                case (int)AsanaManager.PopulateTasks :
+                case (int)AsanaManager.PopulateTasks:
                     this.bw_PopulateTasks(sender, e);
                     break;
-                case (int)AsanaManager.Cancelled :
+                case (int)AsanaManager.Cancelled:
                     break;
                 default:
                     break;
@@ -651,7 +652,7 @@ namespace AsanaCrescent
             {
                 case (int)AsanaManager.PopulateWorkspaces:
                     this.WorkspaceLoadingLabel.Invoke(new Action(() =>
-                        {   this.WorkspaceLoadingLabel.Text = "Done"; }));
+                        { this.WorkspaceLoadingLabel.Text = "Done"; }));
                     break;
 
                 case (int)AsanaManager.PopulateProjects:
@@ -661,16 +662,16 @@ namespace AsanaCrescent
 
                 case (int)AsanaManager.PopulateTasks:
                     this.TaskLoadingLabel.Invoke(new Action(() =>
-                        { 
-                          this.TaskLoadingLabel.Text = "Done";
-                          this.GenerateButton.Enabled = false;
-                          foreach (CheckBox task in TaskCheckBoxes)
-                          {
-                              if (task.Checked)
-                              {
-                                  this.GenerateButton.Enabled = true;
-                              }
-                          }
+                        {
+                            this.TaskLoadingLabel.Text = "Done";
+                            this.GenerateButton.Enabled = false;
+                            foreach (CheckBox task in TaskCheckBoxes)
+                            {
+                                if (task.Checked)
+                                {
+                                    this.GenerateButton.Enabled = true;
+                                }
+                            }
                         }));
                     break;
                 case (int)AsanaManager.Cancelled:

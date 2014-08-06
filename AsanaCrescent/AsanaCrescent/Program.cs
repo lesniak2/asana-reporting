@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace AsanaCrescent
 {
-    class Program 
+    class Program
     {
         /// <summary>
         /// Entry point to the application. Not very complicated
